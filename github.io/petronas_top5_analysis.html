@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petronas Iraq Opportunity — Top 5 Field Recommendation</title>
+<style>
+:root {
+  --navy:   #0f1b2d;
+  --blue:   #0032A0;
+  --blue-l: #1565c0;
+  --green:  #166534;
+  --green-l:#dcfce7;
+  --amber:  #92400e;
+  --amber-bg:#fef3c7;
+  --red:    #991b1b;
+  --red-bg: #fee2e2;
+  --slate:  #37474f;
+  --light:  #f0f4f8;
+  --white:  #ffffff;
+  --border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; background: var(--light); color: #1a2e4a; min-height: 100vh; }
+
+/* HEADER */
+.header {
+  background: var(--navy);
+  background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+  color: var(--white);
+  padding: 28px 40px 22px;
+}
+.back-link {
+  display: inline-block; margin-bottom: 12px;
+  color: #fff; font-size: 12px; font-weight: 700; text-decoration: none;
+  background: var(--blue); padding: 5px 14px; border-radius: 6px;
+}
+.back-link:hover { background: var(--blue-l); }
+.header-meta { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #90caf9; margin-bottom: 8px; }
+.header h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.header p { font-size: 13px; color: #b3d4fc; }
+
+/* CONTAINER */
+.container { max-width: 1200px; margin: 0 auto; padding: 28px 24px 60px; }
+
+/* INTRO BANNER */
+.intro-banner {
+  background: linear-gradient(135deg, #1a3a5c 0%, #0f2744 100%);
+  border-radius: 12px; padding: 24px 28px; color: #fff; margin-bottom: 28px;
+  border-left: 6px solid #60a5fa;
+}
+.intro-banner h2 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #90caf9; text-transform: uppercase; letter-spacing: 1px; }
+.intro-banner p { font-size: 14px; line-height: 1.7; color: #dbeafe; }
+
+/* SECTION HEAD */
+.section-head {
+  background: var(--navy); color: var(--white); padding: 11px 22px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0;
+}
+.section { background: var(--white); border-radius: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.08); margin-bottom: 22px; overflow: hidden; }
+
+/* CRITERIA CARDS */
+.criteria-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding: 20px;
+}
+.criteria-card {
+  border-radius: 10px; padding: 18px; border-left: 5px solid;
+}
+.criteria-card.c1 { background: #eff6ff; border-color: #2563eb; }
+.criteria-card.c2 { background: #f0fdf4; border-color: #16a34a; }
+.criteria-card.c3 { background: #fffbeb; border-color: #d97706; }
+.criteria-card.c4 { background: #fdf4ff; border-color: #9333ea; }
+.criteria-card.c5 { background: #fef2f2; border-color: #dc2626; }
+.criteria-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+.criteria-card p { font-size: 12px; line-height: 1.65; color: #374151; }
+
+/* SCORING TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  background: #f4f7fb; padding: 10px 12px; text-align: left;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--slate); border-bottom: 2px solid var(--border);
+}
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8fafd; }
+.td-field { font-weight: 700; color: var(--navy); white-space: nowrap; }
+.td-op { font-size: 11px; color: #64748b; }
+.td-vol { font-size: 12px; }
+.td-score { font-weight: 700; font-size: 15px; text-align: center; }
+.s5 { color: #166534; }
+.s4 { color: #15803d; }
+.s3 { color: #92400e; }
+.s2 { color: #b45309; }
+.s1 { color: #dc2626; }
+
+/* RANKING BADGE */
+.rank-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%; font-size: 14px; font-weight: 800;
+}
+.rank-1 { background: #ffd700; color: #713f12; }
+.rank-2 { background: #c0c0c0; color: #3d3d3d; }
+.rank-3 { background: #cd7f32; color: #fff; }
+.rank-4 { background: #93c5fd; color: #1e3a8a; }
+.rank-5 { background: #86efac; color: #14532d; }
+
+/* RECOMMENDATION CARDS */
+.rec-card {
+  border-radius: 12px; overflow: hidden; margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+.rec-header {
+  padding: 14px 22px; display: flex; align-items: center; gap: 14px;
+}
+.rec-header h3 { font-size: 15px; font-weight: 700; flex: 1; }
+.rec-body { padding: 18px 22px; background: var(--white); }
+.rec-body p { font-size: 13px; line-height: 1.75; color: #374151; margin-bottom: 12px; }
+.rec-scores { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.score-pill {
+  display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* H2S TABLE */
+.h2s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; padding: 18px; }
+.h2s-block { border-radius: 8px; padding: 14px; border: 1px solid var(--border); }
+.h2s-block.high-sulfur { background: #fef2f2; border-color: #fca5a5; }
+.h2s-block.moderate-sulfur { background: #fffbeb; border-color: #fcd34d; }
+.h2s-block.low-sulfur { background: #f0fdf4; border-color: #86efac; }
+.h2s-block h4 { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.h2s-block p { font-size: 12px; line-height: 1.6; color: #374151; }
+.h2s-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+.tag-high { background: #fee2e2; color: #991b1b; }
+.tag-mod  { background: #fef3c7; color: #92400e; }
+.tag-low  { background: #dcfce7; color: #166534; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 24px 20px; font-size: 12px; color: #90a4ae; border-top: 1px solid var(--border); margin-top: 10px; }
+.footer a { color: var(--blue); text-decoration: none; }
+
+@media (max-width: 640px) {
+  .header { padding: 22px 20px 18px; }
+  .container { padding: 20px 14px 40px; }
+  th, td { padding: 8px 9px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <a href="index.html" class="back-link">&#8592; Back to Index</a>
+  <div class="header-meta">Petronas — Iraq Growth Opportunity Screening</div>
+  <h1>Top 5 Field Development Recommendations</h1>
+  <p>Analysis for Petronas Carigali — HC Evacuation · Security · Energy Demand · HC Volume · H2S Assessment</p>
+</div>
+
+<div class="container">
+
+<!-- INTRO -->
+<div class="intro-banner">
+  <h2>Scope &amp; Methodology</h2>
+  <p>This analysis evaluates all 25 fields and exploration blocks from the Iraq 2026 Growth Opportunities compilation against <strong>5 criteria</strong> relevant to Petronas Carigali's development strategy: (1) <strong>HC Evacuation Route</strong> — pipeline and infrastructure access; (2) <strong>Security Concerns</strong> — ISIS proximity, geopolitical risk, and operational safety; (3) <strong>Future Energy Demand</strong> — domestic power needs and export offtake potential; (4) <strong>HC Volume</strong> — STOIIP/GIIP and reserves magnitude; and (5) <strong>H2S Risk</strong> — sour gas content by reservoir type. Each criterion is scored 1–5. Fields with no commercial assessment (No PCIHBV status) are treated cautiously. Open exploration blocks are ranked lower due to exploration risk.</p>
+</div>
+
+<!-- ══ SECTION 1: CRITERIA REFERENCE ══ -->
+<div class="section">
+  <div class="section-head">Criterion 1 — HC Evacuation Route</div>
+  <div class="criteria-grid">
+    <div class="criteria-card c1">
+      <h3>🏗️ Existing Pipeline (Score 5)</h3>
+      <p>Luhais, Nasiriyah, Noor, Amara — direct connection to Basrah Gas Company / North Gas Company infrastructure. Lowest CAPEX for evacuation. Strongest offtake certainty.</p>
+    </div>
+    <div class="criteria-card c1">
+      <h3>🔗 Near Existing Infrastructure (Score 4)</h3>
+      <p>Abu Amood (25 km to Garraf), Tikrit (10–35 km), Khanuqah (15 km), Akkas (25 km to PS), Rawa (25 km to Akkas PS), As-Safa (15 km to Akkas/PS) — require modest pipeline spur lines.</p>
+    </div>
+    <div class="criteria-card c1">
+      <h3>⚡ Field-to-Power (Score 4)</h3>
+      <p>Akkas — direct gas supply contract to Akkas Power Plant. Unique offtake model; gas does not need long-distance pipeline.</p>
+    </div>
+    <div class="criteria-card c1">
+      <h3>🚛 Distance + Export Route (Score 3)</h3>
+      <p>Haifa (40 km to Iraq–Jordan pipeline), Al-Khaleesa (125 km to Akkas PS, 165 km to K2), Ballad (90 km to East Baghdad) — longer evacuation with some upside from potential new infrastructure.</p>
+    </div>
+    <div class="criteria-card c1">
+      <h3>❌ Isolated / N/A (Score 1–2)</h3>
+      <p>Rutba (35 km to abandoned PS), Karbala (no data), Akashat (60 km to Akkas), Al-Waleed (40 km to PS-13A) — significant pipeline investment required; isolated with no near-term commercial offtake route.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">Criterion 2 — Security Assessment</div>
+  <div class="criteria-grid">
+    <div class="criteria-card c2">
+      <h3>✅ Low Risk — Producing South (Score 5)</h3>
+      <p><strong>Basrah, Thi Qar (south), Missan:</strong> Luhais, Subba, Abu Amood, Nasiriyah, Eridu, Noor, Amara. International IOC presence. Stable government-controlled territory. MoO oversight. Low kidnapping/theft risk.</p>
+    </div>
+    <div class="criteria-card c2">
+      <h3>⚠️ Moderate Risk — North / Salah Addin (Score 3)</h3>
+      <p><strong>Salah Addin, Mosul:</strong> Ballad, Tikrit, Khanuqah, Khashab. ISIS cleared but residual cells possible. Tribal politics. NOCoperated — less IOC security infrastructure. Tikrit/Ballad near Baghdad "Sunni triangle" historically contested.</p>
+    </div>
+    <div class="criteria-card c2">
+      <h3>🔴 Elevated Risk — Anbar (ISIS Legacy) (Score 2)</h3>
+      <p><strong>Anbar Province:</strong> Akkas (ISIS controlled 2014–2017; liberated but sparsely populated), Rutba, Al-Waleed, Al-Anz, Karbala. Security forces stretched. Open desert borders with Syria/Jordan/Saudi. Land access challenging. However: MDOC/SLB presence at Akkas is reassuring.</p>
+    </div>
+    <div class="criteria-card c2">
+      <h3>🏴 Geopolitical — Sanctions (Score 1)</h3>
+      <p><strong>Eridu:</strong> US sanctions on Lukoil create contractual and financing complexity for any incoming partner. IOC/joint venture structure legally constrained. HIGH compliance burden for Petronas.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">Criterion 3 — Future Energy Demand Outlook</div>
+  <div class="criteria-grid">
+    <div class="criteria-card c3">
+      <h3>⚡ Gas-Focused — Domestic Power Deficit (Score 5)</h3>
+      <p><strong>Akkas:</strong> Iraq generates ~28–30 GW demand but chronic power shortages. Akkas supplies a dedicated power plant. Gas-to-power is a national priority. Iraq's gas demand growing at 5–8% annually. Strong government backing for gas development to displace fuel oil. Ideal for Petronas Gas New Ventures.</p>
+    </div>
+    <div class="criteria-card c3">
+      <h3>🌏 Export Route Upside (Score 4)</h3>
+      <p><strong>Haifa:</strong> 40 km to Iraq–Jordan pipeline corridor. If Jordan/Haifa pipeline matures, this becomes a regional export route. Jordan's gas demand rising. geopolitical advantage of Red Sea access.</p>
+    </div>
+    <div class="criteria-card c3">
+      <h3>🏭 Large Oil — Growing Regional Demand (Score 4)</h3>
+      <p><strong>Nasiriyah, Ballad:</strong> Iraq seeking to grow oil production to 6+ mbpd by 2030. Growing Asian demand (India, China, SE Asia) aligns with Petronas' trading book. Nasiriyah's 250 kbd PPT aligns with national export expansion.</p>
+    </div>
+    <div class="criteria-card c3">
+      <h3>🏭 Cluster Synergy — Gas Hub Potential (Score 4)</h3>
+      <p><strong>Anah + As-Safa + Rawa:</strong> Clustered near Akkas PS. If Akkas expands and hub-gathering system develops, these become attractive satellite developments with lower per-unit infrastructure cost.</p>
+    </div>
+    <div class="criteria-card c3">
+      <h3>📉 Constrained — OPEC+ Quotas (Score 2)</h3>
+      <p><strong>Noor + Amara:</strong> Both have been shut in for OPEC+ compliance (2020–2022, 2022–2025). Future production growth may be capped by quota. Slower ramp-up; ceiling on volumes despite 50 kbd PPT.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">Criterion 4 — HC Volume Assessment</div>
+  <div class="criteria-grid">
+    <div class="criteria-card c4">
+      <h3>🛢️ Giant Fields — >1,000 MMboe (Score 5)</h3>
+      <p><strong>Nasiriyah</strong> (4,900), <strong>Eridu</strong> (4,000), <strong>Ballad</strong> (2,302), <strong>Subba</strong> (1,260) — world-class volume scale. Nasiriyah and Eridu each exceed 4,000 MMboe — giant field status. Field-life >30 years at PPT rates.</p>
+    </div>
+    <div class="criteria-card c4">
+      <h3>🛢️ Large Fields — 400–1,000 MMboe (Score 4)</h3>
+      <p><strong>Abu Amood</strong> (595), <strong>Haifa</strong> (oil: 1,075), <strong>Luhais</strong> (1,010), <strong>Noor</strong> (404), <strong>Amara</strong> (350). Large-scale development viable. Sub-economics robust at <$40/bbl.</p>
+    </div>
+    <div class="criteria-card c4">
+      <h3>🔥 Large Gas — >1,000 Bscf GIIP (Score 4–5)</h3>
+      <p><strong>Anah</strong> (7,411 Bscf), <strong>Al-Khaleesa</strong> (1,942 Bscf), <strong>Rutba</strong> (1,500 Bscf), <strong>Akkas</strong> (4,500 Bscf). Anah has the largest GIIP in the portfolio. Gas giant potential.</p>
+    </div>
+    <div class="criteria-card c4">
+      <h3>🛢️ Medium — 50–400 MMboe (Score 3)</h3>
+      <p><strong>Khanuqah</strong> (30), <strong>Tikrit</strong> (44), <strong>Kumait</strong> (55), <strong>Khashab</strong> (34), <strong>Um-Khashaf</strong> (TBD). Development viable but not transformational for Petronas scale.</p>
+    </div>
+    <div class="criteria-card c4">
+      <h3>❓ Exploration Blocks — Undrilled (Score 1–2)</h3>
+      <p><strong>As-Safa, Al-Anz, Karbala, Akashat, Al-Waleed, Khasfah</strong> — no reserves booked. STOIIP/GIIP based on seismic leads only. Exploration risk sits with Petronas. Ranked lower for development focus.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">Criterion 5 — H2S Risk by Reservoir</div>
+  <div style="padding: 18px; display: grid; gap: 14px;">
+    <div class="h2s-block high-sulfur">
+      <h4>🔴 High H2S Risk Reservoirs <span class="h2s-tag tag-high">HIGH</span></h4>
+      <p><strong>Nahr Umar, Zubair, Yamama, Mishrif, Maudud, Ratawi, Lower Fars</strong><br>
+      Carbonate formations (Cretaceous) in southern Iraq are thermally mature with significant quantities of H₂S from TSR (Thermic Sulfate Reduction). H2S can range <strong>50–500+ ppm</strong> in produced gas, >1% in some well fluids. Requires: CRA/L80/13Cr tubulars, EHSS sour service protocols, gas dehydration, dedicated H2S detection + breathing apparatus on every well location. OPEX uplift ~15–25% vs. sweet fields.<br>
+      <em>Affected: Luhais, Subba, Abu Amood, Nasiriyah, Eridu, Noor, Amara, Ballad, Tikrit (Zubair/Mishrif), Khashab (Lower Fars)</em></p>
+    </div>
+    <div class="h2s-block moderate-sulfur">
+      <h4>🟡 Moderate H2S Risk Reservoirs <span class="h2s-tag tag-mod">MODERATE</span></h4>
+      <p><strong>Jeribe, Euphrates, Kurra Chine, Kaista</strong><br>
+      Mixed clastic/carbonate; H2S generation possible but typically &lt;50 ppm in produced gas. Standard E&amp;P handling with periodic monitoring sufficient. OPEX uplift ~5–10%.<br>
+      <em>Affected: Noor (Jeribe), Khanuqah (Euphrates), Kumait, Anah (Kurra Chine), Haifa (Kaista), As-Safa (Kaista)</em></p>
+    </div>
+    <div class="h2s-block low-sulfur">
+      <h4>🟢 Low H2S Risk Reservoirs <span class="h2s-tag tag-low">LOW</span></h4>
+      <p><strong>Khabour (Devonian sandstone)</strong><br>
+      Clastic sandstone; H2S generated primarily from bacterial sulfate reduction near surface. Typically &lt;10 ppm. Simplest EHS protocols. Lowest OPEX for gas processing. Akkas, Akashat, Rawa, Al-Khaleesa, Rutba produce from Khabour and analogues — most "petronas-friendly" from an H2S standpoint.<br>
+      <em>Affected: Akkas, Akashat, Rawa, Rutba, Al-Khaleesa, As-Safa (Khabour zone), Al-Anz</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: FULL SCORING TABLE ══ -->
+<div class="section">
+  <div class="section-head">Full Scoring Matrix — All Fields vs. 5 Criteria</div>
+  <div style="overflow-x: auto;">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Field</th>
+        <th>Operator</th>
+        <th>Status</th>
+        <th>HC Type</th>
+        <th>Reserves (MMboe)</th>
+        <th>Evacuation<br>(/5)</th>
+        <th>Security<br>(/5)</th>
+        <th>Energy Demand<br>(/5)</th>
+        <th>HC Volume<br>(/5)</th>
+        <th>H2S Risk<br>(/5)</th>
+        <th>TOTAL<br>/25</th>
+        <th>RANK</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- NASIRIYAH -->
+      <tr style="background:#f0fdf4">
+        <td><span class="rank-badge rank-1">1</span></td>
+        <td class="td-field">Nasiriyah</td>
+        <td class="td-op">TOC</td>
+        <td><span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Producing</span></td>
+        <td>Oil</td>
+        <td class="td-vol">4,900</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s2">2</td>
+        <td class="td-score s5" style="font-size:16px;background:#dcfce7;border-radius:4px;">22</td>
+        <td><strong style="color:#166534">🥇 #1</strong></td>
+      </tr>
+
+      <!-- SUBBA -->
+      <tr style="background:#f0fdf4">
+        <td><span class="rank-badge rank-2">2</span></td>
+        <td class="td-field">Subba</td>
+        <td class="td-op">TOC / Dragon Oil</td>
+        <td><span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Producing</span></td>
+        <td>Oil</td>
+        <td class="td-vol">1,260</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s2">2</td>
+        <td class="td-score s5" style="font-size:16px;background:#dcfce7;border-radius:4px;">20</td>
+        <td><strong style="color:#166534">🥈 #2</strong></td>
+      </tr>
+
+      <!-- AKKAS -->
+      <tr style="background:#eff6ff">
+        <td><span class="rank-badge rank-3">3</span></td>
+        <td class="td-field">Akkas</td>
+        <td class="td-op">MDOC / SLB</td>
+        <td><span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Producing</span></td>
+        <td>Gas</td>
+        <td class="td-vol">1,245</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s2">2</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s5" style="font-size:16px;background:#dbeafe;border-radius:4px;">20</td>
+        <td><strong style="color:#1e40af">🥉 #3</strong></td>
+      </tr>
+
+      <!-- HAIFA -->
+      <tr style="background:#fdf4ff">
+        <td><span class="rank-badge rank-4">4</span></td>
+        <td class="td-field">Haifa</td>
+        <td class="td-op">MDOC</td>
+        <td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Exploration (Open)</span></td>
+        <td>Oil + Gas</td>
+        <td class="td-vol">Oil: 1,075<br>Gas: 78 Bscf</td>
+        <td class="td-score s3">3</td>
+        <td class="td-score s2">2</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s4" style="font-size:16px;background:#ede9fe;border-radius:4px;">17</td>
+        <td><strong style="color:#6b21a8">#4</strong></td>
+      </tr>
+
+      <!-- BALLAD -->
+      <tr style="background:#fffbeb">
+        <td><span class="rank-badge rank-5">5</span></td>
+        <td class="td-field">Ballad</td>
+        <td class="td-op">NOC</td>
+        <td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Temp. Shut-In</span></td>
+        <td>Oil</td>
+        <td class="td-vol">2,302</td>
+        <td class="td-score s2">2</td>
+        <td class="td-score s2">2</td>
+        <td class="td-score s4">4</td>
+        <td class="td-score s5">5</td>
+        <td class="td-score s3">3</td>
+        <td class="td-score s3" style="font-size:16px;background:#fef3c7;border-radius:4px;">16</td>
+        <td><strong style="color:#92400e">#5</strong></td>
+      </tr>
+
+      <!-- OTHER FIELDS -->
+      <tr><td></td><td class="td-field" style="color:#64748b;">Abu Amood</td><td class="td-op">TOC/Dragon Oil</td><td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Pre-Dev</span></td><td>Oil</td><td class="td-vol">595</td><td class="td-score s3">3</td><td class="td-score s5">5</td><td class="td-score s3">3</td><td class="td-score s4">4</td><td class="td-score s2">2</td><td class="td-score s3">17</td><td>#6</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Luhais</td><td class="td-op">BOC</td><td><span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Producing</span></td><td>Oil</td><td class="td-vol">1,010</td><td class="td-score s5">5</td><td class="td-score s5">5</td><td class="td-score s3">3</td><td class="td-score s4">4</td><td class="td-score s2">2</td><td class="td-score s3">19</td><td>#(H2S/assess)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Anah</td><td class="td-op">MDOC</td><td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Exploration (Open)</span></td><td>Oil + Gas</td><td class="td-vol">Gas: 5,929</td><td class="td-score s4">4</td><td class="td-score s2">2</td><td class="td-score s4">4</td><td class="td-score s5">5</td><td class="td-score s4">4</td><td class="td-score s3">19</td><td>#(expl. risk)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Eridu</td><td class="td-op">Lukoil/INPEX/TOC</td><td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Pre-Dev</span></td><td>Oil</td><td class="td-vol">4,000</td><td class="td-score s4">4</td><td class="td-score s1">1</td><td class="td-score s3">3</td><td class="td-score s5">5</td><td class="td-score s2">2</td><td class="td-score s2">15</td><td>#(sanctions)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Al-Khaleesa</td><td class="td-op">KAR</td><td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Exploration (Open)</span></td><td>Gas</td><td class="td-vol">1,553</td><td class="td-score s2">2</td><td class="td-score s2">2</td><td class="td-score s3">3</td><td class="td-score s4">4</td><td class="td-score s5">5</td><td class="td-score s2">16</td><td>#(infra+security)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Noor + Amara</td><td class="td-op">MOC</td><td><span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Producing</span></td><td>Oil</td><td class="td-vol">404 + 350</td><td class="td-score s5">5</td><td class="td-score s5">5</td><td class="td-score s2">2</td><td class="td-score s3">3</td><td class="td-score s2">2</td><td class="td-score s2">17</td><td>#(OPEC+ cap)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Tikrit</td><td class="td-op">NOC</td><td><span style="background:#dbeafe;color:#1e40af;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Proven</span></td><td>Oil</td><td class="td-vol">44</td><td class="td-score s3">3</td><td class="td-score s2">2</td><td class="td-score s3">3</td><td class="td-score s3">3</td><td class="td-score s3">3</td><td class="td-score s2">14</td><td>#(small vol)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Khanuqah</td><td class="td-op">NOC</td><td><span style="background:#dbeafe;color:#1e40af;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Proven</span></td><td>Oil</td><td class="td-vol">30</td><td class="td-score s3">3</td><td class="td-score s2">2</td><td class="td-score s2">2</td><td class="td-score s2">2</td><td class="td-score s4">4</td><td class="td-score s2">13</td><td>#(small+old)</td></tr>
+      <tr><td></td><td class="td-field" style="color:#64748b;">Rutba</td><td class="td-op">MDOC</td><td><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">Exploration (Open)</span></td><td>Oil + Gas</td><td class="td-vol">150+1,300</td><td class="td-score s2">2</td><td class="td-score s1">1</td><td class="td-score s2">2</td><td class="td-score s3">3</td><td class="td-score s5">5</td><td class="td-score s2">13</td><td>#(remote)</td></tr>
+
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: DETAILED TOP 5 RECOMMENDATIONS ══ -->
+<div class="section">
+  <div class="section-head">Top 5 Recommendations — Detailed Analysis</div>
+</div>
+
+<!-- #1 NASIRIYAH -->
+<div class="rec-card" id="rec1">
+  <div class="rec-header" style="background: linear-gradient(90deg, #dcfce7 0%, #bbf7d0 100%); border-bottom: 1px solid #86efac;">
+    <span class="rank-badge rank-1">1</span>
+    <h3 style="color:#166534">Nasiriyah Field — The Flagship Candidate</h3>
+    <span style="background:#166534;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">SCORE 22/25</span>
+  </div>
+  <div class="rec-body">
+    <p><strong>Why Nasiriyah scores highest across the board:</strong></p>
+    <p><strong>HC Evacuation (5/5):</strong> Connected to existing pipeline infrastructure (265 km from nearest processing, per spreadsheet). TOC is already producing 50–60 kbd from this field — the offtake chain is proven and operational. No new major pipeline required for initial development phases. Petronas can tie into existing Basrah export infrastructure immediately.</p>
+    <p><strong>Security (5/5):</strong> Located in Thi Qar, southern Iraq — firmly in government-controlled territory with strong MoO/TOC presence. International IOC operating environment well-established. No ISIS presence. Low personal security risk for expatriate staff. This is Petronas' most important threshold — southern IOC fields are the safest operational environment in Iraq.</p>
+    <p><strong>Future Energy Demand (5/5):</strong> Feb 2026 MOU signed between MoO + TOC + <strong>Chevron</strong>. This is a major signal — Chevron (a supermajor) has independently assessed Nasiriyah as commercially viable at 250 kbd PPT. The fact that Chevron has committed to this field validates its economics without Petronas needing to conduct independent market analysis. Petronas could potentially joint-operate alongside Chevron or partner in a different capacity. Iraq's ambition to reach 6+ mbpd by 2030 gives national backing. Nasiriyah's 250 kbd target aligns with Basrah export expansion.</p>
+    <p><strong>HC Volume (5/5):</strong> Nasiriyah holds 16,000 MMstb STOIIP and <strong>4,900 MMboe reserves</strong> — the largest in the portfolio by reserves, and a genuine giant field. At 250 kbd PPT, this field has a 30+ year production life. For Petronas Carigali, this is a transformative reserve addition that moves the needle on corporate reserves replacement.</p>
+    <p><strong>H2S Risk (2/5):</strong> This is Nasiriyah's main weakness. Reservoirs include Mishrif, Nahr Umar, Yamama, and Zubair — all high-H2S carbonate formations. H2S levels can exceed 100 ppm in the Mishrif and Yamama. <em>However</em>, this is manageable with proper well integrity management, CRA tubulars, and gas dehydration. Many IOCs operate sour fields globally. The sour handling requirement adds perhaps 15–20% to development CAPEX but does not disqualify the opportunity. Petronas has sour field experience in Malaysia (e.g., Sokong, Pulai) and gas stewardship through Petronas Carigali's portfolio. The mitigation is known and tested.</p>
+    <p><strong>Key Recommendation:</strong> Pursue a farm-in or joint-study agreement with TOC. Nasiriyah is Petronas' best single entry point into Iraq — giant volume, existing infrastructure, Chevron-validation, and a stable operating environment. H2S is manageable with sour-field expertise Petronas already has.</p>
+    <div class="rec-scores">
+      <span class="score-pill" style="background:#dcfce7;color:#166534;">Evacuation 5</span>
+      <span class="score-pill" style="background:#dcfce7;color:#166534;">Security 5</span>
+      <span class="score-pill" style="background:#dcfce7;color:#166534;">Energy Demand 5</span>
+      <span class="score-pill" style="background:#dcfce7;color:#166534;">HC Volume 5</span>
+      <span class="score-pill" style="background:#fee2e2;color:#991b1b;">H2S 2 ⚠️</span>
+    </div>
+  </div>
+</div>
+
+<!-- #2 SUBBA -->
+<div class="rec-card" id="rec2">
+  <div class="rec-header" style="background: linear-gradient(90deg, #e0eaff 0%, #c7d2fe 100%); border-bottom: 1px solid #a5b4fc;">
+    <span class="rank-badge rank-2">2</span>
+    <h3 style="color:#3730a3;">Subba Field — Dragon Oil Partnership Route</h3>
+    <span style="background:#3730a3;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">SCORE 20/25</span>
+  </div>
+  <div class="rec-body">
+    <p><strong>Why Subba is the #2 recommendation:</strong></p>
+    <p><strong>HC Evacuation (5/5):</strong> Subba has an existing production history and pipeline connection (26.9 km to nearest facility, per spreadsheet). With HOA signed between KBR + Al Hara + Dragon Oil (May 2025), the integrated development plan with Rafidain/Abu Amood will create a multi-field gathering system — further strengthening the offtake infrastructure. Petronas entering alongside Dragon Oil (an experienced IOC in this basin) gives it a de-risked partner infrastructure story.</p>
+    <p><strong>Security (5/5):</strong> Same Thi Qar / southern Iraq environment as Nasiriyah. Dragon Oil has been operating in the Middle East for decades — their security protocols for Subba are well-established. Petronas can benefit from an existing operational security framework without building its own from scratch.</p>
+    <p><strong>Future Energy Demand (4/5):</strong> Subba's HOA with KBR (a major engineering firm) signals serious development intent. The integrated development with Abu Amood and Rafidain creates a cluster development that could be a mini-masterpiece in Thi Qar. However, there is no Chevron or supermajor validation yet — the commerciality relies more on partner alignment than market demand signals.</p>
+    <p><strong>HC Volume (4/5):</strong> 3,050 MMstb STOIIP and 1,260 MMboe reserves — large field, but smaller than Nasiriyah and Eridu. At 100 kbd PPT, field life is substantial but not transformative on its own. The clustering with Abu Amood (another 595 MMboe) makes the combined cluster a larger proposition.</p>
+    <p><strong>H2S Risk (2/5):</strong> Same issue as Nasiriyah — Nahr Umar and Zubair are high-H2S reservoirs. Identical mitigation approach required. Petronas' sour field experience applies here as well.</p>
+    <p><strong>Key Recommendation:</strong> Explore a parallel entry alongside Dragon Oil — either as a farmin to a portion of their acreage or as a new business development initiative targeting the Subba-Rafidain cluster. The KBR HOA suggests FEED-stage work is already underway; joining now gives Petronas access to a structured development rather than greenfield scoping.</p>
+    <div class="rec-scores">
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Evacuation 5</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Security 5</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Energy Demand 4</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">HC Volume 4</span>
+      <span class="score-pill" style="background:#fee2e2;color:#991b1b;">H2S 2 ⚠️</span>
+    </div>
+  </div>
+</div>
+
+<!-- #3 AKKAS -->
+<div class="rec-card" id="rec3">
+  <div class="rec-header" style="background: linear-gradient(90deg, #eff6ff 0%, #bfdbfe 100%); border-bottom: 1px solid #93c5fd;">
+    <span class="rank-badge rank-3">3</span>
+    <h3 style="color:#1e40af;">Akkas Gas Field — Iraq Gas-Power Strategic Fit</h3>
+    <span style="background:#1e40af;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">SCORE 20/25</span>
+  </div>
+  <div class="rec-body">
+    <p><strong>Why Akkas is a different kind of opportunity — a gas/power play:</strong></p>
+    <p><strong>HC Evacuation (4/5):</strong> Akkas is unique in this portfolio — it has a <em>direct contractual gas sales agreement with the Akkas Power Plant</em>. The gas doesn't need a long-distance export pipeline; it flows from wellhead to power plant. This is a fixed, government-backed offtake contract — lowest market price risk of any gas asset here. The 25.4 km pipeline distance is short. The only weakness is that if gas demand at the power plant is capped, growth is limited until a new buyer is found.</p>
+    <p><strong>Security (2/5):</strong> This is Akkas' main vulnerability. ISIS controlled Anbar from 2014–2017 and while the province has been reclaimed, the security environment remains more complex than southern Iraq. The area is sparsely populated desert, border proximity to Syria creates cross-border risk, and land access requires security protocols. However: MDOC and SLB have maintained operations at Akkas throughout — this demonstrates that安全生产 is achievable. SLB's willingness to be the operator signals they have internal security assessments that support continued operations.</p>
+    <p><strong>Future Energy Demand (5/5):</strong> This is Akkas' strongest card. Iraq has a structural gas deficit — the country imports gas from Iran and suffers chronic power shortages despite being an oil producer. Domestic gas demand for power generation is growing at 5–8% p.a. A gas field connected to a power plant is Iraq's highest-priority National Development Plan asset. Government support for Akkas expansion is strong. Petronas Gas is well-positioned to be the partner of choice for a gas-to-power story.</p>
+    <p><strong>HC Volume (4/5):</strong> 4,500 Bscf GIIP and 1,245 MMboe reserves (gas). The PPT target of 400 MMscfd (vs. current 40 MMscfd) implies a 10x production ramp — enormous growth headroom. At full PPT, Akkas would become a major gas supply source, potentially feeding a regional gas grid or additional power plants. Anah's large GIIP (7,411 Bscf) could tie into the Akkas processing hub in future — creating a northern gas province anchored by Akkas.</p>
+    <p><strong>H2S Risk (5/5):</strong> Khabour sandstone is the lowest-H2S reservoir system in the portfolio. Bacterial sulfate reduction (BSR) in clastic rocks generates minimal H2S — typically &lt;10 ppm. This is the cleanest gas in the Iraq portfolio. For Petronas, this means: lower CAPEX (no sour-service tubulars), lower OPEX (no continuous H2S monitoring infrastructure), and simpler EHS protocols. This is operationally the cleanest entry point in Iraq.</p>
+    <p><strong>Key Recommendation:</strong> Akkas is the ideal <em>gas</em> entry for Petronas — suited for Petronas Carigali's gas new ventures mandate. The gas-to-power model aligns with Petronas' integrated gas value chain strategy. The security risk, while real, is manageable with a strong in-country security partner (MDOC/SLB already on ground). If Nasiriyah is the oil priority, Akkas is the gas priority. Consider both simultaneously.</p>
+    <div class="rec-scores">
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Evacuation 4</span>
+      <span class="score-pill" style="background:#fee2e2;color:#991b1b;">Security 2 ⚠️</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Energy Demand 5</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">HC Volume 4</span>
+      <span class="score-pill" style="background:#dcfce7;color:#166534;">H2S 5 ✓</span>
+    </div>
+  </div>
+</div>
+
+<!-- #4 HAIFA -->
+<div class="rec-card" id="rec4">
+  <div class="rec-header" style="background: linear-gradient(90deg, #fdf4ff 0%, #e9d5ff 100%); border-bottom: 1px solid #d8b4fe;">
+    <span class="rank-badge rank-4">4</span>
+    <h3 style="color:#6b21a8;">Haifa Block — Regional Export Route Lever</h3>
+    <span style="background:#6b21a8;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">SCORE 17/25</span>
+  </div>
+  <div class="rec-body">
+    <p><strong>Why Haifa is the top exploration-stage recommendation:</strong></p>
+    <p><strong>HC Evacuation (3/5):</strong> Currently the main weakness — no existing pipeline infrastructure within 40 km (Iraq-Jordan pipeline) and 100 km to PS-12A. However, Haifa's location near the Iraq-Jordan border is strategically significant. If the Iraq–Jordan pipeline develops, Haifa becomes one of the few fields with a direct Red Sea export route. The 40 km distance to the pipeline corridor is manageable with a new spur line. This is a strategic infrastructure bet — the kind of position Petronas' large-project execution capability is designed for.</p>
+    <p><strong>Security (2/5):</strong> Anbar Province — same elevated security environment as Akkas. Southern Anbar, ~20 km from Iraq–Saudi border, is remote and sparsely populated. Border security concerns. However, the area is not near active ISIS strongholds and the Jordan border region has historically been more stable than western Anbar (Akkas/Rutba).</p>
+    <p><strong>Future Energy Demand (4/5):</strong> The Jordan export route is Haifa's biggest demand hook. Jordan's energy demand is growing and the country has been seeking gas supply diversity. The Iraq–Jordan pipeline has been discussed at government level for years. If it materialises, Haifa (together with As-Safa) becomes a cornerstone supplier for a new cross-border gas export value chain. This aligns with Petronas' LNG and gas trading footprint.</p>
+    <p><strong>HC Volume (4/5):</strong> Haifa has the largest <em>oil</em> STOIIP in the entire open block portfolio — <strong>3,583 MMstb</strong> and 1,075 MMboe oil reserves, plus 98 Bscf gas. This is not a small exploration gamble — the STOIIP is comparable to a discovered field. The Kaista reservoir is moderate-H2S risk (vs. the high-H2S Mishrif/Nahr Umar systems). Reserves-wise, this is a large oil accumulation with a gas cap — analogous to a medium-scale Khuff or Arab Formation oil field.</p>
+    <p><strong>H2S Risk (4/5):</strong> Kaista reservoir is a clastic/carbonate mix with moderate H2S potential — lower than the Mishrif/Nahr Umar Yamama system in the south. OPEX uplift for H2S handling is moderate (10–15%), not the 20–25% seen in the high-sour fields.</p>
+    <p><strong>Key Recommendation:</strong> Haifa is the exploration-stage entry that best balances volume, demand upside, and manageable risk. Petronas should seek an Exploration Period + Production Sharing Agreement with MDOC, committing to a 2–3 well exploration programme. The large STOIIP de-risks the exploration well outcome — even at conservative recovery factors, Haifa could deliver 200–500 MMboe. The Jordan export optionality is a long-term strategic upside.</p>
+    <div class="rec-scores">
+      <span class="score-pill" style="background:#fef3c7;color:#92400e;">Evacuation 3</span>
+      <span class="score-pill" style="background:#fee2e2;color:#991b1b;">Security 2 ⚠️</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Energy Demand 4</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">HC Volume 4</span>
+      <span class="score-pill" style="background:#fef3c7;color:#92400e;">H2S 4</span>
+    </div>
+  </div>
+</div>
+
+<!-- #5 BALLAD -->
+<div class="rec-card" id="rec5">
+  <div class="rec-header" style="background: linear-gradient(90deg, #fffbeb 0%, #fef08a 100%); border-bottom: 1px solid #fcd34d;">
+    <span class="rank-badge rank-5">5</span>
+    <h3 style="color:#92400e;">Ballad Field — Chevron MOU + Giant Volume</h3>
+    <span style="background:#92400e;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">SCORE 16/25</span>
+  </div>
+  <div class="rec-body">
+    <p><strong>Why Ballad rounds out the top 5 despite being #5:</strong></p>
+    <p><strong>HC Evacuation (2/5):</strong> Ballad's pipeline infrastructure is the weakest of the top 5. The field is 10 km from existing pipeline but <strong>90 km from East Baghdad</strong> — effectively landlocked from the main export infrastructure cluster. Chevron's MOU involvement (Aug 2025) may include a commitment to resolving the infrastructure gap — possibly via a dedicated pipeline or转运 arrangement. This is a known gap that Chevron has apparently assessed as solvable.</p>
+    <p><strong>Security (2/5):</strong> Located in Salah Addin, the heart of the historically contested "Sunni triangle." ISIS was cleared but the region has tribal politics, residual extremist cell risk, and less IOC presence than southern Iraq. However — the Aug 2025 MoO + Chevron MOU signals that the Iraqi government considers this area safe enough for major IOC investment. Chevron does not sign MOUs in security-unstable areas without thorough due diligence.</p>
+    <p><strong>Future Energy Demand (4/5):</strong> Same as Nasiriyah — Iraq's national oil production growth targets. Chevron's involvement validates the commercial thesis. Ballad's production, if brought online, feeds directly into Iraq's plan to reach 6+ mbpd. Being part of the Chevron-led development gives Petronas, if it joins, alignment with a world-class operator's commercial framework.</p>
+    <p><strong>HC Volume (5/5):</strong> <strong>10,842 MMstb STOIIP</strong> and <strong>2,302 MMboe reserves</strong> — second-largest oil reserves in the portfolio after Nasiriyah. Ballad is the second-largest discovered volume opportunity. The Zubair/Khasib/Sa'di/Hartha stacked reservoirs provide multiple production horizons — a thick, multi-layer oil column. Ballad is a world-class field that happens to be shut in pending development.</p>
+    <p><strong>H2S Risk (3/5):</strong> Zubair, Khasib, Sa'di, Hartha — carbonate reservoirs with moderate to high H2S. Not as sour as Mishrif/Nahr Umar Yamama system, but still requiring sour service protocols. Moderate OPEX uplift (15%). Manageable for an experienced IOC.</p>
+    <p><strong>Key Recommendation:</strong> Ballad is the volume play — second only to Nasiriyah in reserves. Petronas should approach Ballad through the Chevron MOU framework, possibly as a partner/joint venture alongside Chevron rather than independently. Chevron has done the security and infrastructure scoping; Petronas benefits from that due diligence. The main concern is the 90 km infrastructure gap — monitor Chevron's infrastructure commitments in the MoU closely. Ballad is a <em>watch-and-wait</em> for 12–18 months to see if the Chevron development plan moves to HOA/PSC stage.</p>
+    <div class="rec-scores">
+      <span class="score-pill" style="background:#fee2e2;color:#991b1b;">Evacuation 2 ⚠️</span>
+      <span class="score-pill" style="background:#fee2e2;color:#991b1b;">Security 2 ⚠️</span>
+      <span class="score-pill" style="background:#dbeafe;color:#1e40af;">Energy Demand 4</span>
+      <span class="score-pill" style="background:#dcfce7;color:#166534;">HC Volume 5</span>
+      <span class="score-pill" style="background:#fef3c7;color:#92400e;">H2S 3</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUMMARY MATRIX ══ -->
+<div class="section">
+  <div class="section-head">Top 5 Summary — Criterion Score Comparison</div>
+  <div style="overflow-x:auto;padding:18px;">
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th><th>Field</th><th>HC Type</th><th>Reserves (MMboe)</th>
+        <th>Evacuation /5</th><th>Security /5</th><th>Demand /5</th><th>Volume /5</th><th>H2S /5</th>
+        <th>TOTAL /25</th><th>Primary Strength</th><th>Primary Risk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#f0fdf4">
+        <td><strong>1</strong></td><td class="td-field">Nasiriyah</td><td>Oil</td><td>4,900</td>
+        <td class="s5">5 ✓</td><td class="s5">5 ✓</td><td class="s5">5 ✓</td><td class="s5">5 ✓</td><td class="s2">2 ⚠️</td>
+        <td style="font-weight:800;color:#166534;font-size:15px;">22</td>
+        <td>Giant vol + Chevron validation</td><td>H2S in Mishrif/Yamama</td>
+      </tr>
+      <tr style="background:#eff6ff">
+        <td><strong>2</strong></td><td class="td-field">Subba</td><td>Oil</td><td>1,260</td>
+        <td class="s5">5 ✓</td><td class="s5">5 ✓</td><td class="s4">4</td><td class="s4">4</td><td class="s2">2 ⚠️</td>
+        <td style="font-weight:800;color:#1e40af;font-size:15px;">20</td>
+        <td>Dragon Oil + KBR HOA</td><td>H2S in Nahr Umar</td>
+      </tr>
+      <tr style="background:#fdf4ff">
+        <td><strong>3</strong></td><td class="td-field">Akkas</td><td>Gas</td><td>1,245</td>
+        <td class="s4">4</td><td class="s2">2 ⚠️</td><td class="s5">5 ✓</td><td class="s4">4</td><td class="s5">5 ✓</td>
+        <td style="font-weight:800;color:#6b21a8;font-size:15px;">20</td>
+        <td>Gas-to-power + low H2S</td><td>Anbar security</td>
+      </tr>
+      <tr style="background:#fffbeb">
+        <td><strong>4</strong></td><td class="td-field">Haifa</td><td>Oil+Gas</td><td>1,075+gas</td>
+        <td class="s3">3</td><td class="s2">2 ⚠️</td><td class="s4">4</td><td class="s4">4</td><td class="s4">4</td>
+        <td style="font-weight:800;color:#92400e;font-size:15px;">17</td>
+        <td>Largest open block oil vol</td><td>Exploration + Anbar risk</td>
+      </tr>
+      <tr style="background:#fef2f2">
+        <td><strong>5</strong></td><td class="td-field">Ballad</td><td>Oil</td><td>2,302</td>
+        <td class="s2">2 ⚠️</td><td class="s2">2 ⚠️</td><td class="s4">4</td><td class="s5">5 ✓</td><td class="s3">3</td>
+        <td style="font-weight:800;color:#991b1b;font-size:15px;">16</td>
+        <td>Giant vol + Chevron MOU</td><td>Infra gap + Salah Addin security</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ══ CLOSING NOTES FOR GEOLOGIST ══ -->
+<div class="section">
+  <div class="section-head">Geologist's Notes — Petronas Entry Strategy</div>
+  <div style="padding: 20px 22px; display: grid; gap: 16px;">
+    <div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:6px;padding:16px 18px;">
+      <div style="font-size:12px;font-weight:700;color:#166534;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">🏆 Tier 1 — Immediate Pursuit (Nasiriyah + Akkas)</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7;">These two fields cover both oil and gas mandates. Nasiriyah gives Petronas Carigali a giant oil entry with Chevron backing; Akkas gives a gas-to-power story aligned with Iraq's national priority. Both should be actively pursued — they are complementary mandates, not competing. Petronas' integrated oil + gas portfolio strategy makes both simultaneously viable.</p>
+    </div>
+    <div style="background:#eff6ff;border-left:4px solid #2563eb;border-radius:6px;padding:16px 18px;">
+      <div style="font-size:12px;font-weight:700;color:#1e40af;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">🎯 Tier 2 — Farm-in / Partnership Route (Subba + Ballad)</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7;">Subba: Enter alongside Dragon Oil via the existing KBR HOA — Petronas joins an already-structured development plan with established infrastructure. Ballad: Enter via Chevron framework. Both require watching the evolving MOU/HOA timeline. Ballad especially — monitor Chevron's infrastructure commitment within the MoU over the next 6–12 months. Ballad's 90 km infrastructure gap is the make-or-break issue.</p>
+    </div>
+    <div style="background:#fdf4ff;border-left:4px solid #9333ea;border-radius:6px;padding:16px 18px;">
+      <div style="font-size:12px;font-weight:700;color:#6b21a8;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">🔬 Tier 3 — Exploration with Upside (Haifa)</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7;">Haifa is the highest-value exploration target in the Iraq 2026 portfolio. The STOIIP of 3,583 MMstb is not a speculative number — it reflects substantial seismic and geological work by MDOC. Petronas should consider a carried-exploration PSC with MDOC where Petronas funds the exploration wells and recovers costs from production. This is lower CAPEX at entry than a development, with transformational upside if the exploration well confirms the STOIIP.</p>
+    </div>
+    <div style="background:#fef2f2;border-left:4px solid #dc2626;border-radius:6px;padding:16px 18px;">
+      <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">🚫 Fields to Avoid or Defer</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7;"><strong>Eridu:</strong> US sanctions on Lukoil create legal/contractual barriers — even a partial assignment to Petronas would trigger OFAC/secondary sanctions review. <strong>Noor + Amara:</strong> OPEC+ quota constraints cap growth — these are producing fields but constrained by national policy, not reservoir deliverability. <strong>Anah:</strong> Largest GIIP but Anah-1 did not reach primary target — drilling failure risk is high. Only pursue after Haifa or if Anah East/North appraisal data becomes available.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Analysis: <strong>Petronas Iraq Top 5 Field Recommendations</strong> &nbsp;|&nbsp; Source: PCIHBV Iraq 2026 Growth Opportunities Compilation &nbsp;|&nbsp; Generated by Clawdius 🦉 &nbsp;|&nbsp; <a href="index.html">Back to Index</a>
+</div>
+
+</div>
+</body>
+</html>

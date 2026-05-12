@@ -1,0 +1,23 @@
+A professional multi-section news dashboard infographic organized in four colored quadrants:
+
+Top-left quadrant (Malaysia - red theme):
+- Title "MALAYSIA LOCAL" at top
+- Icons: petrol pump with "RON95: RM3.27/L", building camera icon with "AwAS Hari Raya cameras", chip factory icon with "Intel Malaysia operational 2026"
+- Clean Malaysian flag color palette
+
+Top-right quadrant (Global - blue theme):
+- Title "GLOBAL NEWS" at top  
+- Icons: globe with courthouse "Major court ruling", newspaper "Reuters/USA TODAY", briefcase "DOJ antitrust"
+- Corporate blue and gray palette
+
+Bottom-left quadrant (Iran-US - orange/red theme):
+- Title "IRAN-US CONFLICT" at top
+- Icons: map with military tank, oil rig with warning symbol, Trump profile with text "Massive retaliation threat", intelligence badge "Iran minister killed"
+- Dramatic orange and red highlighting
+
+Bottom-right quadrant (Tech & AI - green/teal theme):
+- Title "TECH & AI" at top
+- Icons: Tencent logo with "+13% revenue", Nvidia chip with "$1T opportunity", Palantir defense contract icon, ConnectM acquisition "$50B+ market"
+- Modern teal and green tech palette
+
+Overall: Clean dashboard layout with clear section borders, professional sans-serif typography style, bold section headers, consistent icon set, white background, publication-ready resolution 1200x800

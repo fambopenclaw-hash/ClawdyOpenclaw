@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMR 11 — Ga-C185P | ZPEC-29 | 03 May 2026</title>
+  <style>
+    :root {
+      --dark: #0f1b2d; --blue: #0032A0; --light: #e8edf5;
+      --mid: #c5d0e6; --green: #1a7a4a; --amber: #d4820a;
+      --red: #c0392b; --text: #1a1a2e; --muted: #5a6a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Calibri, sans-serif; background: var(--light); color: var(--text); font-size: 14px; }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff; padding: 28px 36px 24px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .badge { background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .header h1 { font-size: 22px; font-weight: 700; }
+    .header-meta { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+    .body { padding: 28px 36px 48px; max-width: 1100px; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid var(--blue); }
+    .stat-card.green { border-top-color: var(--green); }
+    .stat-card.amber { border-top-color: var(--amber); }
+    .stat-card.red   { border-top-color: var(--red); }
+    .stat-card.muted { border-top-color: var(--muted); }
+    .stat-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 700; color: var(--dark); }
+    .stat-sub   { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .section { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .section-title { font-size: 12px; font-weight: 700; color: #fff; background: var(--dark); margin: -20px -24px 16px; padding: 10px 24px; border-radius: 12px 12px 0 0; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { background: var(--dark); color: #fff; padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--light); vertical-align: top; }
+    tr:nth-child(even) td { background: #f4f7fc; }
+    tr:last-child td { border-bottom: none; }
+
+    .text-green { color: var(--green); font-weight: 700; }
+    .text-red   { color: var(--red); font-weight: 700; }
+    .text-blue  { color: var(--blue); font-weight: 700; }
+    .text-amber { color: var(--amber); font-weight: 700; }
+    .text-muted { color: var(--muted); }
+
+    .block-text { background: #f4f7fc; border-left: 4px solid var(--blue); padding: 12px 16px; border-radius: 4px; font-size: 13px; line-height: 1.65; white-space: pre-wrap; margin-bottom: 12px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 12px; }
+    .mini-card { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-left: 4px solid var(--blue); }
+    .mini-card.green { border-left-color: var(--green); }
+    .mini-card.amber { border-left-color: var(--amber); }
+    .mini-card.muted { border-left-color: var(--muted); }
+    .mini-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+    .mini-val { font-size: 15px; font-weight: 700; color: var(--dark); }
+
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .header { padding: 20px 20px 16px; } .body { padding: 20px 20px 36px; } .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="margin-bottom:10px">
+    <a href="index.html" style="color:#fff;font-size:12px;font-weight:700;text-decoration:none;background:var(--blue);padding:5px 12px;border-radius:6px;">← Back to Index</a>
+  </div>
+  <div class="header-top">
+    <span class="badge">DMR</span>
+    <h1>Garraf Daily Move Report No. 11 — Ga-C185P</h1>
+  </div>
+  <div class="header-meta">Rig: ZPEC-29 &nbsp;|&nbsp; Contractor: ZPEC &nbsp;|&nbsp; Report Date: 03 May 2026 &nbsp;|&nbsp; Location: WPC, Slot #16, Garraf Oilfield</div>
+</div>
+
+<div class="body">
+
+  <!-- ── Key Stats ── -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Report No.</div>
+      <div class="stat-value">11</div>
+      <div class="stat-sub">DMR</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Days on Location</div>
+      <div class="stat-value">11</div>
+      <div class="stat-sub">Spud: 23 Apr 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Days on Well</div>
+      <div class="stat-value">10.9</div>
+      <div class="stat-sub">~10 hrs 52 min</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Rig Move Progress</div>
+      <div class="stat-value text-green">50%</div>
+      <div class="stat-sub">R/U in progress</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">Rig Equipment R/U</div>
+      <div class="stat-value">50%</div>
+      <div class="stat-sub">R/D: 100% | R/M: 98%</div>
+    </div>
+    <div class="stat-card amber">
+      <div class="stat-label">Fly Camp R/U</div>
+      <div class="stat-value">86%</div>
+      <div class="stat-sub">R/D: 100% | R/M: 100%</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">LTI Free Days</div>
+      <div class="stat-value text-green">368.9</div>
+      <div class="stat-sub">Zero incidents today</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">POB (PCIHBV)</div>
+      <div class="stat-value">117 <span style="font-size:12px;font-weight:400;color:var(--muted)">(3)</span></div>
+      <div class="stat-sub">Total crew including ZPEC &amp; 3rd party</div>
+    </div>
+  </div>
+
+  <!-- ── General Data ── -->
+  <div class="section">
+    <div class="section-title">General Data</div>
+    <table>
+      <tr><th style="width:30%">Field</th><th>Value</th></tr>
+      <tr><td>Well</td><td><strong>Ga-C185P</strong></td></tr>
+      <tr><td>Location</td><td>WPC, Slot #16, Garraf Oilfield</td></tr>
+      <tr><td>Rig Name</td><td>ZPEC-29</td></tr>
+      <tr><td>Rig Contractor</td><td>ZPEC</td></tr>
+      <tr><td>Spud Date</td><td>23 Apr 2026</td></tr>
+      <tr><td>Arrival Date</td><td>22 Apr 2026</td></tr>
+      <tr><td>Days Since Spud</td><td>11 days</td></tr>
+      <tr><td>Days on Location</td><td>11 days</td></tr>
+      <tr><td>Days on Well</td><td>10.875 (~10h 52min)</td></tr>
+      <tr><td>PCIHBV Drilling Supervisor</td><td>Ahmed Majid / Ammar M. Salman</td></tr>
+      <tr><td>PCIHBV Drilling Superintendent</td><td>Wisam Talib</td></tr>
+      <tr><td>ZPEC DSVs</td><td>Xu Xingang; Abbas / Mohamad Kadhim</td></tr>
+      <tr><td>ZPEC TOC</td><td>Ali Raheem</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Daily Summary ── -->
+  <div class="section">
+    <div class="section-title">Daily Summary — 03 May 2026</div>
+    <div class="block-text">PJSM with rig crew, discussed hazards &amp; awareness regarding rig move and R/U operations. General Rig move from WPH &amp; R/U operations in WPC.</div>
+    <table>
+      <tr><th>Equipment Status</th><th>R/D (%)</th><th>R/M (%)</th><th>R/U (%)</th></tr>
+      <tr><td>Rig Equipment</td><td class="text-green">100%</td><td>98%</td><td class="text-amber">50%</td></tr>
+      <tr><td>Fly Camp</td><td class="text-green">100%</td><td class="text-green">100%</td><td class="text-amber">86%</td></tr>
+    </table>
+    <div style="margin-top:12px"></div>
+    <div class="card-row">
+      <div class="mini-card">
+        <div class="mini-title">Loads Moved Today</div>
+        <div class="mini-val">19 loads</div>
+      </div>
+      <div class="mini-card green">
+        <div class="mini-title">Total Loads Moved</div>
+        <div class="mini-val">327 loads</div>
+      </div>
+      <div class="mini-card muted">
+        <div class="mini-title">Rig Skid Distance (Today)</div>
+        <div class="mini-val">25 m <span style="font-size:11px;color:var(--muted)">(of 90m total)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 24-Hr Look Ahead ── -->
+  <div class="section">
+    <div class="section-title">24-Hour Look Ahead</div>
+    <div class="block-text">Cont. R/U fly camp in WPC. Move Mud system from WPH to WPC, raise the mast and the substructure, Cont. with Rig up operations at WPC (Ga-C185P).</div>
+  </div>
+
+  <!-- ── 72-Hr Look Ahead ── -->
+  <div class="section">
+    <div class="section-title">72-Hour Look Ahead</div>
+    <div class="block-text">Cont. R/U fly camp in WPC. Move Mud system from WPH to WPC, Cont. Rig up operations at WPC (Ga-C185P).</div>
+  </div>
+
+  <!-- ── HSE Data ── -->
+  <div class="section">
+    <div class="section-title">HSE Data</div>
+    <div class="card-row">
+      <div class="mini-card green">
+        <div class="mini-title">LTI Free Days (Well Total)</div>
+        <div class="mini-val text-green">368.9 days</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">PTW Issued Today</div>
+        <div class="mini-val">13</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">STOP Cards — Today / Well Total</div>
+        <div class="mini-val">129 <span style="font-size:11px;font-weight:400;color:var(--muted)">/ 1,583</span></div>
+      </div>
+      <div class="mini-card green">
+        <div class="mini-title">Unsafe Acts / Conditions</div>
+        <div class="mini-val">6 / 4</div>
+      </div>
+    </div>
+    <table style="margin-top:8px">
+      <tr><th>Metric</th><th>Today</th><th>Well Cumulative</th></tr>
+      <tr><td>MGMT Visits</td><td>0</td><td>0</td></tr>
+      <tr><td>First Aid Cases</td><td>0</td><td>0</td></tr>
+      <tr><td>MTC (Medical Treatment Cases)</td><td>0</td><td>0</td></tr>
+      <tr><td>LTI (Lost Time Injuries)</td><td class="text-green">0</td><td class="text-green">0</td></tr>
+      <tr><td>HIPOs</td><td>0</td><td>0</td></tr>
+      <tr><td>Fatality</td><td class="text-green">0</td><td class="text-green">0</td></tr>
+      <tr><td>Spill (incidents)</td><td>0</td><td>0</td></tr>
+      <tr><td>Spill Volume (m³)</td><td>0</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <!-- ── POB Summary ── -->
+  <div class="section">
+    <div class="section-title">Personnel on Board (POB)</div>
+    <div class="block-text">POB (PCIHBV): 117(3). Total STOP Cards (participation): 129(110%) — PCIHBV: 3(100%), TOC: 6(150%), ZPEC: 81(113%), Third Party/Service Comp: 38(100%)</div>
+    <div style="margin-top:8px; font-size:13px; color:var(--muted)">
+      Unsafe Act / Unsafe Condition: <strong>6/4</strong> &nbsp;|&nbsp; Positive observations: <strong>119</strong> &nbsp;|&nbsp; SWA: <strong>1</strong>
+    </div>
+  </div>
+
+  <!-- ── NPT ── -->
+  <div class="section">
+    <div class="section-title">Non-Productive Time (NPT)</div>
+    <table>
+      <tr><th>Category</th><th>Today (hrs)</th><th>Well (hrs)</th></tr>
+      <tr><td>CEMT</td><td>0</td><td>0</td></tr>
+      <tr><td>DFAL</td><td>0</td><td>0</td></tr>
+      <tr><td>DPRB</td><td>0</td><td>0</td></tr>
+      <tr><td>FLUD (Fluid)</td><td>0</td><td>0</td></tr>
+      <tr><td>WAIT</td><td>0</td><td>0</td></tr>
+      <tr><td>RREP</td><td>0</td><td>0</td></tr>
+      <tr><td>SFAL</td><td>0</td><td>0</td></tr>
+      <tr><td>STUC</td><td>0</td><td>0</td></tr>
+      <tr><td>UFAL</td><td>0</td><td>0</td></tr>
+      <tr><td>HMAN</td><td>0</td><td>0</td></tr>
+      <tr><td>MISC</td><td>0</td><td>0</td></tr>
+      <tr><td><strong>Total NPT</strong></td><td class="text-green"><strong>0</strong></td><td class="text-green"><strong>0</strong></td></tr>
+      <tr><td>% NPT</td><td>0%</td><td>0%</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Time Breakdown ── -->
+  <div class="section">
+    <div class="section-title">Time Breakdown — 03 May 2026</div>
+    <table>
+      <tr><th>From</th><th>To</th><th>Hours</th><th>IADC</th><th>Operations</th></tr>
+      <tr>
+        <td>00:00</td><td>06:00</td><td>6.0</td>
+        <td>1</td>
+        <td>Wait on daylight.</td>
+      </tr>
+      <tr>
+        <td>06:00</td><td>18:00</td>
+        <td>12.0</td>
+        <td>1</td>
+        <td>Held PJSM with rig crew — rig move, rig up, slip, trip hazards &amp; awareness, working at height, lifting operations, PTW, JSA &amp; TBT conducted.<br><br>
+        <strong>WPH:</strong> Loaded and moved out the mud system tanks and mud pumps to WPC.<br><br>
+        <strong>WPC:</strong> Cont. R/U and modified fly camp; working on paving concrete road on fly camp; Conducted pre-mast &amp; substructure raising checklist as per ZPEC standards; Raised mast and substructure successfully; R/U air winches, man rider, hand rails on rig floor; Released raising line from travelling block; Disconnected rig floor power cables and secured cable tray; Skidded rig backward from slot #25 to slot #16 (Ga-C185P) — skid distance 25m (Total: 25/90m); Working on HDPE liner around oil drum basket; Laid HDPE liner, offloaded and positioned mud system tanks; Offloaded 9 loads on WPC.</td>
+      </tr>
+      <tr>
+        <td>18:00</td><td>24:00</td>
+        <td>6.0</td>
+        <td>1</td>
+        <td>Wait on daylight.</td>
+      </tr>
+    </table>
+    <div style="margin-top:12px">
+      <div class="card-row">
+        <div class="mini-card green">
+          <div class="mini-title">Total Hours</div>
+          <div class="mini-val">24.0 hrs</div>
+        </div>
+        <div class="mini-card amber">
+          <div class="mini-title">Wait on Daylight</div>
+          <div class="mini-val">12.0 hrs</div>
+        </div>
+        <div class="mini-card green">
+          <div class="mini-title">Productive Time</div>
+          <div class="mini-val">12.0 hrs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Diesel Report ── -->
+  <div class="section">
+    <div class="section-title">Diesel Report</div>
+    <table>
+      <tr><th>Source</th><th>Stock (m³)</th><th>Used (m³)</th><th>Balance (m³)</th><th>Received / Send</th></tr>
+      <tr><td>Rig Diesel</td><td>53.0</td><td>0.0</td><td>53.0</td><td>—</td></tr>
+      <tr><td>Fly Camp Diesel</td><td>11.6</td><td>0.5</td><td>11.1</td><td>—</td></tr>
+    </table>
+  </div>
+
+  <!-- ── BHA Record ── -->
+  <div class="section">
+    <div class="section-title">BHA Record — BHA #13</div>
+    <div class="block-text">6" cone bit + Bit sub w/ F.V + 7" Rotatable Scraper + 7" String Magnet + 5-7/8" ST-STB + 4-3/4" DC x 7 jts + 4-3/4" Jar + 4-3/4" DC x 1 jt + 3-1/2" HWDP x 6 jts. Total BHA length = 138.29 m.</div>
+  </div>
+
+  <!-- ── Bit Record ── -->
+  <div class="section">
+    <div class="section-title">Bit Record</div>
+    <table>
+      <tr>
+        <th>Bit #</th><th>Size</th><th>Make</th><th>Model</th><th>Serial #</th>
+        <th>IADC</th><th>Jets/TFA</th><th>Depth In</th><th>Depth Out</th>
+        <th>Total m</th><th>Bit Hrs</th><th>WOB</th><th>RPM</th><th>Dull Code</th>
+      </tr>
+      <tr>
+        <td>8</td><td>6"</td><td>HALL</td><td>A4GR</td><td>13609293</td>
+        <td>217</td><td>3×20/32 / 0.92 in²</td>
+        <td>3966 m</td><td>3966 m</td><td>—</td><td>—</td><td>—</td><td>—</td>
+        <td>1-1-WT-A-E-X-I-LOG</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── Mud System ── -->
+  <div class="section">
+    <div class="section-title">Mud System — Completion Brine</div>
+    <table>
+      <tr>
+        <th>Time</th><th>MW (ppg)</th><th>FV</th><th>PV (Cps)</th>
+        <th>YP (lb/100ft²)</th><th>Gel (10s/10m)</th>
+        <th>API FL (ml/30m)</th><th>Ca (mg/l)</th><th>Cl⁻ (mg/l)</th>
+        <th>Solid %</th><th>LGS %</th><th>PH</th><th>MBT</th>
+      </tr>
+      <tr>
+        <td>13:00</td>
+        <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      </tr>
+      <tr>
+        <td>21:00</td>
+        <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      </tr>
+    </table>
+    <div style="margin-top:8px;font-size:12px;color:var(--muted)">Note: Mud parameters currently show no logged readings (system is Completion Brine during rig move phase — monitoring resumed once drilling re-starts)</div>
+  </div>
+
+  <!-- ── Pump Data ── -->
+  <div class="section">
+    <div class="section-title">Pump Data</div>
+    <table>
+      <tr>
+        <th>Pump</th><th>Model</th><th>Liner</th><th>SPM</th><th>GPM</th>
+        <th>Pressure (psi)</th><th>SCR 1</th><th>SCR 2</th><th>SCR 3</th>
+        <th>Efficiency %</th>
+      </tr>
+      <tr>
+        <td>1</td><td>F1600</td><td>6.5</td><td>0</td><td>0</td><td>2200</td><td>30 psi</td><td>30 psi</td><td>30 psi</td><td>95%</td>
+      </tr>
+      <tr>
+        <td>2</td><td>F1600</td><td>6.5</td><td>0</td><td>0</td><td>—</td><td>40 psi</td><td>40 psi</td><td>40 psi</td><td>95%</td>
+      </tr>
+      <tr>
+        <td>3</td><td>F1600</td><td>6.5</td><td>0</td><td>0</td><td>—</td><td>50 psi</td><td>50 psi</td><td>50 psi</td><td>95%</td>
+      </tr>
+    </table>
+    <div style="margin-top:8px;font-size:12px;color:var(--muted)">Note: Pumps idle during rig move phase. Pump 1 pressure reading 2200 psi on standby.</div>
+  </div>
+
+  <!-- ── Formation Tops ── -->
+  <div class="section">
+    <div class="section-title">Formation Tops &amp; Geothermal Data</div>
+    <table>
+      <tr>
+        <th>Formation</th><th>L.Faris</th><th>Bajawan</th><th>Baba</th><th>Tarjil</th><th>Palani</th>
+        <th>Dammam</th><th>Rus/Umm Er</th><th>Aaliji</th><th>Shiranish</th>
+        <th>Harthya</th><th>Sadi</th><th>Tanuma</th><th>Khasib</th>
+      </tr>
+      <tr>
+        <td>Plan (mMDDF)</td>
+        <td colspan="12" style="text-align:center;background:#f4f7fc">3972 m</td>
+      </tr>
+      <tr>
+        <td>Actual (mMDDF)</td>
+        <td colspan="12" style="text-align:center;color:var(--amber)">Not yet reached</td>
+      </tr>
+      <tr>
+        <td>Thickness (m)</td>
+        <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+        <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3972</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── Bit Hydraulics ── -->
+  <div class="section">
+    <div class="section-title">Bit Hydraulics &amp; Mud Log</div>
+    <div class="card-row">
+      <div class="mini-card">
+        <div class="mini-title">Avg. BG Gas</div>
+        <div class="mini-val">0.09</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Max Gas</div>
+        <div class="mini-val">163.59</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Conn Gas</div>
+        <div class="mini-val">227.74</div>
+      </div>
+      <div class="mini-card amber">
+        <div class="mini-title">ECD</div>
+        <div class="mini-val">10.64 ppg</div>
+      </div>
+    </div>
+    <table style="margin-top:12px">
+      <tr>
+        <th>AV DP1 (ft/min)</th>
+        <th>AV HWDP (ft/min)</th>
+        <th>AV DC1 (ft/min)</th>
+        <th>AV DC2 (ft/min)</th>
+        <th>Bit HP/In²</th>
+        <th>Bit HP %</th>
+        <th>Jet Velocity (ft/min)</th>
+      </tr>
+      <tr>
+        <td>0.09</td><td>0.09</td><td>163.59</td><td>227.74</td><td>0</td><td>189.80</td><td>1.20</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── Tests & Drills ── -->
+  <div class="section">
+    <div class="section-title">Tests &amp; Drills History</div>
+    <table>
+      <tr><th>Test / Drill</th><th>Date</th><th>Days Ago</th></tr>
+      <tr><td>Last BOP Test</td><td>12 Apr 2026</td><td>21 days</td></tr>
+      <tr><td>Last BOP Drill</td><td>15 Apr 2026</td><td>18 days</td></tr>
+      <tr><td>Last Fire Drill</td><td>02 May 2026</td><td>1 day</td></tr>
+      <tr><td>Last Man Down Drill</td><td>22 Apr 2026</td><td>11 days</td></tr>
+      <tr><td>Last Pit Drill</td><td>20 Apr 2026</td><td>13 days</td></tr>
+      <tr><td>Last H2S Drill</td><td>15 Apr 2026</td><td>18 days</td></tr>
+      <tr><td>Last Security Drill</td><td>07 Apr 2026</td><td>26 days</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Approval ── -->
+  <div class="section">
+    <div class="section-title">Approval Signatures</div>
+    <div class="two-col" style="margin-top:0">
+      <div>
+        <strong>PETRONAS Representative</strong>
+        <div style="margin-top:8px;color:var(--muted);font-size:12px">Signature: ________________________</div>
+        <div style="margin-top:4px;color:var(--muted);font-size:12px">Date: ________________________</div>
+        <div style="margin-top:4px;color:var(--muted);font-size:12px">Position/Authority: ________________________</div>
+      </div>
+      <div>
+        <strong>ZPEC Representative</strong>
+        <div style="margin-top:8px;color:var(--muted);font-size:12px">Signature: ________________________</div>
+        <div style="margin-top:4px;color:var(--muted);font-size:12px">Date: ________________________</div>
+        <div style="margin-top:4px;color:var(--muted);font-size:12px">Position/Authority: ________________________</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div style="text-align:center;padding:20px 36px;font-size:12px;color:var(--muted);border-top:1px solid var(--mid);margin-top:8px">
+    DMR No. 11 — Ga-C185P — ZPEC-29 — Garraf Oilfield &nbsp;|&nbsp; Report Date: 03 May 2026 &nbsp;|&nbsp; Generated by OpenClaw
+  </div>
+
+</div>
+</body>
+</html>

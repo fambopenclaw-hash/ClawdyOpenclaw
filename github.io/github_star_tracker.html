@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live GitHub Star Tracker</title>
+  <meta name="description" content="Live tracker of GitHub stars for OpenCode, OpenClaw, Hermes Agent, and NanoBot" />
+  <style>
+    :root {
+      --dark:   #0f1b2d;
+      --blue:   #0032A0;
+      --light:  #e8edf5;
+      --mid:    #c5d0e6;
+      --green:  #1a7a4a;
+      --amber:  #d4820a;
+      --red:    #c0392b;
+      --purple: #6b21a8;
+      --text:   #1a1a2e;
+      --muted:  #5a6a7a;
+      --oc:     #ff6b35;
+      --card-bg: #fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Calibri', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--mid);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-link:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff;
+      padding: 32px 40px 28px;
+      border-bottom: 4px solid var(--oc);
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .badge {
+      background: var(--oc);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-meta {
+      font-size: 13px;
+      color: var(--mid);
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+    }
+    .status-dot.error {
+      background: #f87171;
+      animation: none;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .body {
+      padding: 36px 40px 60px;
+      max-width: 1100px;
+    }
+
+    /* ── Tracker Grid ── */
+    .tracker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .repo-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 0;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.15s;
+      border-top: 4px solid var(--blue);
+    }
+    .repo-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,.13);
+      transform: translateY(-3px);
+    }
+    .repo-card.accent-oc   { border-top-color: var(--oc); }
+    .repo-card.accent-green { border-top-color: var(--green); }
+    .repo-card.accent-purple { border-top-color: var(--purple); }
+    .repo-card.accent-amber { border-top-color: var(--amber); }
+    .repo-card.accent-red   { border-top-color: var(--red); }
+
+    .repo-head {
+      padding: 20px 22px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .repo-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .repo-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .repo-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .repo-fullname {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .repo-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      padding: 0 22px 14px;
+      min-height: 38px;
+    }
+
+    .star-area {
+      padding: 14px 22px 18px;
+      background: #f8faff;
+      border-top: 1px solid #e8edf5;
+      text-align: center;
+    }
+    .star-count {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -1px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .star-count .star-icon {
+      font-size: 30px;
+      color: var(--amber);
+    }
+    .star-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .star-loading {
+      font-size: 14px;
+      color: var(--muted);
+      animation: pulse 1.5s infinite;
+    }
+    .loading-bar {
+      height: 4px;
+      background: #e8edf5;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .loading-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--oc));
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    .repo-footer {
+      padding: 12px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #e8edf5;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .repo-footer a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .repo-footer a:hover {
+      text-decoration: underline;
+    }
+    .repo-footer .forks {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ── Summary Bar ── */
+    .summary-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 22px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+      margin-bottom: 24px;
+    }
+    .summary-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .summary-stat .num {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .summary-stat .label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .summary-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--mid);
+    }
+    .last-updated {
+      margin-left: auto;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* ── Rank Badge ── */
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .rank-1 { background: #fef3c7; color: #b45309; }
+    .rank-2 { background: #e5e7eb; color: #6b7280; }
+    .rank-3 { background: #fed7aa; color: #c2410c; }
+    .rank-4 { background: #fce7f3; color: #be185d; }
+
+    .footer {
+      padding: 24px 40px;
+      border-top: 1px solid var(--mid);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .header { padding: 24px 20px 20px; }
+      .header h1 { font-size: 20px; }
+      .body   { padding: 24px 20px 40px; }
+      .tracker-grid { grid-template-columns: 1fr; }
+      .summary-bar { flex-direction: column; align-items: flex-start; }
+      .last-updated { margin-left: 0; }
+      .summary-divider { display: none; }
+      .footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="header-top">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge">★ Live</span>
+        <h1>GitHub Star Tracker</h1>
+      </div>
+      <a class="back-link" href="index.html">← Back to Index</a>
+    </div>
+    <div class="header-meta">
+      <span><span class="status-dot" id="statusDot"></span> <span id="statusText">Loading...</span></span>
+      <span>Auto-refreshes every 60s</span>
+    </div>
+  </div>
+
+  <!-- ── Main ── -->
+  <div class="body">
+
+    <!-- Summary Bar -->
+    <div class="summary-bar" id="summaryBar">
+      <div class="summary-stat">
+        <span class="num" id="totalStars">—</span>
+        <span class="label">Total ★</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-stat">
+        <span class="num" id="topRepo">—</span>
+        <span class="label">Top Repo</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-stat">
+        <span class="num" id="avgStars">—</span>
+        <span class="label">Avg ★</span>
+      </div>
+      <div class="last-updated" id="lastUpdated">—</div>
+    </div>
+
+    <!-- Tracker Grid -->
+    <div class="tracker-grid" id="trackerGrid">
+      <!-- Populated by JS -->
+    </div>
+
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    Data from <a href="https://api.github.com" style="color:var(--blue);">GitHub API</a> &mdash; Auto-refreshes every 60 seconds
+  </div>
+
+  <script>
+    // ── Repo Config ──
+    const REPOS = [
+      { name: 'OpenCode',     owner: 'opencode-ai',       repo: 'opencode',       icon: '⌨️',   accent: 'accent-oc' },
+      { name: 'OpenClaw',     owner: 'openclaw',          repo: 'openclaw',       icon: '🦞',   accent: 'accent-green' },
+      { name: 'Hermes Agent', owner: 'NousResearch',      repo: 'hermes-agent',   icon: '🪶',   accent: 'accent-purple' },
+      { name: 'NanoBot',      owner: 'HKUDS',             repo: 'nanobot',        icon: '🐈',   accent: 'accent-amber' },
+    ];
+
+    const GITHUB_API = 'https://api.github.com/repos';
+    const REFRESH_MS = 60000;
+
+    let dataCache = null;
+
+    // ── Helpers ──
+    function formatNumber(n) {
+      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
+      if (n >= 1_000) return (n / 1_000).toFixed(1) + 'K';
+      return n.toString();
+    }
+
+    function fullNumber(n) {
+      return n.toLocaleString();
+    }
+
+    function animateCount(el, target, suffix = '') {
+      const current = parseInt(el.textContent.replace(/[^0-9]/g, '')) || 0;
+      const duration = 1000;
+      const start = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(current + (target - current) * eased);
+        el.textContent = fullNumber(value) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // ── Build Cards (skeleton) ──
+    function buildSkeleton() {
+      const grid = document.getElementById('trackerGrid');
+      grid.innerHTML = '';
+      REPOS.forEach(r => {
+        const card = document.createElement('div');
+        card.className = `repo-card ${r.accent}`;
+        card.id = `card-${r.owner}-${r.repo}`;
+        card.innerHTML = `
+          <div class="repo-head">
+            <div class="repo-avatar">${r.icon}</div>
+            <div class="repo-info">
+              <div class="repo-name">${r.name}</div>
+              <div class="repo-fullname">${r.owner}/${r.repo}</div>
+            </div>
+          </div>
+          <div class="repo-desc" id="desc-${r.owner}-${r.repo}">
+            <span class="star-loading">Loading description...</span>
+          </div>
+          <div class="star-area">
+            <div class="star-count">
+              <span class="star-icon">★</span>
+              <span id="stars-${r.owner}-${r.repo}"><span class="star-loading">—</span></span>
+            </div>
+            <div class="star-label">GitHub Stars</div>
+            <div class="loading-bar">
+              <div class="loading-bar-fill" id="bar-${r.owner}-${r.repo}"></div>
+            </div>
+          </div>
+          <div class="repo-footer">
+            <span class="forks">
+              <span id="forks-${r.owner}-${r.repo}"><span class="star-loading">—</span></span>
+            </span>
+            <span>
+              <span id="rank-${r.owner}-${r.repo}"></span>
+            </span>
+            <a href="https://github.com/${r.owner}/${r.repo}" target="_blank">View →</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ── Fetch All Repos ──
+    async function fetchAll() {
+      const results = [];
+      for (const r of REPOS) {
+        try {
+          const res = await fetch(`${GITHUB_API}/${r.owner}/${r.repo}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          results.push({ ...r, data });
+        } catch (e) {
+          results.push({ ...r, error: e.message });
+        }
+      }
+      return results;
+    }
+
+    // ── Update UI ──
+    function updateUI(results) {
+      const errors = results.filter(r => r.error);
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+
+      if (errors.length > 0) {
+        statusDot.className = 'status-dot error';
+        statusText.textContent = `${errors.length} error(s) — check console`;
+      } else {
+        statusDot.className = 'status-dot';
+        statusText.textContent = 'All live';
+      }
+
+      // Sort by stars for ranking
+      const valid = results.filter(r => r.data && r.data.stargazers_count !== undefined);
+      const sorted = [...valid].sort((a, b) => b.data.stargazers_count - a.data.stargazers_count);
+
+      // Summary
+      if (valid.length > 0) {
+        const total = valid.reduce((s, r) => s + r.data.stargazers_count, 0);
+        const top = sorted[0];
+        const avg = Math.round(total / valid.length);
+
+        animateCount(document.getElementById('totalStars'), total);
+        document.getElementById('topRepo').textContent = top.name;
+        animateCount(document.getElementById('avgStars'), avg);
+      }
+
+      const now = new Date();
+      document.getElementById('lastUpdated').textContent =
+        'Updated: ' + now.toLocaleTimeString();
+
+      // Per-repo cards
+      results.forEach(r => {
+        const card = document.getElementById(`card-${r.owner}-${r.repo}`);
+        if (!card) return;
+
+        if (r.error) {
+          document.getElementById(`stars-${r.owner}-${r.repo}`).innerHTML =
+            `<span style="color:var(--red);font-size:18px;">⚠ Error</span>`;
+          document.getElementById(`desc-${r.owner}-${r.repo}`).textContent =
+            `Failed to fetch: ${r.error}`;
+          return;
+        }
+
+        const d = r.data;
+        // Stars with animation
+        const starEl = document.getElementById(`stars-${r.owner}-${r.repo}`);
+        animateCount(starEl, d.stargazers_count);
+
+        // Forks
+        document.getElementById(`forks-${r.owner}-${r.repo}`).textContent =
+          '🍴 ' + fullNumber(d.forks_count) + ' forks';
+
+        // Description
+        document.getElementById(`desc-${r.owner}-${r.repo}`).textContent =
+          d.description || 'No description';
+
+        // Loading bar — animate based on stars relative to max
+        const maxStars = sorted.length > 0 ? sorted[0].data.stargazers_count : 1;
+        const pct = Math.min((d.stargazers_count / maxStars) * 100, 100);
+        const bar = document.getElementById(`bar-${r.owner}-${r.repo}`);
+        bar.style.width = pct + '%';
+
+        // Rank
+        const rankIndex = sorted.findIndex(s => s.owner === r.owner && s.repo === r.repo);
+        const rankEl = document.getElementById(`rank-${r.owner}-${r.repo}`);
+        if (rankIndex >= 0) {
+          const rank = rankIndex + 1;
+          rankEl.innerHTML = `<span class="rank-badge rank-${rank}">#${rank}</span>`;
+        }
+      });
+    }
+
+    // ── Main Loop ──
+    async function refresh() {
+      const results = await fetchAll();
+      updateUI(results);
+      dataCache = results;
+    }
+
+    // ── Init ──
+    buildSkeleton();
+    refresh();
+    setInterval(refresh, REFRESH_MS);
+  </script>
+
+</body>
+</html>

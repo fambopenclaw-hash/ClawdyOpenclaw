@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Agent vs OpenClaw — AI Agent Stars Comparison</title>
+<style>
+:root {
+  --navy:   #0f1b2d;
+  --oc:     #ff6b35;
+  --hermes: #7c4dff;
+  --green:  #16a34a;
+  --amber:  #d4820a;
+  --red:    #dc2626;
+  --light:  #f0f4f8;
+  --white:  #ffffff;
+  --border: #e2e8f0;
+  --slate:  #546e7a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Calibri, sans-serif; background: var(--light); color: #1a2e4a; min-height: 100vh; }
+
+.header {
+  background: var(--navy);
+  background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+  color: var(--white); padding: 28px 40px 22px;
+}
+.back-link { display:inline-block; margin-bottom:12px; color:#fff; font-size:12px; font-weight:700; text-decoration:none; background:#0032A0; padding:5px 14px; border-radius:6px; }
+.header-meta { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#90caf9; margin-bottom:8px; }
+.header h1 { font-size:24px; font-weight:700; margin-bottom:6px; }
+.header p { font-size:13px; color:#b3d4fc; }
+
+.container { max-width:1100px; margin:0 auto; padding:28px 24px 60px; }
+
+/* STAT CARDS */
+.stat-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:28px; }
+.stat-card { background:var(--white); border-radius:12px; padding:20px 22px; box-shadow:0 1px 5px rgba(0,0,0,.08); border-top:5px solid var(--oc); }
+.stat-card.hm { border-top-color:var(--hermes); }
+.s-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#78909c; margin-bottom:6px; }
+.s-value { font-size:32px; font-weight:800; line-height:1; margin-bottom:4px; }
+.s-value.oc { color:var(--oc); }
+.s-value.hm { color:var(--hermes); }
+.s-sub { font-size:11px; color:#90a4ae; }
+.s-name { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:2px; }
+.s-lang { font-size:11px; color:#64748b; }
+.lead-badge { display:inline-block; background:#dcfce7; color:#166534; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; margin-top:6px; }
+
+/* VS BANNER */
+.vs-banner {
+  background:linear-gradient(90deg, #fff8f5 0%, #f8f4ff 100%);
+  border-radius:12px; padding:20px 28px; margin-bottom:28px;
+  display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap;
+  border: 1px solid #e2e8f0;
+}
+.vs-item { text-align:center; }
+.vs-item h2 { font-size:18px; font-weight:800; }
+.vs-item h2.oc { color:var(--oc); }
+.vs-item h2.hm { color:var(--hermes); }
+.vs-item p { font-size:12px; color:#64748b; }
+.vs-vs { font-size:36px; font-weight:900; color:#ccc; }
+
+/* CHART SECTION */
+.section { background:var(--white); border-radius:12px; box-shadow:0 1px 5px rgba(0,0,0,.08); margin-bottom:22px; overflow:hidden; }
+.sh { background:var(--navy); color:var(--white); padding:11px 22px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.cb { padding:24px; }
+
+/* BAR CHART */
+.bar-chart { display:flex; flex-direction:column; gap:22px; }
+.bar-row { display:grid; grid-template-columns:130px 1fr 110px; align-items:center; gap:16px; }
+.bar-label { font-size:13px; font-weight:700; text-align:right; }
+.bar-label.oc { color:var(--oc); }
+.bar-label.hm { color:var(--hermes); }
+.track { background:#e8edf5; border-radius:8px; height:44px; overflow:hidden; }
+.fill { height:100%; border-radius:8px; display:flex; align-items:center; padding-left:12px; font-size:13px; font-weight:700; color:#fff; white-space:nowrap; }
+.fill.oc  { background:linear-gradient(90deg,#ff6b35,#ff9a6c); }
+.fill.hm  { background:linear-gradient(90deg,#7c4dff,#b388ff); }
+.bval { font-size:16px; font-weight:800; color:var(--navy); white-space:nowrap; }
+
+/* DONUT */
+.donut-wrap { display:flex; align-items:center; gap:40px; flex-wrap:wrap; justify-content:center; }
+.donut-cont { position:relative; }
+svg.donut { transform:rotate(-90deg); }
+.donut-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+.donut-center .tnum { font-size:26px; font-weight:800; color:var(--navy); }
+.donut-center .tlbl { font-size:10px; color:#78909c; }
+.legend { display:flex; flex-direction:column; gap:10px; }
+.legend-item { display:flex; align-items:center; gap:10px; font-size:13px; color:#374151; }
+.dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+.dot.oc { background:var(--oc); }
+.dot.hm { background:var(--hermes); }
+.pct { margin-left:auto; padding-left:20px; font-weight:700; color:#90a4ae; font-size:12px; }
+.key-insight { margin-top:14px; padding-top:14px; border-top:1px solid #e2e8f0; font-size:12px; color:#64748b; line-height:1.6; }
+
+/* METRICS TABLE */
+.metrics-table { width:100%; border-collapse:collapse; font-size:13px; }
+.metrics-table th { background:#f4f7fb; padding:10px 14px; text-align:left; font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--slate); border-bottom:2px solid var(--border); }
+.metrics-table td { padding:11px 14px; border-bottom:1px solid #f1f5f9; vertical-align:top; }
+.metrics-table tr:last-child td { border:none; }
+.metrics-table tr:hover td { background:#f8fafd; }
+.mk { font-weight:600; color:var(--slate); }
+.mv-oc { font-weight:700; color:var(--oc); }
+.mv-hm { font-weight:700; color:var(--hermes); }
+.wb { display:inline-block; font-size:9px; font-weight:700; padding:2px 7px; border-radius:8px; margin-left:6px; }
+.wb-oc { background:#fff0eb; color:var(--oc); }
+.wb-hm { background:#f3efff; color:var(--hermes); }
+.wb-tie { background:#f1f5f9; color:#64748b; }
+
+/* STACKED FORK RATIO */
+.fork-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.fork-card { border-radius:10px; padding:18px; border:1px solid var(--border); }
+.fork-card.oc-card { background:#fff8f5; border-color:#fed7cc; }
+.fork-card.hm-card { background:#f8f4ff; border-color:#d0c4ff; }
+.fk-head { font-size:12px; font-weight:700; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,.08); }
+.fk-head.oc { color:var(--oc); }
+.fk-head.hm { color:var(--hermes); }
+.fk-row { display:flex; justify-content:space-between; font-size:12px; padding:5px 0; }
+.fk-key { color:#64748b; }
+.fk-val { font-weight:600; color:#1a2e4a; }
+
+/* AGE CHART */
+.age-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.age-card { border-radius:10px; padding:18px; border:1px solid var(--border); }
+.age-card.oc-bg { background:#fff8f5; border-color:#fed7cc; }
+.age-card.hm-bg { background:#f8f4ff; border-color:#d0c4ff; }
+.age-card h3 { font-size:14px; font-weight:700; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,.08); }
+.age-card h3.oc { color:var(--oc); }
+.age-card h3.hm { color:var(--hermes); }
+.age-row { display:flex; justify-content:space-between; padding:6px 0; font-size:12px; border-bottom:1px solid #f1f5f9; }
+.age-row:last-child { border:none; }
+.age-k { color:#64748b; }
+.age-v { font-weight:600; color:#1a2e4a; }
+.age-v.oc { color:var(--oc); }
+.age-v.hm { color:var(--hermes); }
+.age-track { background:#e2e8f0; border-radius:6px; height:10px; margin-top:14px; overflow:hidden; }
+.age-bar { height:100%; border-radius:6px; }
+.age-bar.oc { background:var(--oc); }
+.age-bar.hm { background:var(--hermes); }
+.age-note { font-size:11px; color:#90a4ae; margin-top:8px; line-height:1.5; }
+
+/* VERDICT */
+.verdict-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+.vcard { border-radius:10px; padding:18px; }
+.vcard.w1 { background:#fff8f5; border:1px solid #fed7cc; }
+.vcard.w2 { background:#f8f4ff; border:1px solid #d0c4ff; }
+.vcard.w3 { background:#f0fdf4; border:1px solid #b3dfbc; }
+.vcard h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+.vcard.w1 h4 { color:var(--oc); }
+.vcard.w2 h4 { color:var(--hermes); }
+.vcard.w3 h4 { color:var(--green); }
+.big-num { font-size:28px; font-weight:800; line-height:1; }
+.big-num.oc { color:var(--oc); }
+.big-num.hm { color:var(--hermes); }
+.vcard-sub { font-size:11px; color:#64748b; margin-top:4px; }
+.bottom-text { background:#f8fafc; border-radius:10px; padding:20px; font-size:13px; line-height:1.8; color:#374151; border:1px solid #e2e8f0; margin-top:16px; }
+.bottom-text strong { color:var(--navy); }
+.bottom-text .oc-txt { color:var(--oc); font-weight:700; }
+.bottom-text .hm-txt { color:var(--hermes); font-weight:700; }
+
+/* FOOTER */
+.footer { text-align:center; padding:24px 20px; font-size:12px; color:#90a4ae; border-top:1px solid var(--border); margin-top:10px; }
+.footer a { color:var(--oc); text-decoration:none; }
+
+@media(max-width:640px) {
+  .header { padding:22px 20px 18px; }
+  .container { padding:20px 14px 40px; }
+  .bar-row { grid-template-columns:80px 1fr 80px; gap:8px; }
+  .age-grid, .verdict-grid { grid-template-columns:1fr; }
+  .fork-row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="index.html" class="back-link">&#8592; Back to Index</a>
+  <div class="header-meta">AI Agent Framework Comparison — 8 May 2026</div>
+  <h1>Hermes Agent vs OpenClaw</h1>
+  <p>NousResearch/Hermes-Agent vs openclaw/openclaw — Stars, Forks, Issues &amp; Growth</p>
+</div>
+
+<div class="container">
+
+<!-- VS BANNER -->
+<div class="vs-banner">
+  <div class="vs-item">
+    <h2 class="oc">OpenClaw</h2>
+    <p>369,554 ★ · TypeScript</p>
+  </div>
+  <div class="vs-vs">vs</div>
+  <div class="vs-item">
+    <h2 class="hm">Hermes Agent</h2>
+    <p>137,963 ★ · Python</p>
+  </div>
+</div>
+
+<!-- STAT CARDS -->
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="s-name">OpenClaw</div>
+    <div class="s-lang">TypeScript · Nov 2025</div>
+    <div class="s-value oc">369,554</div>
+    <div class="s-sub">★ GitHub Stars</div>
+    <div class="lead-badge">🦞 2.68× more stars</div>
+  </div>
+  <div class="stat-card hm">
+    <div class="s-name">Hermes Agent</div>
+    <div class="s-lang">Python · July 2025</div>
+    <div class="s-value hm">137,963</div>
+    <div class="s-sub">★ GitHub Stars</div>
+  </div>
+  <div class="stat-card">
+    <div class="s-name">Combined Total</div>
+    <div class="s-lang">Both repos combined</div>
+    <div class="s-value" style="color:var(--navy);">507,517</div>
+    <div class="s-sub">★ Total Stars</div>
+  </div>
+  <div class="stat-card">
+    <div class="s-name">Open Issues (Combined)</div>
+    <div class="s-lang">Active bugs + features</div>
+    <div class="s-value" style="color:#dc2626;">16,324</div>
+    <div class="s-sub">~8K each — active dev velocity</div>
+  </div>
+</div>
+
+<!-- STARS BAR CHART -->
+<div class="section">
+  <div class="sh">GitHub Stars — Bar Comparison</div>
+  <div class="cb">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label oc">OpenClaw</div>
+        <div class="track"><div class="fill oc" style="width:100%;">369,554 ★</div></div>
+        <div class="bval">369,554</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label hm">Hermes Agent</div>
+        <div class="track"><div class="fill hm" style="width:37.3%;">137,963 ★</div></div>
+        <div class="bval">137,963</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORKS BAR CHART -->
+<div class="section">
+  <div class="sh">Forks — Bar Comparison</div>
+  <div class="cb">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label oc">OpenClaw</div>
+        <div class="track"><div class="fill oc" style="width:100%;">76,272 forks</div></div>
+        <div class="bval">76,272</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label hm">Hermes Agent</div>
+        <div class="track"><div class="fill hm" style="width:27.9%;">21,266 forks</div></div>
+        <div class="bval">21,266</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; background:#fff8f5; border-left:4px solid var(--oc); padding:12px 16px; border-radius:6px; font-size:12px; color:#64748b; line-height:1.6;">
+      <strong style="color:var(--oc);">Fork ratio:</strong> OpenClaw 20.6% (76K/369K) · Hermes Agent 15.4% (21K/138K) — Hermes has a higher fork-to-star ratio relative to its size, suggesting very active community customization.
+    </div>
+  </div>
+</div>
+
+<!-- DONUT -->
+<div class="section">
+  <div class="sh">Star Market Share — AI Agent Frameworks</div>
+  <div class="cb">
+    <div class="donut-wrap">
+      <div class="donut-cont">
+        <svg class="donut" width="260" height="260" viewBox="0 0 260 260">
+          <!-- OpenClaw: 369554/507517 = 72.8% -->
+          <circle cx="130" cy="130" r="100" fill="none" stroke="#ff6b35" stroke-width="52"
+            stroke-dasharray="456.7 628.3" stroke-dashoffset="0"/>
+          <!-- Hermes: 137963/507517 = 27.2% -->
+          <circle cx="130" cy="130" r="100" fill="none" stroke="#7c4dff" stroke-width="52"
+            stroke-dasharray="170.8 628.3" stroke-dashoffset="-456.7"/>
+        </svg>
+        <div class="donut-center">
+          <div class="tnum">507.5K</div>
+          <div class="tlbl">Total ★</div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="dot oc"></div>
+          OpenClaw
+          <div class="pct">72.8% · 369,554</div>
+        </div>
+        <div class="legend-item">
+          <div class="dot hm"></div>
+          Hermes Agent
+          <div class="pct">27.2% · 137,963</div>
+        </div>
+        <div class="key-insight">
+          Together, these two repos represent <strong>~507K stars</strong> — making them collectively one of the most-starred AI agent frameworks on GitHub.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGE ANALYSIS -->
+<div class="section">
+  <div class="sh">Age vs. Stars — Growth Efficiency</div>
+  <div class="cb">
+    <div class="age-grid">
+      <div class="age-card oc-bg">
+        <h3 class="oc">🔶 OpenClaw</h3>
+        <div class="age-row"><span class="age-k">Repo Age</span><span class="age-v oc">~5.5 months</span></div>
+        <div class="age-row"><span class="age-k">Stars/Month (avg)</span><span class="age-v oc">~67,192</span></div>
+        <div class="age-row"><span class="age-k">Stars/Day (avg)</span><span class="age-v oc">~2,240</span></div>
+        <div class="age-row"><span class="age-k">Created</span><span class="age-v">24 Nov 2025</span></div>
+        <div class="age-row"><span class="age-k">Last Push</span><span class="age-v">8 May 2026</span></div>
+        <div class="age-row"><span class="age-k">License</span><span class="age-v">MIT</span></div>
+        <div class="age-track"><div class="age-bar oc" style="width:57.9%;"></div></div>
+        <div class="age-note">57.9% through its first year — still in rapid growth. Project launched at peak of AI agent hype cycle.</div>
+      </div>
+      <div class="age-card hm-bg">
+        <h3 class="hm">🟣 Hermes Agent</h3>
+        <div class="age-row"><span class="age-k">Repo Age</span><span class="age-v hm">~9.5 months</span></div>
+        <div class="age-row"><span class="age-k">Stars/Month (avg)</span><span class="age-v hm">~14,522</span></div>
+        <div class="age-row"><span class="age-k">Stars/Day (avg)</span><span class="age-v hm">~484</span></div>
+        <div class="age-row"><span class="age-k">Created</span><span class="age-v">22 Jul 2025</span></div>
+        <div class="age-row"><span class="age-k">Last Push</span><span class="age-v">8 May 2026</span></div>
+        <div class="age-row"><span class="age-k">License</span><span class="age-v">MIT</span></div>
+        <div class="age-track"><div class="age-bar hm" style="width:100%;"></div></div>
+        <div class="age-note">Hermes launched earlier (Jul 2025), earlier to market. Slower but steady per-day growth reflects mature community rather than hype phase.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; background:#f8fafc; border-left:4px solid var(--navy); padding:12px 16px; border-radius:6px; font-size:12px; color:#64748b; line-height:1.6;">
+      <strong>Growth verdict:</strong> OpenClaw adds stars <strong style="color:var(--oc);">4.6× faster per day</strong> than Hermes Agent. However, Hermes Agent launched 4 months earlier — its head start matters. OpenClaw's growth rate is exceptional by any measure.
+    </div>
+  </div>
+</div>
+
+<!-- METRICS TABLE -->
+<div class="section">
+  <div class="sh">Full Metrics Comparison Table</div>
+  <div class="cb" style="overflow-x:auto;">
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>OpenClaw</th>
+          <th>Hermes Agent</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mk">GitHub Stars</td>
+          <td class="mv-oc">369,554 ★</td>
+          <td class="mv-hm">137,963 ★</td>
+          <td><strong style="color:var(--oc);">OpenClaw</strong> <span class="wb wb-oc">2.68×</span></td>
+        </tr>
+        <tr>
+          <td class="mk">Forks</td>
+          <td class="mv-oc">76,272</td>
+          <td class="mv-hm">21,266</td>
+          <td><strong style="color:var(--oc);">OpenClaw</strong> <span class="wb wb-oc">3.59×</span></td>
+        </tr>
+        <tr>
+          <td class="mk">Open Issues</td>
+          <td class="mv-oc">7,496</td>
+          <td class="mv-hm">8,828</td>
+          <td><strong style="color:var(--oc);">OpenClaw</strong> <span class="wb wb-oc">Fewer</span></td>
+        </tr>
+        <tr>
+          <td class="mk">Fork/Star Ratio</td>
+          <td class="mv-oc">20.6%</td>
+          <td class="mv-hm">15.4%</td>
+          <td><strong style="color:var(--hermes);">Hermes Agent</strong> <span class="wb wb-hm">More community fork</span></td>
+        </tr>
+        <tr>
+          <td class="mk">Repo Age</td>
+          <td class="mv-oc">~5.5 months</td>
+          <td class="mv-hm">~9.5 months</td>
+          <td><span class="wb wb-tie">Different stages</span></td>
+        </tr>
+        <tr>
+          <td class="mk">Stars/Day (avg)</td>
+          <td class="mv-oc">~2,240</td>
+          <td class="mv-hm">~484</td>
+          <td><strong style="color:var(--oc);">OpenClaw</strong> <span class="wb wb-oc">4.6× faster</span></td>
+        </tr>
+        <tr>
+          <td class="mk">Primary Language</td>
+          <td class="mv-oc">TypeScript</td>
+          <td class="mv-hm">Python</td>
+          <td><span class="wb wb-tie">Different stacks</span></td>
+        </tr>
+        <tr>
+          <td class="mk">License</td>
+          <td class="mv-oc">MIT</td>
+          <td class="mv-hm">MIT</td>
+          <td><strong style="color:var(--green);">Both MIT</strong></td>
+        </tr>
+        <tr>
+          <td class="mk">Last Push</td>
+          <td class="mv-oc">8 May 2026</td>
+          <td class="mv-hm">8 May 2026</td>
+          <td><strong style="color:var(--green);">Both Active TODAY</strong></td>
+        </tr>
+        <tr>
+          <td class="mk">Focus / Type</td>
+          <td class="mv-oc">Personal AI asst / CLI</td>
+          <td class="mv-hm">Agent framework / growing</td>
+          <td><span class="wb wb-tie">Different positioning</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- VERDICT -->
+<div class="section">
+  <div class="sh">Head-to-Head Verdict</div>
+  <div class="cb">
+    <div class="verdict-grid">
+      <div class="vcard w1">
+        <h4>🏆 Stars Leader</h4>
+        <div class="big-num oc">369.5K</div>
+        <div class="vcard-sub">OpenClaw · 72.8% of combined</div>
+      </div>
+      <div class="vcard w2">
+        <h4>🟣 Community Fork Ratio</h4>
+        <div class="big-num hm">15.4%</div>
+        <div class="vcard-sub">Hermes · Higher relative fork rate</div>
+      </div>
+      <div class="vcard w3">
+        <h4>⚡ Growth Speed</h4>
+        <div class="big-num" style="color:var(--green);">2,240★/day</div>
+        <div class="vcard-sub">OpenClaw · 4.6× Hermes pace</div>
+      </div>
+    </div>
+    <div class="bottom-text">
+      <strong>The Bottom Line:</strong><br><br>
+      <span class="oc-txt">OpenClaw</span> is a hypergrowth consumer/productivity AI assistant with a lobster mascot and a TypeScript-first, cross-platform CLI architecture. In just ~5.5 months it has accumulated <strong class="oc-txt">369,554 stars</strong> — making it arguably the fastest-growing AI agent framework in GitHub history. It targets end users ("personal AI assistant") with a warm, opinionated personality baked into its design (SOUL.md, lobster branding).<br><br>
+      <span class="hm-txt">Hermes Agent</span> (NousResearch) is a Python-based AI agent framework described as "the agent that grows with you." At ~9.5 months old, it has a <strong class="hm-txt">137,963-star</strong> community and a higher fork-to-star ratio — suggesting deep community experimentation and customization. It targets developers building agentic systems in Python, the world's most-used language for ML/AI work.<br><br>
+      <strong>The key distinction:</strong> OpenClaw is an <em>app/CLI you run</em> — a personal assistant. Hermes Agent is a <em>framework you build with</em> — a developer toolkit. They compete for different minds, not the same users. OpenClaw wins on raw star velocity; Hermes wins on developer ecosystem depth. Both are winning the right races.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Data: GitHub API — <strong>8 May 2026</strong> &nbsp;|&nbsp; OpenClaw: 369,554 ★ &nbsp;|&nbsp; Hermes Agent: 137,963 ★ &nbsp;|&nbsp; Generated by Clawdius 🦉 &nbsp;|&nbsp; <a href="index.html">Back to Index</a>
+</div>
+
+</div>
+</body>
+</html>

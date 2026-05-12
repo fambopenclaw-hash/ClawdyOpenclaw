@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Message Info — 2026-05-07</title>
+  <style>
+    :root {
+      --navy: #0f2744;
+      --blue: #1565c0;
+      --blue-light: #1976d2;
+      --green: #2e7d32;
+      --amber: #f57f17;
+      --slate: #37474f;
+      --light: #f0f4f8;
+      --white: #ffffff;
+      --border: #cbd5e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+      background: var(--light);
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 28px 40px 22px;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .doc-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #90caf9;
+    }
+    .back-link {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--blue);
+      padding: 5px 14px;
+      border-radius: 6px;
+    }
+    .back-link:hover { background: var(--blue-light); }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .header p {
+      font-size: 13px;
+      color: #b3d4fc;
+    }
+
+    /* ── MAIN ── */
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ── CARDS ROW ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 5px solid var(--blue);
+    }
+    .stat-card.green { border-left-color: var(--green); }
+    .stat-card.amber { border-left-color: var(--amber); }
+    .stat-card.slate { border-left-color: var(--slate); }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #78909c;
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a2e4a;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 13px 22px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    .field-key {
+      font-weight: 600;
+      color: #546e7a;
+      width: 38%;
+      background: #f8fafc;
+    }
+    .field-val {
+      color: #1a2e4a;
+      font-weight: 500;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .badge.green { background: var(--green); }
+    .badge.amber { background: var(--amber); color: #fff; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #90a4ae;
+    }
+    .footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <span class="doc-label">Telegram Metadata</span>
+    <a href="index.html" class="back-link">&#8592; Back to Index</a>
+  </div>
+  <h1>Message Analysis Report</h1>
+  <p>Message ID: 4179 &nbsp;|&nbsp; 7 May 2026, 4:05 PM (GMT+8)</p>
+</div>
+
+<!-- STAT CARDS -->
+<div class="container">
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-label">Channel</div>
+      <div class="stat-value">Telegram</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">Chat Type</div>
+      <div class="stat-value">Direct Message</div>
+    </div>
+    <div class="stat-card amber">
+      <div class="stat-label">Sender ID</div>
+      <div class="stat-value">6191189810</div>
+    </div>
+    <div class="stat-card slate">
+      <div class="stat-label">Sender Name</div>
+      <div class="stat-value">Fahmi Amni</div>
+    </div>
+  </div>
+
+  <!-- CONVERSATION METADATA -->
+  <div class="section">
+    <div class="section-header">Conversation Info</div>
+    <table>
+      <tr>
+        <td class="field-key">Message ID</td>
+        <td class="field-val">4179</td>
+      </tr>
+      <tr>
+        <td class="field-key">Sender ID</td>
+        <td class="field-val">6191189810</td>
+      </tr>
+      <tr>
+        <td class="field-key">Sender Name</td>
+        <td class="field-val">Fahmi Amni</td>
+      </tr>
+      <tr>
+        <td class="field-key">Sender Label</td>
+        <td class="field-val">Fahmi Amni (6191189810)</td>
+      </tr>
+      <tr>
+        <td class="field-key">Timestamp</td>
+        <td class="field-val">Thu, 7 May 2026 — 4:05 PM GMT+8</td>
+      </tr>
+      <tr>
+        <td class="field-key">Channel</td>
+        <td class="field-val"><span class="badge">Telegram</span></td>
+      </tr>
+      <tr>
+        <td class="field-key">Chat Type</td>
+        <td class="field-val"><span class="badge green">Direct Message</span></td>
+      </tr>
+      <tr>
+        <td class="field-key">Account ID</td>
+        <td class="field-val">default</td>
+      </tr>
+      <tr>
+        <td class="field-key">Provider</td>
+        <td class="field-val">telegram</td>
+      </tr>
+      <tr>
+        <td class="field-key">Surface</td>
+        <td class="field-val">telegram</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- INBOUND METADATA -->
+  <div class="section">
+    <div class="section-header">Inbound Metadata (Full Schema)</div>
+    <table>
+      <tr>
+        <td class="field-key">Schema Version</td>
+        <td class="field-val">openclaw.inbound_meta.v2</td>
+      </tr>
+      <tr>
+        <td class="field-key">Chat ID</td>
+        <td class="field-val">telegram:6191189810</td>
+      </tr>
+      <tr>
+        <td class="field-key">Account ID</td>
+        <td class="field-val">default</td>
+      </tr>
+      <tr>
+        <td class="field-key">Channel</td>
+        <td class="field-val">telegram</td>
+      </tr>
+      <tr>
+        <td class="field-key">Provider</td>
+        <td class="field-val">telegram</td>
+      </tr>
+      <tr>
+        <td class="field-key">Surface</td>
+        <td class="field-val">telegram</td>
+      </tr>
+      <tr>
+        <td class="field-key">Chat Type</td>
+        <td class="field-val"><span class="badge green">direct</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- CHANNEL CAPABILITIES -->
+  <div class="section">
+    <div class="section-header">Channel Capabilities</div>
+    <table>
+      <tr>
+        <td class="field-key">inlinebuttons</td>
+        <td class="field-val"><span class="badge green">Supported</span></td>
+      </tr>
+      <tr>
+        <td class="field-key">Reactions</td>
+        <td class="field-val"><span class="badge green">Supported</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    Report generated by <strong>Clawdius</strong> 🦉 &nbsp;|&nbsp; 7 May 2026 &nbsp;|&nbsp; <a href="index.html">Back to Index</a>
+  </div>
+</div>
+
+</body>
+</html>

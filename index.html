@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fambopenclaw — Hub</title>
+  <meta name="description" content="fambopenclaw auto website — dashboards and reports" />
+  <style>
+    :root {
+      --dark:   #0f1b2d;
+      --blue:   #0032A0;
+      --light:  #e8edf5;
+      --mid:    #c5d0e6;
+      --green:  #1a7a4a;
+      --amber:  #d4820a;
+      --red:    #c0392b;
+      --text:   #1a1a2e;
+      --muted:  #5a6a7a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Calibri', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff;
+      padding: 40px 40px 36px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .badge {
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-meta {
+      font-size: 13px;
+      color: var(--mid);
+      margin-top: 6px;
+    }
+
+    /* ── Body ── */
+    .body {
+      padding: 36px 40px 60px;
+      max-width: 1100px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    /* ── Dashboard Cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 22px 24px 20px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 5px solid var(--blue);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,.13);
+      transform: translateY(-2px);
+    }
+    .card.accent-green  { border-left-color: var(--green); }
+    .card.accent-amber  { border-left-color: var(--amber); }
+    .card.accent-red    { border-left-color: var(--red); }
+    .card.accent-muted  { border-left-color: var(--muted); }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .card-tag {
+      margin-top: auto;
+      padding-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .card.accent-green  .card-tag { color: var(--green); }
+    .card.accent-amber  .card-tag { color: var(--amber); }
+    .card.accent-red    .card-tag { color: var(--red); }
+
+    /* ── About Section ── */
+    .about {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 28px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+      border-left: 5px solid var(--muted);
+      max-width: 600px;
+    }
+    .about h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .about p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 24px 40px;
+      border-top: 1px solid var(--mid);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 24px 22px; }
+      .body   { padding: 24px 24px 40px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge">OpenClaw</span>
+      <h1>fambopenclaw-hash.github.io</h1>
+    </div>
+    <div class="header-meta">Auto-generated dashboards &amp; reports — powered by OpenClaw</div>
+  </div>
+
+  <!-- ── Main ── -->
+  <div class="body">
+
+    <div class="section-label">Dashboards &amp; Reports</div>
+    <div class="card-grid">
+
+      <a class="card" href="Sample1.html">
+        <div class="card-title">Subsurface Operational Dashboard</div>
+        <div class="card-desc">Personnel-on-board (POB) counts, slickline, e-line, WHPM &amp; CTU activity summaries.</div>
+        <div class="card-tag">Operational</div>
+      </a>
+
+      <a class="card accent-green" href="Sample2.html">
+        <div class="card-title">Sample 2</div>
+        <div class="card-desc">Additional dashboard or report. Click to view.</div>
+        <div class="card-tag">Report</div>
+      </a>
+
+      <a class="card accent-amber" href="Test_Daily_Update.html">
+        <div class="card-title">Test — Daily Update</div>
+        <div class="card-desc">Daily operational summary and status highlights.</div>
+        <div class="card-tag">Daily Update</div>
+      </a>
+
+      <a class="card accent-red" href="Test_Well_Dashboard.html">
+        <div class="card-title">Test — Well Dashboard</div>
+        <div class="card-desc">Well-by-well performance metrics and overview.</div>
+        <div class="card-tag">Well Dashboard</div>
+      </a>
+
+    </div>
+
+    <!-- ── About ── -->
+    <div class="section-label">About</div>
+    <div class="about">
+      <h2>This Site</h2>
+      <p>This site is automatically maintained by OpenClaw. Reports and dashboards are generated regularly and published here. To improve this page, edit <code>index.html</code> in the repository.</p>
+    </div>
+
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    fambopenclaw-hash.github.io &mdash; OpenClaw Auto Website &mdash;
+    <a href="https://github.com/fambopenclaw-hash/fambopenclaw-hash.github.io" style="color:var(--blue);">View on GitHub</a>
+  </div>
+
+</body>
+</html>

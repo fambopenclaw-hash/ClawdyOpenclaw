@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "notion": {
+      "version": "1.0.0",
+      "installedAt": 1773741479893
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1773876736292
+    },
+    "self-improving": {
+      "version": "1.2.16",
+      "installedAt": 1773877696531
+    },
+    "weather": {
+      "version": "1.0.0",
+      "installedAt": 1773962930099
+    },
+    "one-note": {
+      "version": "1.0.0",
+      "installedAt": 1774694319974
+    },
+    "powerpoint-pptx": {
+      "version": "1.0.1",
+      "installedAt": 1774707836536
+    },
+    "whisper-audio-transcription": {
+      "version": "1.0.1",
+      "installedAt": 1777010521403
+    },
+    "voice-transcribe": {
+      "version": "1.0.1",
+      "installedAt": 1777010548093
+    },
+    "openai-whisper-api": {
+      "version": "1.0.0",
+      "installedAt": 1777010617342
+    }
+  }
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fambopenclaw - Hub List</title>
+  <meta name="description" content="fambopenclaw auto website - dashboards and reports" />
+  <style>
+    :root {
+      --dark:   #0f1b2d;
+      --blue:   #0032A0;
+      --light:  #e8edf5;
+      --mid:    #c5d0e6;
+      --green:  #1a7a4a;
+      --amber:  #d4820a;
+      --red:    #c0392b;
+      --purple: #6b21a8;
+      --text:   #1a1a2e;
+      --muted:  #5a6a7a;
+      --oc:     #ff6b35;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Calibri', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff;
+      padding: 40px 40px 36px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .badge {
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-meta {
+      font-size: 13px;
+      color: var(--mid);
+      margin-top: 6px;
+    }
+
+    .body {
+      padding: 36px 40px 60px;
+      max-width: 980px;
+    }
+
+    .category {
+      margin-bottom: 44px;
+    }
+
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--mid);
+    }
+    .cat-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+    .cat-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+    .cat-count {
+      margin-left: auto;
+      background: var(--mid);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .link-list {
+      list-style: none;
+      background: #fff;
+      border: 1px solid var(--mid);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 5px rgba(0,0,0,.06);
+    }
+
+    .link-list li + li {
+      border-top: 1px solid var(--mid);
+    }
+
+    .list-link {
+      color: var(--text);
+      display: grid;
+      grid-template-columns: 8px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 20px 15px 0;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .list-link:hover {
+      background: #f8fafc;
+    }
+
+    .list-link::before {
+      content: "";
+      align-self: stretch;
+      background: var(--blue);
+    }
+
+    .list-link.accent-green::before  { background: var(--green); }
+    .list-link.accent-amber::before  { background: var(--amber); }
+    .list-link.accent-red::before    { background: var(--red); }
+    .list-link.accent-purple::before { background: var(--purple); }
+    .list-link.accent-oc::before     { background: var(--oc); }
+
+    .link-main {
+      min-width: 0;
+    }
+
+    .link-title {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .link-desc {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .link-tag {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .list-link.accent-green  .link-tag { color: var(--green); }
+    .list-link.accent-amber  .link-tag { color: var(--amber); }
+    .list-link.accent-red    .link-tag { color: var(--red); }
+    .list-link.accent-purple .link-tag { color: var(--purple); }
+    .list-link.accent-oc     .link-tag { color: var(--oc); }
+
+    .about {
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px 28px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+      border-left: 5px solid var(--muted);
+      max-width: 600px;
+    }
+    .about h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .about p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .footer {
+      padding: 24px 40px;
+      border-top: 1px solid var(--mid);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .header { padding: 28px 24px 22px; }
+      .header-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .header h1 { font-size: 21px; }
+      .body { padding: 24px 24px 40px; }
+      .list-link {
+        grid-template-columns: 6px minmax(0, 1fr);
+        padding-right: 16px;
+      }
+      .link-tag {
+        grid-column: 2;
+        margin-top: 2px;
+      }
+      .footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-top">
+      <span class="badge">OpenClaw</span>
+      <h1>https://github.com/fahmiamni/github.io</h1>
+    </div>
+    <div class="header-meta">Auto-generated dashboards &amp; reports - powered by OpenClaw</div>
+  </div>
+
+  <div class="body">
+
+    <div class="category">
+      <div class="cat-header">
+        <span class="cat-icon">O&amp;G</span>
+        <span class="cat-title">Oil &amp; Gas</span>
+        <span class="cat-count">2 reports</span>
+      </div>
+      <ul class="link-list">
+        <li>
+          <a class="list-link accent-green" href="iraq_2026_growth.html">
+            <span class="link-main">
+              <span class="link-title">Iraq 2026 Growth Opportunities</span>
+              <span class="link-desc">26 oil &amp; gas fields/blocks - full asset register with reserves, production rates, operators, pipeline distances, and PCIHBV assessments.</span>
+            </span>
+            <span class="link-tag">Oil &amp; Gas</span>
+          </a>
+        </li>
+        <li>
+          <a class="list-link accent-green" href="petronas_top5_analysis.html">
+            <span class="link-main">
+              <span class="link-title">Petronas Iraq - Top 5 Field Recommendations</span>
+              <span class="link-desc">Detailed analysis for Petronas Carigali: Nasiriyah, Subba, Akkas, Haifa &amp; Ballad scored on HC evacuation, security, energy demand, HC volume, and H2S risk.</span>
+            </span>
+            <span class="link-tag">Strategic Analysis</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <div class="cat-header">
+        <span class="cat-icon">DMR</span>
+        <span class="cat-title">Drilling &amp; Reports</span>
+        <span class="cat-count">2 reports</span>
+      </div>
+      <ul class="link-list">
+        <li>
+          <a class="list-link accent-green" href="DMR11_WellX_ZPEC.html">
+            <span class="link-main">
+              <span class="link-title">DMR 11 - WellX (ZPEC)</span>
+              <span class="link-desc">Daily Move Report for Rig ZPEC-29 at WPC Slot #16, Garraf Oilfield. Rig move from WPH to WPC - 03 May 2026.</span>
+            </span>
+            <span class="link-tag">DMR Report</span>
+          </a>
+        </li>
+        <li>
+          <a class="list-link accent-amber" href="Test_Daily_Update.html">
+            <span class="link-main">
+              <span class="link-title">Test - Daily Update</span>
+              <span class="link-desc">Daily operational summary and status highlights.</span>
+            </span>
+            <span class="link-tag">Daily Update</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <div class="cat-header">
+        <span class="cat-icon">HR</span>
+        <span class="cat-title">HR &amp; Documents</span>
+        <span class="cat-count">2 reports</span>
+      </div>
+      <ul class="link-list">
+        <li>
+          <a class="list-link accent-purple" href="Ahmad Albab_Employment_Details.html">
+            <span class="link-main">
+              <span class="link-title">Ahmad Albab - Employment Details</span>
+              <span class="link-desc">Letter of Appointment as Event Director at XR-Summits Sdn Bhd. Covers salary, commission, leave, benefits, notice period &amp; obligations.</span>
+            </span>
+            <span class="link-tag">HR Document</span>
+          </a>
+        </li>
+        <li>
+          <a class="list-link" href="md_ikhlas_profile.html">
+            <span class="link-main">
+              <span class="link-title">MD Ikhlas - Profile</span>
+              <span class="link-desc">Profile summary and details.</span>
+            </span>
+            <span class="link-tag">Profile</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <div class="cat-header">
+        <span class="cat-icon">AI</span>
+        <span class="cat-title">AI &amp; GitHub Stats</span>
+        <span class="cat-count">4 reports</span>
+      </div>
+      <ul class="link-list">
+        <li>
+          <a class="list-link accent-oc" href="github_star_tracker.html">
+            <span class="link-main">
+              <span class="link-title">Live GitHub Star Tracker</span>
+              <span class="link-desc">Real-time tracker of GitHub stars for OpenCode, OpenClaw, Hermes Agent, and NanoBot — auto-refreshes every 60 seconds with rankings and metrics.</span>
+            </span>
+            <span class="link-tag">Live Tracker</span>
+          </a>
+        </li>
+        <li>
+          <a class="list-link accent-oc" href="hermes_agent_vs_openclaw.html">
+            <span class="link-main">
+              <span class="link-title">Hermes Agent vs OpenClaw - AI Agent Stars</span>
+              <span class="link-desc">Live GitHub comparison: OpenClaw (369K stars) vs Hermes Agent/NousResearch (138K stars) - bar charts, donut, growth rate, and full metrics table.</span>
+            </span>
+            <span class="link-tag">AI Agents</span>
+          </a>
+        </li>
+        <li>
+          <a class="list-link accent-oc" href="hermes_agent_vs_openclaw_growth.html">
+            <span class="link-main">
+              <span class="link-title">Star Growth Trajectory - Chart</span>
+              <span class="link-desc">Cumulative growth curves from inception: OpenClaw vs Hermes Agent - modeled star trajectory, milestone timeline, and growth rate analysis.</span>
+            </span>
+            <span class="link-tag">Growth Chart</span>
+          </a>
+        </li>
+        <li>
+          <a class="list-link" href="hermes_vs_openclaw.html">
+            <span class="link-main">
+              <span class="link-title">Hermes vs OpenClaw - Full Comparison</span>
+              <span class="link-desc">Detailed side-by-side GitHub metrics: stars, forks, watchers, contributors, commit frequency, and community activity.</span>
+            </span>
+            <span class="link-tag">AI Agents</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="about">
+      <h2>About This Site</h2>
+      <p>This site is automatically maintained by <strong>OpenClaw</strong>. Reports and dashboards are generated on demand and published here. Categories are auto-grouped. To improve this page, edit <code>index_v1.html</code> in the repository.</p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    fambopenclaw-hash.github.io - OpenClaw Auto Website -
+    <a href="https://github.com/fambopenclaw-hash/fambopenclaw-hash.github.io" style="color:var(--blue);">View on GitHub</a>
+  </div>
+
+</body>
+</html>

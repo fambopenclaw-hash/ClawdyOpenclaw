@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subsurface Operational Update — 23.04.26</title>
+  <style>
+    .back-link {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      background: #0032A0;
+      padding: 5px 14px;
+      border-radius: 6px;
+    }
+
+    :root {
+      --dark:   #0f1b2d;
+      --blue:   #0032A0;
+      --light:  #e8edf5;
+      --mid:    #c5d0e6;
+      --green:  #1a7a4a;
+      --amber:  #d4820a;
+      --red:    #c0392b;
+      --text:   #1a1a2e;
+      --muted:  #5a6a7a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Calibri', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff;
+      padding: 32px 40px 28px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+    .badge {
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-meta {
+      font-size: 13px;
+      color: var(--mid);
+      margin-top: 4px;
+    }
+
+    /* ── POB Card ── */
+    .pob-section {
+      padding: 28px 40px 0;
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .pob-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .pob-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      display: flex;
+      flex-direction: column;
+      border-left: 4px solid var(--blue);
+    }
+    .pob-card.logistics { border-left-color: var(--green); }
+    .pob-card .name { font-size: 12px; color: var(--muted); margin-bottom: 4px; line-height: 1.3; }
+    .pob-card .count { font-size: 28px; font-weight: 700; color: var(--dark); }
+    .pob-card .sub { font-size: 11px; color: var(--muted); }
+    .pob-total {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 10px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .pob-total .label { font-size: 13px; color: var(--mid); }
+    .pob-total .value { font-size: 36px; font-weight: 800; }
+    .pob-total .tag { background: var(--blue); font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
+
+    /* ── Main Content ── */
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      padding: 24px 40px 40px;
+    }
+
+    .activities { display: flex; flex-direction: column; gap: 16px; }
+
+    .activity-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+    }
+    .activity-header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--light);
+    }
+    .activity-header.slickline { border-left: 5px solid var(--muted); }
+    .activity-header.eline      { border-left: 5px solid var(--muted); }
+    .activity-header.whpm       { border-left: 5px solid var(--green); }
+    .activity-header.ctu        { border-left: 5px solid var(--amber); }
+
+    .activity-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .activity-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .activity-body { padding: 16px 20px; }
+    .activity-body p { font-size: 13.5px; line-height: 1.65; color: var(--text); margin-bottom: 10px; }
+    .activity-body p:last-child { margin-bottom: 0; }
+
+    /* Status pills */
+    .status { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; }
+    .status-idle  { background: #f0f0f0; color: var(--muted); }
+    .status-ok    { background: #d4edda; color: var(--green); }
+    .status-warn  { background: #fff3cd; color: var(--amber); }
+    .status-alert { background: #f8d7da; color: var(--red); }
+
+    /* Lookahead panel */
+    .lookahead {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .lookahead-header {
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .lookahead-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+    .lookahead-item {}
+    .lookahead-title { font-size: 12px; font-weight: 700; color: var(--blue); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .lookahead-title span { font-size: 10px; color: var(--muted); font-weight: 400; }
+    .lookahead-item ul {
+      list-style: none;
+      padding: 0;
+    }
+    .lookahead-item ul li {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text);
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .lookahead-item ul li::before { content: '▸'; position: absolute; left: 0; color: var(--blue); }
+
+    .contingency {
+      background: #fff3cd;
+      border: 1px solid #ffe599;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #8a6000;
+      line-height: 1.6;
+    }
+    .contingency strong { display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* AOB */
+    .aob-box {
+      background: #f8f9ff;
+      border: 1px solid #d0d8f0;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-top: 16px;
+    }
+    .aob-box h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 8px; }
+    .aob-box table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .aob-box td { padding: 5px 0; vertical-align: top; }
+    .aob-box td:first-child { width: 36px; color: var(--blue); font-weight: 700; }
+    .aob-box td:last-child { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .content { grid-template-columns: 1fr; }
+      .header, .pob-section, .content { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<div class="header">
+  <a href="index.html" class="back-link">&#8592; Back to Index</a><div class="header-top">
+    <span class="badge">Live</span>
+    <h1>Subsurface Operational Update</h1>
+  </div>
+  <div class="header-meta">Date: 23 April 2026 &nbsp;·&nbsp; PCIHBV Field Operations</div>
+</div>
+
+<!-- ══════════════ POB ══════════════ -->
+<div class="pob-section">
+  <div class="section-label">Personnel On Board</div>
+  <div class="pob-grid">
+    <div class="pob-card">
+      <div class="name">PCIHBV WSS</div>
+      <div class="count">1</div>
+      <div class="sub">pax</div>
+    </div>
+    <div class="pob-card">
+      <div class="name">Slickline (GWDC)</div>
+      <div class="count">0</div>
+      <div class="sub">pax — released to base</div>
+    </div>
+    <div class="pob-card">
+      <div class="name">Eline (CNLC)</div>
+      <div class="count">0</div>
+      <div class="sub">pax — no operation</div>
+    </div>
+    <div class="pob-card">
+      <div class="name">CTU (NESR)</div>
+      <div class="count">16</div>
+      <div class="sub">pax</div>
+    </div>
+    <div class="pob-card">
+      <div class="name">WHPM Team (TOC)</div>
+      <div class="count">4</div>
+      <div class="sub">pax</div>
+    </div>
+    <div class="pob-card logistics">
+      <div class="name">EGC Logistics</div>
+      <div class="count">4</div>
+      <div class="sub">pax</div>
+    </div>
+  </div>
+  <div class="pob-total">
+    <div>
+      <div class="label">Total Personnel On Board</div>
+      <div class="value">25</div>
+    </div>
+    <div class="tag">All Iraqi</div>
+  </div>
+</div>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<div class="content">
+
+  <!-- LEFT: Activities -->
+  <div class="activities">
+
+    <!-- Slickline -->
+    <div class="activity-card">
+      <div class="activity-header slickline">
+        <div>
+          <div class="activity-title">1. Slickline — GWDC</div>
+          <div class="activity-subtitle">No operation · Resumes May 2026</div>
+        </div>
+        <span class="status status-idle">Idle</span>
+      </div>
+      <div class="activity-body">
+        <p>Slickline crew released back to base for truck and equipment maintenance. No operation recorded. Operations to resume in May 2026.</p>
+      </div>
+    </div>
+
+    <!-- Eline -->
+    <div class="activity-card">
+      <div class="activity-header eline">
+        <div>
+          <div class="activity-title">2. Eline — CNLC</div>
+          <div class="activity-subtitle">No operation</div>
+        </div>
+        <span class="status status-idle">Idle</span>
+      </div>
+      <div class="activity-body">
+        <p>No operation recorded for the reporting period.</p>
+      </div>
+    </div>
+
+    <!-- WHPM -->
+    <div class="activity-card">
+      <div class="activity-header whpm">
+        <div>
+          <div class="activity-title">3. WHPM — TOC</div>
+          <div class="activity-subtitle">Wireline Pressure Maintenance</div>
+        </div>
+        <span class="status status-ok">Completed</span>
+      </div>
+      <div class="activity-body">
+        <p>WHPM successfully completed on wells <strong>A13</strong> and <strong>A14</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Coiled Tubing -->
+    <div class="activity-card">
+      <div class="activity-header ctu">
+        <div>
+          <div class="activity-title">4. Coiled Tubing Unit — NESR</div>
+          <div class="activity-subtitle">Active Operation · Ball Recovery In Progress</div>
+        </div>
+        <span class="status status-warn">Ongoing</span>
+      </div>
+      <div class="activity-body">
+        <p>A <strong>5/8" ball</strong> was dropped to attempt to shear the circulation sub and regain circulation. As of now, <strong>no indication of ball travelling over the goose neck</strong> — no circulation confirmed.</p>
+        <p>Method in use: <em>Lubricate and bleed</em>. Whenever pressure spikes after pumping 7 bbls of water, bleed slowly until pressure reaches zero, then pump again.</p>
+        <p>Continuing to monitor for 5/8" ball to pass the reel and gooseneck.</p>
+
+        <div class="contingency">
+          <strong>⚠ Contingency Options (if Step 1 does not work):</strong>
+          <strong>Contingency #1:</strong> Cut coil above BOP and drop ball — to be re-confirmed (5/8" ball already dropped).<br>
+          <strong>Contingency #2:</strong> Cut coil and drop 3/4" ball to release MHA and retrieve coil.<br>
+          <strong>Contingency #3:</strong> Cut CT string and drop into well, then rig down. Milling required if unable to close X-Mas Tree.
+        </div>
+      </div>
+    </div>
+
+    <!-- ZPEC -->
+    <div class="activity-card">
+      <div class="activity-header ctu">
+        <div>
+          <div class="activity-title">4b. Coiled Tubing Unit — ZPEC</div>
+          <div class="activity-subtitle">Mobilisation Pending</div>
+        </div>
+        <span class="status status-warn">Standby</span>
+      </div>
+      <div class="activity-body">
+        <p>Equipment and site preparations in progress. Remaining crew to mobilise upon readiness. Porta cabins sourced but require refurbishing due to poor condition.</p>
+      </div>
+    </div>
+
+    <!-- AOB -->
+    <div class="aob-box">
+      <h3>Administrative / AOB</h3>
+      <table>
+        <tr>
+          <td>1.</td>
+          <td><strong>CTU New Contract</strong> — Revised MOM and presentation pack submitted to TOC for review.</td>
+        </tr>
+        <tr>
+          <td>2.</td>
+          <td><strong>CTU Interim Contract</strong> — Letter to be sent to TOC to justify and seek approval to proceed.</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Lookahead -->
+  <div>
+    <div class="lookahead">
+      <div class="lookahead-header">🔭 Lookahead — 24 April 2026</div>
+      <div class="lookahead-body">
+
+        <div class="lookahead-item">
+          <div class="lookahead-title">Slickline — GWDC <span>(no operation)</span></div>
+          <ul>
+            <li>No operation — maintenance continues</li>
+            <li>Resumes May 2026</li>
+          </ul>
+        </div>
+
+        <div class="lookahead-item">
+          <div class="lookahead-title">Eline — CNLC <span>(no operation)</span></div>
+          <ul>
+            <li>No operation</li>
+          </ul>
+        </div>
+
+        <div class="lookahead-item">
+          <div class="lookahead-title">WHPM — TOC <span>(weekend — no activities)</span></div>
+          <ul>
+            <li>No activities due to weekend</li>
+            <li>Next run: 26/04/2026 — Wells <strong>A15, A16 & A17</strong></li>
+          </ul>
+        </div>
+
+        <div class="lookahead-item">
+          <div class="lookahead-title">CTU — NESR</div>
+          <ul>
+            <li>Discuss best approach with NESR before proceeding — go with C1 or directly to C2?</li>
+            <li>Monitor ball passage over reel and gooseneck</li>
+            <li>If Step 1 fails → implement agreed contingency</li>
+          </ul>
+        </div>
+
+        <div class="lookahead-item">
+          <div class="lookahead-title">CTU — ZPEC</div>
+          <ul>
+            <li>Equipment &amp; site prep ongoing</li>
+            <li>Porta cabin refurbishment in progress</li>
+            <li>Crew mobilisation upon readiness</li>
+          </ul>
+        </div>
+
+        <div class="lookahead-item">
+          <div class="lookahead-title">AOB</div>
+          <ul>
+            <li>CTU New Contract: Await TOC review outcome</li>
+            <li>CTU Interim Contract: Send justification letter to TOC</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

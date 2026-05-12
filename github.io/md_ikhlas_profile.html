@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Ikhlas Rahim — Senior Petrophysicist</title>
+  <style>
+    .back-link {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      background: #0032A0;
+      padding: 5px 14px;
+      border-radius: 6px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0a0a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      max-width: 520px;
+      width: 100%;
+    }
+
+    /* Header Banner */
+    .header {
+      background: linear-gradient(135deg, #002b5c 0%, #005fa3 50%, #00a896 100%);
+      padding: 30px 30px 50px;
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: #ffffff;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+
+    /* PETRONAS Logo Bar */
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .logo-bar .petronas-logo {
+      background: #fff;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-weight: 900;
+      font-size: 13px;
+      color: #002b5c;
+      letter-spacing: 1px;
+      border: 2px solid #ffd100;
+    }
+
+    .logo-bar .divider {
+      width: 2px;
+      height: 20px;
+      background: rgba(255,255,255,0.4);
+    }
+
+    .logo-bar .carigali {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .avatar-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd100, #f4a200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #002b5c;
+      border: 3px solid rgba(255,255,255,0.3);
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .header-text .title {
+      color: #ffd100;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Body */
+    .body-section {
+      background: #ffffff;
+      padding: 40px 30px 30px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #005fa3;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      border-left: 3px solid #ffd100;
+      padding-left: 10px;
+    }
+
+    .summary-text {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    /* Expertise Grid */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .expertise-item {
+      background: linear-gradient(135deg, #f0f4ff, #e8f0ff);
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid #d0e0ff;
+    }
+
+    .expertise-item .label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #005fa3;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .expertise-item .desc {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.4;
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: linear-gradient(135deg, #002b5c, #005fa3);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-box .number {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffd100;
+    }
+
+    .stat-box .label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .stat-box.highlight {
+      background: linear-gradient(135deg, #ffd100, #f4a200);
+    }
+
+    .stat-box.highlight .number {
+      color: #002b5c;
+    }
+
+    .stat-box.highlight .label {
+      color: rgba(0,43,92,0.7);
+    }
+
+    /* Education */
+    .education-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #f8f9ff;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 25px;
+      border: 1px solid #e0e6f0;
+    }
+
+    .education-row .school-icon {
+      font-size: 28px;
+    }
+
+    .education-row .school-info .school-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #002b5c;
+    }
+
+    .education-row .school-info .degree {
+      font-size: 12px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    /* Mission */
+    .mission-box {
+      background: linear-gradient(135deg, #e8f8f5, #d0f0ec);
+      border-radius: 12px;
+      padding: 16px 18px;
+      border-left: 4px solid #00a896;
+    }
+
+    .mission-box .mission-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #00a896;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .mission-box .mission-text {
+      font-size: 12.5px;
+      color: #1a4a45;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* Footer */
+    .card-footer {
+      background: #f0f4ff;
+      padding: 16px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #dde6f5;
+    }
+
+    .card-footer .company {
+      font-size: 12px;
+      color: #005fa3;
+      font-weight: 600;
+    }
+
+    .card-footer .location {
+      font-size: 11px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <div class="logo-bar">
+      <div class="petronas-logo">PETRONAS</div>
+      <div class="divider"></div>
+      <div class="carigali">Carigali</div>
+    </div>
+    <a href="index.html" class="back-link">&#8592; Back to Index</a>
+    <div class="header-content">
+      <div class="avatar-circle">MI</div>
+      <div class="header-text">
+        <h1>Muhammad Ikhlas Rahim</h1>
+        <div class="title">Senior Petrophysicist</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body-section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      Over <strong>10 years of experience</strong> in petrophysical evaluation, field development planning, brownfield reservoir management, and production enhancement. Active contributor to multiple offshore Malaysia redevelopment and production optimization projects.
+    </p>
+
+    <div class="section-title">Core Expertise</div>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <div class="label">Formation Evaluation</div>
+        <div class="desc">Open-Hole & Cased-Hole — conventional & advanced techniques</div>
+      </div>
+      <div class="expertise-item">
+        <div class="label">Advanced Logging</div>
+        <div class="desc">Cutting-edge logging tool application & interpretation</div>
+      </div>
+      <div class="expertise-item">
+        <div class="label">Petrophysical Eval</div>
+        <div class="desc">Integrating core, log & flow data for clastic & carbonate</div>
+      </div>
+      <div class="expertise-item">
+        <div class="label">Geomechanics</div>
+        <div class="desc">Well performance & stability analysis integration</div>
+      </div>
+      <div class="expertise-item">
+        <div class="label">Behind-Casing</div>
+        <div class="desc">Bypassed pay & remaining oil identification</div>
+      </div>
+      <div class="expertise-item">
+        <div class="label">Reservoir Types</div>
+        <div class="desc">Clastic & Carbonate reservoir expertise</div>
+      </div>
+    </div>
+
+    <div class="section-title">Highlights</div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="number">10+</div>
+        <div class="label">Years Experience</div>
+      </div>
+      <div class="stat-box highlight">
+        <div class="number">MS</div>
+        <div class="label">Colorado School</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">6</div>
+        <div class="label">Core Competencies</div>
+      </div>
+    </div>
+
+    <div class="section-title">Education</div>
+    <div class="education-row">
+      <div class="school-icon">🎓</div>
+      <div class="school-info">
+        <div class="school-name">Colorado School of Mines, USA</div>
+        <div class="degree">Bachelor of Science — Petroleum Engineering</div>
+      </div>
+    </div>
+
+    <div class="mission-box">
+      <div class="mission-label">Mission</div>
+      <div class="mission-text">"Committed to excellence, safety and innovation in unlocking reservoir potential and delivering sustainable value for PETRONAS."</div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="company">PETRONAS Carigali Sdn. Bhd.</div>
+    <div class="location">Kuala Lumpur, Malaysia</div>
+  </div>
+</div>
+
+</body>
+</html>

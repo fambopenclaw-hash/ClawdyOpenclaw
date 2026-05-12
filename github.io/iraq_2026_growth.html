@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iraq 2026 Growth Opportunities — Asset Inventory</title>
+<style>
+:root {
+  --navy:   #0f1b2d;
+  --blue:   #0032A0;
+  --blue-l: #1565c0;
+  --green:  #1a7a4a;
+  --amber:  #d4820a;
+  --red:    #c0392b;
+  --slate:  #546e7a;
+  --light:  #e8edf5;
+  --mid:    #c5d0e6;
+  --text:   #1a2e4a;
+  --white:  #ffffff;
+  --border: #dde3ec;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+  color: var(--white);
+  padding: 28px 40px 22px;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--blue);
+  padding: 5px 14px;
+  border-radius: 6px;
+}
+.back-link:hover { background: var(--blue-l); }
+.header-meta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #90caf9;
+  margin-bottom: 8px;
+}
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.header p {
+  font-size: 13px;
+  color: #b3d4fc;
+}
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+/* ── STATS ROW ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.08);
+  border-top: 4px solid var(--blue);
+}
+.stat-card.oil   { border-top-color: #b45309; }
+.stat-card.gas   { border-top-color: var(--blue-l); }
+.stat-card.prod  { border-top-color: var(--green); }
+.stat-card.open  { border-top-color: var(--amber); }
+.stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #78909c;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+.stat-sub {
+  font-size: 11px;
+  color: #90a4ae;
+  margin-top: 3px;
+}
+
+/* ── SECTION ── */
+.section {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.08);
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.section-head {
+  background: var(--navy);
+  color: var(--white);
+  padding: 11px 22px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: #f4f7fb;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--slate);
+  border-bottom: 2px solid var(--border);
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8fafd; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-green  { background: #dcfce7; color: #166534; }
+.badge-blue   { background: #dbeafe; color: #1e40af; }
+.badge-amber  { background: #fef3c7; color: #92400e; }
+.badge-red    { background: #fee2e2; color: #991b1b; }
+.badge-slate  { background: #f1f5f9; color: #475569; }
+.badge-oil    { background: #fff7ed; color: #9a3412; }
+.badge-gas    { background: #ede9fe; color: #4c1d95; }
+.badge-mixed  { background: #f0fdf4; color: #166534; }
+
+/* ── ASSET TYPE BREAKDOWN ── */
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  padding: 20px;
+}
+.type-block {
+  border-radius: 10px;
+  padding: 16px 18px;
+  border-left: 5px solid;
+}
+.type-block.oil  { background: #fffbeb; border-color: #b45309; }
+.type-block.gas  { background: #eff6ff; border-color: var(--blue-l); }
+.type-block.mixed{ background: #f0fdf4; border-color: var(--green); }
+.type-block h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.type-block ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.type-block li {
+  font-size: 12px;
+  color: #374151;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.type-block li::before {
+  content: '•';
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.type-block.oil li::before  { color: #b45309; }
+.type-block.gas li::before  { color: var(--blue-l); }
+.type-block.mixed li::before{ color: var(--green); }
+
+/* ── PIPELINE INFO ── */
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+  padding: 20px;
+}
+.pipeline-item {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.pipeline-item h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 5px;
+}
+.pipeline-item p {
+  font-size: 12px;
+  color: var(--slate);
+  line-height: 1.5;
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 12px;
+  color: #90a4ae;
+  border-top: 1px solid var(--border);
+  margin-top: 10px;
+}
+.footer a { color: var(--blue); text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .header { padding: 22px 20px 18px; }
+  .container { padding: 20px 14px 40px; }
+  th, td { padding: 8px 10px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <a href="index.html" class="back-link">&#8592; Back to Index</a>
+  <div class="header-meta">Iraq Oil &amp; Gas — Asset Inventory</div>
+  <h1>2026 Growth Opportunities</h1>
+  <p>Compiled by PCIHBV Assessment — 26 Fields &amp; Blocks &nbsp;|&nbsp; Basrah, Thi Qar, Anbar, Salah Addin, Missan, Ninawa &amp; More</p>
+</div>
+
+<div class="container">
+
+<!-- ══ STATS ══ -->
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="stat-label">Total Assets</div>
+    <div class="stat-value">26</div>
+    <div class="stat-sub">Fields &amp; Exploration Blocks</div>
+  </div>
+  <div class="stat-card oil">
+    <div class="stat-label">Oil Assets</div>
+    <div class="stat-value">14</div>
+    <div class="stat-sub">Producing, Proven &amp; Open</div>
+  </div>
+  <div class="stat-card gas">
+    <div class="stat-label">Gas Assets</div>
+    <div class="stat-value">9</div>
+    <div class="stat-sub">Producing, Proven &amp; Open</div>
+  </div>
+  <div class="stat-card mixed">
+    <div class="stat-label">Oil + Gas</div>
+    <div class="stat-value">3</div>
+    <div class="stat-sub">Mixed Resource</div>
+  </div>
+  <div class="stat-card prod">
+    <div class="stat-label">Producing</div>
+    <div class="stat-value">6</div>
+    <div class="stat-sub">Fields Currently Producing</div>
+  </div>
+  <div class="stat-card open">
+    <div class="stat-label">Open Blocks</div>
+    <div class="stat-value">10</div>
+    <div class="stat-sub">Exploration (Anbar-led)</div>
+  </div>
+</div>
+
+<!-- ══ ASSET TYPE BREAKDOWN ══ -->
+<div class="section">
+  <div class="section-head">Asset Type Breakdown</div>
+  <div class="type-grid">
+
+    <div class="type-block oil">
+      <h3>🛢️ Oil Assets (14)</h3>
+      <ul>
+        <li><strong>Luhais</strong> — Producing, BOC — Basrah</li>
+        <li><strong>Ballad</strong> — Producing, NOC — Salah Addin</li>
+        <li><strong>Nasiriyah</strong> — Producing, TOC — Thi Qar</li>
+        <li><strong>Noor</strong> — Producing, MOC — Missan</li>
+        <li><strong>Amara</strong> — Producing, MOC — Missan</li>
+        <li><strong>Khanuqah</strong> — Proven, NOC — Mosul/Salah Addin</li>
+        <li><strong>Tikrit</strong> — Proven, NOC — Salah Addin</li>
+        <li><strong>Khashab</strong> — Proven, NOC — Salah Addin</li>
+        <li><strong>Kumait</strong> — Proven, MOC — Missan</li>
+        <li><strong>Um-Khashaf</strong> — Open Block, MDOC — Najaf/Samawa</li>
+        <li><strong>Subba</strong> — Producing, TOC/Dragon Oil — Thi Qar</li>
+        <li><strong>Abu Amood</strong> — Pre-dev, TOC/Dragon Oil — Thi Qar</li>
+        <li><strong>Eridu</strong> — Pre-dev, Lukoil/INPEX/TOC — Thi Qar</li>
+      </ul>
+    </div>
+
+    <div class="type-block gas">
+      <h3>🔥 Gas Assets (9)</h3>
+      <ul>
+        <li><strong>Akkas</strong> — Producing, MDOC/SLB — Anbar</li>
+        <li><strong>Al-Khaleesa</strong> — Open Block, KAR — Ninawa</li>
+        <li><strong>Al-Anz</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Akashat</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Rawa</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Karbala</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Rutba</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Al-Waleed</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Khasfah</strong> — Open Block, MDOC — Anbar</li>
+      </ul>
+    </div>
+
+    <div class="type-block mixed">
+      <h3>🛢️🔥 Oil + Gas Assets (3)</h3>
+      <ul>
+        <li><strong>As-Safa</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Haifa</strong> — Open Block, MDOC — Anbar</li>
+        <li><strong>Anah</strong> — Open Block, MDOC — Anbar</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ FULL ASSET TABLE ══ -->
+<div class="section">
+  <div class="section-head">Full Asset Register</div>
+  <div style="overflow-x: auto;">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Field / Block</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Operator</th>
+        <th>Region</th>
+        <th>Discovery</th>
+        <th>Reservoir(s)</th>
+        <th>Wells</th>
+        <th>STOIIP / GIIP</th>
+        <th>Reserves (MMboe)</th>
+        <th>Prod. Rate</th>
+        <th>Pipeline / Facility</th>
+        <th>PCIHBV Assessment</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>1</td><td><strong>Luhais</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>BOC</td><td>Basrah</td><td>1961</td>
+        <td>Nahr Umar, Zubair</td><td>52 (50)</td>
+        <td>2,133 MMstb</td><td>1,010</td>
+        <td>32 kbd (June 2024)<br>PPT Target: 100 kbd</td>
+        <td>Existing pipeline</td>
+        <td><span class="badge badge-blue">Techno-commercial 2025</span></td>
+        <td>Luhais West NFE — 600 MMstb STOIIP, 200 MMstb reserves (S&P)</td>
+      </tr>
+
+      <tr>
+        <td>2</td><td><strong>Subba</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>TOC / Dragon Oil</td><td>Thi Qar</td><td>1973</td>
+        <td>Nahr Umar, Zubair</td><td>25 (22)</td>
+        <td>3,050 MMstb</td><td>1,260</td>
+        <td>10 kbd (Jan 2025)<br>PPT Target: 100 kbd</td>
+        <td>26.9 km to facilities (2022)</td>
+        <td><span class="badge badge-blue">Technical</span></td>
+        <td>May 2025 — HOA signed: KBR + Al Hara + Dragon Oil for Subba &amp; Rafidain integrated dev.</td>
+      </tr>
+
+      <tr>
+        <td>3</td><td><strong>Abu Amood</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-amber">Pre-development</span></td>
+        <td>TOC / Dragon Oil</td><td>Thi Qar</td><td>1980</td>
+        <td>Yamama, Ratawi, Zubair, Nahr Umar, Maudud</td><td>5</td>
+        <td>3,600 MMstb</td><td>595</td>
+        <td>PPT Target: 90 kbd</td>
+        <td>25 km to Garraf</td>
+        <td><span class="badge badge-blue">Technical</span></td>
+        <td>May 2025 — HOA signed (same as Subba)</td>
+      </tr>
+
+      <tr>
+        <td>4</td><td><strong>Ballad</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>NOC</td><td>Salah Addin</td><td>1970</td>
+        <td>Khasib, Sa'di, Hartha, Zubair</td><td>10</td>
+        <td>10,842 MMstb</td><td>2,302</td>
+        <td>Temporary Shut-In (2024)</td>
+        <td>10 km to existing pipeline<br>90 km to East Baghdad</td>
+        <td><span class="badge badge-blue">Technical</span></td>
+        <td>Aug 2025 — MOU signed MoO + Chevron for Ballad development</td>
+      </tr>
+
+      <tr>
+        <td>5</td><td><strong>Nasiriyah</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>TOC</td><td>Thi Qar</td><td>1979</td>
+        <td>Mishrif, Nahr Umar, Yamama, Zubair</td><td>63 (22)</td>
+        <td>16,000 MMstb</td><td>4,900</td>
+        <td>50–60 kbd (Dec 2024)<br>PPT Target: 250 kbd</td>
+        <td>Existing pipeline</td>
+        <td><span class="badge badge-blue">Technical</span></td>
+        <td>Feb 2026 — MOU signed MoO + TOC + Chevron for Nasiriyah development</td>
+      </tr>
+
+      <tr>
+        <td>6</td><td><strong>Eridu</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-amber">Pre-development</span></td>
+        <td>Lukoil / INPEX / TOC</td><td>Thi Qar</td><td>2017</td>
+        <td>Mishrif, Nahr Umar, Yamama, Zubair</td><td>10</td>
+        <td>12,900 MMstb</td><td>4,000</td>
+        <td>Target: 30 kbd initial<br>PPT Target: 250 kbd</td>
+        <td>Existing — Near PS2</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>US sanctions possibly halted Lukoil development</td>
+      </tr>
+
+      <tr>
+        <td>7</td><td><strong>Akkas</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>MDOC / SLB</td><td>Anbar</td><td>1993</td>
+        <td>Khabour</td><td>6 (4)</td>
+        <td>4,500 Bscf GIIP</td><td>1,245</td>
+        <td>40 MMscfd (Aug 2025)<br>PPT Target: 400 MMscfd</td>
+        <td>Field → Akkas Power Plant</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Security / ISIS concerns (2014). Active SLB involvement.</td>
+      </tr>
+
+      <tr>
+        <td>8</td><td><strong>Khanuqah</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-blue">Proven</span></td>
+        <td>NOC</td><td>Mosul / Salah Addin</td><td>1929</td>
+        <td>Euphrates / Jeribe</td><td>2</td>
+        <td>100 MMstb</td><td>30</td>
+        <td>N/A</td>
+        <td>15 km to pipeline<br>Near IT-1A</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Near Mosul area — field maturity?</td>
+      </tr>
+
+      <tr>
+        <td>9</td><td><strong>Tikrit</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-blue">Proven</span></td>
+        <td>NOC</td><td>Salah Addin</td><td>1985</td>
+        <td>Zubair, Mishrif, Maudud</td><td>10 (2)</td>
+        <td>136 MMstb</td><td>44.15</td>
+        <td>PPT Target: 20 kbd</td>
+        <td>10–35 km to pipeline<br>35 km to K2</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>West Tikrit A &amp; B NFE potential identified</td>
+      </tr>
+
+      <tr>
+        <td>10</td><td><strong>Khashab</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-blue">Proven</span></td>
+        <td>NOC</td><td>Salah Addin</td><td>1986</td>
+        <td>Lower Fars</td><td>1</td>
+        <td>40 Bscf GIIP</td><td>34</td>
+        <td>N/A</td>
+        <td>50 km to Ajeel<br>40 km to Khashm Al Ahmar</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Small gas discovery</td>
+      </tr>
+
+      <tr>
+        <td>11</td><td><strong>Noor</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>MOC</td><td>Missan</td><td>1977</td>
+        <td>Jeribe, Sadi, Mishrif, Khasib, Maudud, Nahr Umar, Ratawi</td><td>23 (11)</td>
+        <td>1,296 MMstb</td><td>404</td>
+        <td>June 2025: 20 kbd (w/ Amara)<br>PPT Target: 50 kbd</td>
+        <td>Existing pipeline</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Shut in Jul 2020–Aug 2022, Dec 2022–Jun 2025 (OPEC+). Dev. planned with Amara.</td>
+      </tr>
+
+      <tr>
+        <td>12</td><td><strong>Amara</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-green">Producing</span></td>
+        <td>MOC</td><td>Missan</td><td>1958</td>
+        <td>Mishrif, Khasib, Maudud, Nahr Umar, Ratawi, Yamama</td><td>20</td>
+        <td>1,700 MMstb</td><td>350</td>
+        <td>June 2025: 20 kbd (w/ Noor)<br>PPT Target: 50 kbd</td>
+        <td>Existing pipeline</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Shut in Jul 2020–Aug 2022, Dec 2022–Jun 2025 (OPEC+). Dev. planned with Noor.</td>
+      </tr>
+
+      <tr>
+        <td>13</td><td><strong>Kumait</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-blue">Proven</span></td>
+        <td>MOC</td><td>Missan</td><td>1983</td>
+        <td>Mishrif, Nahr Umar</td><td>2</td>
+        <td>156 MMstb</td><td>55</td>
+        <td>—</td>
+        <td>35 km to Amara</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>—</td>
+      </tr>
+
+      <tr>
+        <td>14</td><td><strong>Um-Khashaf</strong></td>
+        <td><span class="badge badge-oil">Oil</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Najaf / Samawa</td><td>—</td>
+        <td>—</td><td>—</td><td>—</td><td>—</td>
+        <td>—</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>—</td>
+      </tr>
+
+      <tr>
+        <td>15</td><td><strong>As-Safa</strong></td>
+        <td><span class="badge badge-mixed">Oil + Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>Khabour, Kaista</td><td>0</td>
+        <td>133 MMstb / 542 Bscf</td><td>40 / 434</td>
+        <td>—</td>
+        <td>15 km to Akkas<br>15 km to Akkas PS</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>10 km east of Akkas Field</td>
+      </tr>
+
+      <tr>
+        <td>16</td><td><strong>Haifa</strong></td>
+        <td><span class="badge badge-mixed">Oil + Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>Kaista</td><td>0</td>
+        <td>3,583 MMstb / 98 Bscf</td><td>1,075 / 78</td>
+        <td>—</td>
+        <td>100 km to PS-12A<br>40 km to Iraq–Jordan pipeline</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>~20 km from Iraq–Saudi border; Southern Anbar</td>
+      </tr>
+
+      <tr>
+        <td>17</td><td><strong>Anah</strong></td>
+        <td><span class="badge badge-mixed">Oil + Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>Kurra Chine</td><td>1</td>
+        <td>300 MMstb / 7,411 Bscf</td><td>90 / 5,929</td>
+        <td>—</td>
+        <td>20–30 km to Akkas PS</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Anah-1 did not reach primary target. Prospects: Anah East &amp; Anah North.</td>
+      </tr>
+
+      <tr>
+        <td>18</td><td><strong>Al-Anz</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>2024*</td>
+        <td>—</td><td>1</td><td>—</td><td>—</td>
+        <td>—</td>
+        <td>Block center ±100 km to PS-4 &amp; PS-12A</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Exploration well reported drilling Sept 2024 (S&P)</td>
+      </tr>
+
+      <tr>
+        <td>19</td><td><strong>Akashat</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>Khabour</td><td>0</td><td>—</td><td>—</td>
+        <td>—</td>
+        <td>60 km to Akkas Field</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Akashat is still a Lead</td>
+      </tr>
+
+      <tr>
+        <td>20</td><td><strong>Rawa</strong></td>
+        <td><span class="badge badge-mixed">Oil + Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>Khabour, Kaista, Akkas</td><td>0</td>
+        <td>100 MMstb / 170 Bscf</td><td>30 / 138</td>
+        <td>—</td>
+        <td>25 km to Akkas PS</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>35 km NE of Akkas Field</td>
+      </tr>
+
+      <tr>
+        <td>21</td><td><strong>Karbala</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>—</td><td>0</td><td>—</td><td>—</td>
+        <td>—</td>
+        <td>Within Karbala Governorate</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>No info from S&P; within Karbala governorate</td>
+      </tr>
+
+      <tr>
+        <td>22</td><td><strong>Rutba</strong></td>
+        <td><span class="badge badge-mixed">Oil + Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>Khabour, Akkas</td><td>0</td>
+        <td>500 MMstb / 1,500 Bscf</td><td>150 / 1,300</td>
+        <td>—</td>
+        <td>35 km to Ar Rutbah H2 PS (Abandoned?)<br>65 km to Muhaywir H1 (Abandoned?)</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>35 km south of Akkas Field</td>
+      </tr>
+
+      <tr>
+        <td>23</td><td><strong>Al-Waleed</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>—</td>
+        <td>—</td><td>0</td><td>—</td><td>—</td>
+        <td>—</td>
+        <td>40 km to PS-13A</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Al-Waleed is still a Lead</td>
+      </tr>
+
+      <tr>
+        <td>24</td><td><strong>Khasfah</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>MDOC</td><td>Anbar</td><td>2011*</td>
+        <td>—</td><td>1</td><td>—</td><td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>Reported as small oil/gas show</td>
+      </tr>
+
+      <tr>
+        <td>25</td><td><strong>Al-Khaleesa</strong></td>
+        <td><span class="badge badge-gas">Gas</span></td>
+        <td><span class="badge badge-amber">Exploration (Open)</span></td>
+        <td>KAR</td><td>Ninawawa</td><td>N/A</td>
+        <td>Khabour, Kaista, Kurra Chine</td><td>1</td>
+        <td>1,942 Bscf GIIP</td><td>1,553</td>
+        <td>—</td>
+        <td>125 km to Akkas PS<br>165 km to Makhul 2 K2</td>
+        <td><span class="badge badge-slate">Preliminary Screening</span></td>
+        <td>—</td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ══ KEY COMMERCIAL HIGHLIGHTS ══ -->
+<div class="section">
+  <div class="section-head">Key Commercial Highlights — Recent Developments</div>
+  <div style="padding: 20px; display: grid; gap: 14px;">
+
+    <div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:6px;padding:14px 16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#166534;margin-bottom:5px;">🚀 Active MOUs &amp; Joint Developments</div>
+      <ul style="font-size:13px;color:#374151;line-height:1.7;margin-left:18px;">
+        <li><strong>Nasiriyah:</strong> Feb 2026 MOU — MoO + TOC + <strong>Chevron</strong> for field development (PPT: 250 kbd)</li>
+        <li><strong>Ballad:</strong> Aug 2025 MOU — MoO + <strong>Chevron</strong> for field development</li>
+        <li><strong>Subba + Abu Amood + Rafidain:</strong> May 2025 HOA — KBR + Al Hara + <strong>Dragon Oil</strong> for integrated development</li>
+      </ul>
+    </div>
+
+    <div style="background:#fff7ed;border-left:4px solid #b45309;border-radius:6px;padding:14px 16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9a3412;margin-bottom:5px;">⚠️ Risks &amp; Watch Items</div>
+      <ul style="font-size:13px;color:#374151;line-height:1.7;margin-left:18px;">
+        <li><strong>Eridu:</strong> US sanctions may have halted Lukoil development</li>
+        <li><strong>Akkas:</strong> Historical ISIS control (2014); security remains a consideration</li>
+        <li><strong>Anah-1:</strong> Did not reach primary target; follow-up on Anah East &amp; North prospects</li>
+        <li><strong>Ballad:</strong> Currently Temporary Shut-In pending Chevron MOU execution</li>
+        <li><strong>Noor + Amara:</strong> Shut-in history (OPEC+ compliance); re-start June 2025</li>
+      </ul>
+    </div>
+
+    <div style="background:#eff6ff;border-left:4px solid #1565c0;border-radius:6px;padding:14px 16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1e40af;margin-bottom:5px;">📊 Pipeline &amp; Infrastructure Summary</div>
+      <ul style="font-size:13px;color:#374151;line-height:1.7;margin-left:18px;">
+        <li><strong>Luhais, Nasiriyah, Noor, Amara:</strong> Connected to existing pipeline infrastructure</li>
+        <li><strong>Akkas → Akkas Power Plant:</strong> Direct gas offtake route</li>
+        <li><strong>Haifa:</strong> 40 km from Iraq–Jordan pipeline; 100 km to PS-12A</li>
+        <li><strong>Anbar Open Blocks:</strong> Clustered around Akkas PS — infrastructure leverage opportunity</li>
+        <li><strong>Ballad:</strong> 90 km landlocked to East Baghdad; infrastructure gap</li>
+        <li><strong>Al-Khaleesa:</strong> 125 km from Akkas PS; longest haul of Anbar cluster</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ OPERATOR BREAKDOWN ══ -->
+<div class="section">
+  <div class="section-head">Operator Breakdown</div>
+  <div style="padding: 20px; display: grid; gap: 10px; font-size: 13px;">
+    <div style="display:flex;gap:10px;align-items:center;background:#f8fafc;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">TOC (Thi Qar Oil Co.)</span>
+      <span>Nasiriyah, Subba, Abu Amood — <em>3 producing/pre-dev fields; Chevron MOU active</em></span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;background:#fffbeb;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">MOC (Missan Oil Co.)</span>
+      <span>Noor, Amara, Kumait — <em>3 fields; OPEC+ compliance history; restart June 2025</em></span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;background:#f0fdf4;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">NOC (North Oil Co.)</span>
+      <span>Ballad, Khanuqah, Tikrit — <em>3 fields; Chevron MOU on Ballad; Tikrit has NFE potential</em></span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;background:#eff6ff;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">MDOC (Mid Oil Co.)</span>
+      <span>10 Anbar open blocks (As-Safa, Haifa, Anah, Al-Anz, Akashat, Rawa, Karbala, Rutba, Al-Waleed, Khasfah) + Um-Khashaf</span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;background:#ede9fe;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">Dragon Oil (TOC)</span>
+      <span>Subba, Abu Amood — <em>KBR HOA signed May 2025 for integrated development</em></span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;background:#f9f9f9;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">Lukoil / INPEX / TOC</span>
+      <span>Eridu — <em>Pre-development; US sanction risk</em></span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;background:#fef3c7;border-radius:6px;padding:10px 14px;">
+      <span style="font-weight:700;color:var(--navy);min-width:140px;">KAR</span>
+      <span>Al-Khaleesa (Ninawawa) — <em>Gas discovery; largest GIIP in open block category</em></span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Report: <strong>Iraq 2026 Growth Opportunities — Asset Inventory</strong> &nbsp;|&nbsp; Source: PCIHBV Compilation Sheet &nbsp;|&nbsp; Generated by Clawdius 🦉 &nbsp;|&nbsp; <a href="index.html">Back to Index</a>
+</div>
+
+</div>
+</body>
+</html>
