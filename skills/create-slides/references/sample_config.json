@@ -1,0 +1,74 @@
+{
+  "output": "PETRONAS_Subsurface_Deck.pptx",
+  "title_slide": {
+    "title": "REVISED PLAN",
+    "subtitle": "@ 14th May 2026",
+    "category": "SUBSURFACE",
+    "tagline": "ERMAI Programme  •  LWD Technology  •  Log QC  •  BCO M1",
+    "date_str": "© 2025 Petroliam Nasional Berhad (PETRONAS)"
+  },
+  "strategies": [
+    {
+      "num": "01",
+      "title": "ERMAI Log Conditioning – Jurassic",
+      "owner": "Fahmi",
+      "objective": "To expedite PP deliverables for Jurassic study",
+      "deliverables": [
+        "Slide presentation — methodology & value creation",
+        "SPE paper / abstract (combined with Jurassic study)"
+      ],
+      "notes": ["SPE paper / abstract: IN PROGRESS"],
+      "focus": "Adoption & stakeholder buy-in\nTimely delivery of PP documents\nIntegration with wider Jurassic study",
+      "timeline": "📅  In Progress  —  Target: End of May 2026"
+    },
+    {
+      "num": "02",
+      "title": "LWD and ERMAI Introduction",
+      "owner": "Ismail / Fahmi",
+      "objective": "Promote application of current technology (LWD & ERMAI RTP) to host authority to improve drilling & Data Acquisition efficiency",
+      "deliverables": [
+        "LWD vs Wireline comparison pack",
+        "Pilot test proposal for LWD",
+        "ERMAI RTP introduction material",
+        "Workshop / meeting session with TOC"
+      ],
+      "plan": [
+        "Discuss LWD application for Garraf with well team",
+        "Prepare detailed LWD vs Wireline comparison (pros, time & cost savings)",
+        "Convince for pilot test LWD",
+        "Introduce ERMAI: LWD integration with ERMAI RTP (future autonomous operation)",
+        "Conduct workshop / meeting with TOC"
+      ],
+      "focus": "FOCUS:  Adoption & Stakeholder Buy-in  —  Target: Q2 2026"
+    },
+    {
+      "num": "03",
+      "title": "ERMAI Interpretation (QC)",
+      "owner": "Ismail",
+      "deliverables": [
+        "ERMAI log QC output for YZR (clastic & carbonate reservoirs)"
+      ],
+      "plan": [
+        "ERMAI log QC for YZR — clastic & carbonate reservoirs",
+        "Apply QC to reduce redo interpretation time"
+      ],
+      "emphasis_title": "Time saving — avoid rework",
+      "emphasis_body": "QC applied to YZR logs will reduce redundant reinterpretation cycles, directly improving throughput for the subsurface team.",
+      "metrics": [
+        {"label": "⏱ TIME SAVING", "title": "Reduced Redo Cycles", "desc": "Avoids rework on YZR interpretation"},
+        {"label": "🎯 QUALITY", "title": "Consistent Log QC", "desc": "Standardised YZR clastic & carbonate"},
+        {"label": "📤 OUTPUT", "title": "QC Report", "desc": "For both clastic & carbonate reservoirs"}
+      ]
+    },
+    {
+      "num": "04",
+      "title": "ERMAI BCO (M1)",
+      "owner": "KL Lead",
+      "milestone_title": "Business Case Outline (BCO) — M1",
+      "milestone_body": "The ERMAI Business Case Outline for M1 marks a key decision gate, defining the value proposition and deployment roadmap for ERMAI technology as part of Petronas's digital transformation.",
+      "deliverables_text": "Details to be confirmed by KL Lead\n(pending further briefing)",
+      "notes_text": "Status: Awaiting KL Lead update\nNext steps: internal alignment",
+      "status": "PENDING"
+    }
+  ]
+}
