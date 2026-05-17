@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Summary — 16 May 2026</title>
+  <style>
+    :root {
+      --dark: #0f1b2d; --blue: #0032A0; --light: #e8edf5;
+      --mid: #c5d0e6; --green: #1a7a4a; --amber: #d4820a;
+      --red: #c0392b; --text: #1a1a2e; --muted: #5a6a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Calibri, sans-serif; background: var(--light); color: var(--text); font-size: 14px; }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff; padding: 28px 36px 24px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .badge { background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .header h1 { font-size: 22px; font-weight: 700; }
+    .header-meta { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+    .body { padding: 28px 36px 48px; max-width: 1100px; }
+
+    .news-category { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .category-title {
+      font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 14px;
+      padding: 8px 14px; border-radius: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .category-title.malaysia { background: linear-gradient(135deg, #0032A0, #0050c8); }
+    .category-title.global   { background: linear-gradient(135deg, #1a7a4a, #22a86a); }
+    .category-title.iranus  { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+    .category-title.tech    { background: linear-gradient(135deg, #6c3483, #9b59b6); }
+
+    .news-item { border-left: 3px solid var(--mid); padding: 10px 14px; margin-bottom: 10px; background: #f4f7fc; border-radius: 6px; }
+    .news-item:last-child { margin-bottom: 0; }
+    .news-headline { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.4; }
+    .news-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .news-summary { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .news-source { font-size: 11px; font-weight: 700; color: var(--blue); margin-top: 4px; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid var(--blue); }
+    .stat-card.g { border-top-color: var(--green); }
+    .stat-card.a { border-top-color: var(--amber); }
+    .stat-card.r { border-top-color: var(--red); }
+    .stat-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 700; color: var(--dark); }
+
+    @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .header { padding: 20px 20px 16px; } .body { padding: 20px 20px 36px; } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="margin-bottom:10px">
+    <a href="index.html" style="color:#fff;font-size:12px;font-weight:700;text-decoration:none;background:var(--blue);padding:5px 12px;border-radius:6px;">← Back to Index</a>
+  </div>
+  <div class="header-top">
+    <span class="badge">NEWS</span>
+    <h1>News Summary — 16 May 2026</h1>
+  </div>
+  <div class="header-meta">Auto-generated from get-news skill · Last 24 hours · Generated 17 May 2026, 6:00 AM MYT</div>
+</div>
+
+<div class="body">
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">🇲🇾 Malaysia</div>
+      <div class="stat-value" id="cnt-my">2</div>
+    </div>
+    <div class="stat-card g">
+      <div class="stat-label">🌍 Global</div>
+      <div class="stat-value" id="cnt-gl">2</div>
+    </div>
+    <div class="stat-card a">
+      <div class="stat-label">⚔️ Iran-US</div>
+      <div class="stat-value" id="cnt-iran">3</div>
+    </div>
+    <div class="stat-card r">
+      <div class="stat-label">🤖 Tech/AI</div>
+      <div class="stat-value" id="cnt-tech">2</div>
+    </div>
+  </div>
+
+  <!-- Malaysia -->
+  <div class="news-category">
+    <div class="category-title malaysia">🇲🇾 Malaysia</div>
+
+    <div class="news-item">
+      <div class="news-headline">Norway Cancels Kongsberg-Malaysian Government Contract for Naval Strike Missiles, Launchers</div>
+      <div class="news-meta">14 May 2026 · USNI News</div>
+      <div class="news-summary">Norway has cancelled a Kongsberg-Malaysian government contract for naval strike missiles and launch systems. The move affects a significant defence procurement arrangement between the two parties.</div>
+      <div class="news-source">Source: USNI News</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-headline">World Bank Identifies 4 Reasons Why Salaries In Malaysia Are Low</div>
+      <div class="news-meta">15 May 2026 · says.com</div>
+      <div class="news-summary">The World Bank has released an analysis identifying four key factors contributing to low salary levels in Malaysia, highlighting structural issues in the labour market and economy.</div>
+      <div class="news-source">Source: says.com</div>
+    </div>
+
+  </div>
+
+  <!-- Global -->
+  <div class="news-category">
+    <div class="category-title global">🌍 Global</div>
+
+    <div class="news-item">
+      <div class="news-headline">Trump, Back From China, Preps Big Iran Strikes With 'Epic Fury 2.0': Report</div>
+      <div class="news-meta">16 May 2026 · NDTV</div>
+      <div class="news-summary">Following his return from China, US President Trump is reportedly preparing for significant military strikes against Iran under what sources describe as 'Epic Fury 2.0', amid heightened tensions over Tehran's nuclear programme.</div>
+      <div class="news-source">Source: NDTV</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-headline">DR Congo Ebola Outbreak Death Toll Hits 87; Outbreak Strain Lacks Vaccine</div>
+      <div class="news-meta">16 May 2026 · Xinhua</div>
+      <div class="news-summary">The death toll from the latest Ebola outbreak in the Democratic Republic of the Congo has risen to 87, with Africa CDC warning the Bundibugyo strain has no strain-specific vaccine and poses a high risk of regional spread.</div>
+      <div class="news-source">Source: Xinhua via The Star</div>
+    </div>
+
+  </div>
+
+  <!-- Iran-US -->
+  <div class="news-category">
+    <div class="category-title iranus">⚔️ Iran-US Conflict</div>
+
+    <div class="news-item">
+      <div class="news-headline">Back From China, Trump Faces Decision on Whether to Resume Strikes on Iran (NYT)</div>
+      <div class="news-meta">15 May 2026 · The New York Times</div>
+      <div class="news-summary">President Trump is facing a critical decision on whether to resume US military strikes on Iran following his diplomatic trip to China, with advisors divided on the next course of action.</div>
+      <div class="news-source">Source: The New York Times</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-headline">US-Israel Iran Attacks Could Resume Next Week — NYT via Jerusalem Post</div>
+      <div class="news-meta">16 May 2026 · The Jerusalem Post</div>
+      <div class="news-summary">Israeli and US forces may resume coordinated attacks on Iran as early as next week, according to sources cited by the New York Times, as diplomatic efforts to curb Tehran's nuclear ambitions appear to have stalled.</div>
+      <div class="news-source">Source: The Jerusalem Post</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-headline">Iran War Updates: Lebanon Ceasefire Extended; Israel Launches New Attacks</div>
+      <div class="news-meta">15 May 2026 · Al Jazeera</div>
+      <div class="news-summary">The Lebanon ceasefire has been extended, though Israel has launched new military attacks in the region as part of its ongoing operations. The broader Iran-Israel conflict remains volatile with regional spillover concerns.</div>
+      <div class="news-source">Source: Al Jazeera</div>
+    </div>
+
+  </div>
+
+  <!-- Tech/AI -->
+  <div class="news-category">
+    <div class="category-title tech">🤖 Technology & AI</div>
+
+    <div class="news-item">
+      <div class="news-headline">Google Races to Put Gemini at the Center of Android Before Apple's AI Reboot</div>
+      <div class="news-meta">12 May 2026 · CNBC</div>
+      <div class="news-summary">Google is aggressively integrating its Gemini AI model deeper into the Android ecosystem, racing to establish dominance before Apple's anticipated AI overhaul of iOS. The push includes new on-device AI features and system-level integrations.</div>
+      <div class="news-source">Source: CNBC</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-headline">A Guide to AI-Powered Legal Technology Companies</div>
+      <div class="news-meta">16 May 2026 · Forbes</div>
+      <div class="news-summary">Forbes publishes a comprehensive guide to AI-powered legal technology companies, covering automation in litigation, contract analysis, and legal research tools that are reshaping the legal industry.</div>
+      <div class="news-source">Source: Forbes</div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:20px 36px;font-size:12px;color:var(--muted);border-top:1px solid var(--mid);margin-top:8px">
+    Generated by OpenClaw get-news skill · <span id="gen-time">17 May 2026, 6:00 AM Asia/Kuala_Lumpur</span>
+  </div>
+</div>
+
+</body>
+</html>
