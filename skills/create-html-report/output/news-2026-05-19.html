@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Summary — 19 May 2026</title>
+  <style>
+    :root {
+      --dark: #0f1b2d; --blue: #0032A0; --light: #e8edf5;
+      --mid: #c5d0e6; --green: #1a7a4a; --amber: #d4820a;
+      --red: #c0392b; --text: #1a1a2e; --muted: #5a6a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Calibri, sans-serif; background: var(--light); color: var(--text); font-size: 14px; }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff; padding: 28px 36px 24px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .badge { background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .header h1 { font-size: 22px; font-weight: 700; }
+    .header-meta { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+    .body { padding: 28px 36px 48px; max-width: 1100px; }
+
+    .news-category { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .category-title {
+      font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 14px;
+      padding: 8px 14px; border-radius: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .category-title.malaysia { background: linear-gradient(135deg, #0032A0, #0050c8); }
+    .category-title.global   { background: linear-gradient(135deg, #1a7a4a, #22a86a); }
+    .category-title.iranus  { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+    .category-title.tech    { background: linear-gradient(135deg, #6c3483, #9b59b6); }
+
+    .news-item { border-left: 3px solid var(--mid); padding: 10px 14px; margin-bottom: 10px; background: #f4f7fc; border-radius: 6px; }
+    .news-item:last-child { margin-bottom: 0; }
+    .news-headline { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.4; }
+    .news-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .news-summary { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid var(--blue); }
+    .stat-card.g { border-top-color: var(--green); }
+    .stat-card.a { border-top-color: var(--amber); }
+    .stat-card.r { border-top-color: var(--red); }
+    .stat-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 700; color: var(--dark); }
+
+    @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .header { padding: 20px 20px 16px; } .body { padding: 20px 20px 36px; } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="margin-bottom:10px">
+    <a href="index.html" style="color:#fff;font-size:12px;font-weight:700;text-decoration:none;background:var(--blue);padding:5px 12px;border-radius:6px;">← Back to Index</a>
+  </div>
+  <div class="header-top">
+    <span class="badge">NEWS</span>
+    <h1>News Summary — 19 May 2026</h1>
+  </div>
+  <div class="header-meta">Auto-generated from get-news skill · Last 24 hours</div>
+</div>
+
+<div class="body">
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">🇲🇾 Malaysia</div>
+      <div class="stat-value">5</div>
+    </div>
+    <div class="stat-card g">
+      <div class="stat-label">🌍 Global</div>
+      <div class="stat-value">5</div>
+    </div>
+    <div class="stat-card a">
+      <div class="stat-label">⚔️ Iran-US</div>
+      <div class="stat-value">5</div>
+    </div>
+    <div class="stat-card r">
+      <div class="stat-label">🤖 Tech/AI</div>
+      <div class="stat-value">5</div>
+    </div>
+  </div>
+
+  <!-- Malaysia -->
+  <div class="news-category">
+    <div class="category-title malaysia">🇲🇾 Malaysia</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">Malaysia PM meets with king amid talk of early elections</div>
+        <div class="news-meta">Reuters · Mon, 18 May 2026 08:14 GMT</div>
+        <div class="news-summary">Prime Minister Anwar Ibrahim met with the Yang di-Pertuan Agong amid growing speculation of snap elections being called sooner than expected.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">[UPDATED] Rafizi, Nik Nazmi take over Parti Bersama Malaysia</div>
+        <div class="news-meta">NST Online · Sun, 17 May 2026 07:18 GMT</div>
+        <div class="news-summary">Rafizi Ramli and Nik Nazmi Nik Ahmad made a high-profile switch to join Parti Bersama Malaysia (Bersatu), signalling fresh political realignments ahead of the next election cycle.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Rafizi and Nik Nazmi make bold exit for Parti Bersama Malaysia</div>
+        <div class="news-meta">The Star · Sun, 17 May 2026 23:35 GMT</div>
+        <div class="news-summary">The两位资深领袖离开原党加入Bersatu，外界视为团结政府内部重大人事变动。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Bersatu's 12-point agenda includes monthly govt aid, fair wages, free preschools</div>
+        <div class="news-meta">Malaysiakini · Mon, 18 May 2026 04:18 GMT</div>
+        <div class="news-summary">Parti Baru Malaysia launched its manifesto featuring monthly government assistance, fair wage policies, and free preschool education — aiming to appeal to middle-income voters.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Bursa Malaysia ends at intraday low, tracking weak regional sentiment</div>
+        <div class="news-meta">The Star · Mon, 18 May 2026 10:44 GMT</div>
+        <div class="news-summary">Bursa Malaysia closed at its intraday low as regional markets mirrored overnight weakness from Wall Street, with banking and consumer stocks leading the decline.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global -->
+  <div class="news-category">
+    <div class="category-title global">🌍 Global</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">Ebola outbreak fuels mounting global alarm as U.S. works to relocate affected Americans</div>
+        <div class="news-meta">NBC News · Mon, 18 May 2026 19:07 GMT</div>
+        <div class="news-summary">A new Ebola outbreak in the DRC is raising international concern. The U.S. government is working to evacuate American citizens from the affected region while global health officials scale up response efforts.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Israeli troops intercept a flotilla off Cyprus as it tries to breach the Gaza blockade</div>
+        <div class="news-meta">NBC News · Mon, 18 May 2026 20:33 GMT</div>
+        <div class="news-summary">Israeli forces intercepted a civilian flotilla attempting to breach the Gaza maritime blockade near Cyprus, in an incident that threatens to further escalate regional tensions in the Eastern Mediterranean.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">World Health Assembly opens with focus on equity and global health cooperation</div>
+        <div class="news-meta">PAHO · Mon, 18 May 2026 12:49 GMT</div>
+        <div class="news-summary">The 78th World Health Assembly opened with calls for equitable vaccine distribution, stronger health systems, and greater international cooperation ahead of the 2030 sustainable development targets.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Zero For 52: WHO Warns World Set To Miss Every Global Health Target By 2030</div>
+        <div class="news-meta">Health Policy Watch · Mon, 18 May 2026 14:04 GMT</div>
+        <div class="news-summary">A major WHO assessment found that all 52 health-related Sustainable Development Goals are off track, with the agency warning that without urgent corrective action, none will be met by 2030.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Trump says he cancelled planned attack on Iran at request of Gulf states</div>
+        <div class="news-meta">Al Jazeera · Mon, 18 May 2026 09:56 GMT</div>
+        <div class="news-summary">President Trump disclosed that a planned U.S. military strike on Iran was called off at the request of Gulf Cooperation Council allies, who warned of destabilizing consequences and urged space for diplomacy.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Iran-US -->
+  <div class="news-category">
+    <div class="category-title iranus">⚔️ Iran-US Conflict</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">Trump calls off scheduled attack on Iran amid 'serious negotiations' toward peace deal</div>
+        <div class="news-meta">CBS News · Mon, 18 May 2026 21:30 GMT</div>
+        <div class="news-summary">The U.S. President confirmed the Pentagon was ready to launch strikes on Tuesday but he ordered them suspended after Gulf-state intermediaries reported meaningful progress in indirect nuclear negotiations with Tehran.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Trump says US was set to strike Iran Tuesday; attack put on hold as 'serious negotiations' under way</div>
+        <div class="news-meta">The Times of India · Mon, 18 May 2026 21:29 GMT</div>
+        <div class="news-summary">White House sources confirmed the strike window was narrow — planned for Tuesday — before Trump reversed course, citing ongoing "serious negotiations" and a new Iranian proposal deemed not yet meaningful by Washington.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Trump says he cancelled planned attack on Iran at request of Gulf states, vows US is ready for 'large scale assault' if peace talks fail</div>
+        <div class="news-meta">The Guardian · Mon, 18 May 2026 21:08 GMT</div>
+        <div class="news-summary">Trump warned that if negotiations collapse, the U.S. military remains on standby for a "large scale assault" — signalling continued leverage while diplomatic channels stay open.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">US Iran war LIVE: US holding off Iran attacks; Tehran's new proposal not meaningful, says report</div>
+        <div class="news-meta">Hindustan Times · Mon, 18 May 2026 21:26 GMT</div>
+        <div class="news-summary">U.S. officials say Tehran's most recent diplomatic overture lacks substance and verifiable commitments on uranium enrichment, keeping military options on the table alongside continued talks.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">'Limited Patience': Iran Warns UAE Against 'Entangling In Israel's Schemes'</div>
+        <div class="news-meta">NDTV · Mon, 18 May 2026 05:28 GMT</div>
+        <div class="news-summary">Tehran issued a sharp warning to the UAE, declaring it has "limited patience" for countries perceived as aligning with Israeli and American strategic interests in the Gulf.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech/AI -->
+  <div class="news-category">
+    <div class="category-title tech">🤖 Technology & AI</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">Before Mass Layoffs, Meta Reassigns 7,000 Workers to Focus on A.I.</div>
+        <div class="news-meta">The New York Times · Mon, 18 May 2026 21:47 GMT</div>
+        <div class="news-summary">Meta has quietly reassigned approximately 7,000 employees from existing product teams to AI-related initiatives, ahead of a broader restructuring that insiders say will involve significant headcount reductions.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">The Tech Workers Building A.I. Are Scared of It, Too</div>
+        <div class="news-meta">The New York Times · Mon, 18 May 2026 05:00 GMT</div>
+        <div class="news-summary">An op-ed exploring the growing anxiety among AI engineers and researchers who say the systems they are building may be超出了 their ability to fully understand or control them.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">AI could make humans less intelligent, warns Royal Observatory</div>
+        <div class="news-meta">BBC · Mon, 18 May 2026 09:33 GMT</div>
+        <div class="news-summary">The UK's Royal Observatory Greenwich published a report warning that widespread AI adoption could erode human cognitive abilities if reliance on AI-assisted decision-making continues unchecked.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Ex-Google CEO Eric Schmidt booed after AI remarks at Arizona commencement</div>
+        <div class="news-meta">The Guardian · Mon, 18 May 2026 17:02 GMT</div>
+        <div class="news-summary">Former Google CEO Eric Schmidt faced public backlash and boos from graduating students at Arizona State University after making remarks about AI's transformative potential that many found tone-deaf.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Former Google CEO Eric Schmidt booed by graduates at mention of AI</div>
+        <div class="news-meta">BBC · Mon, 18 May 2026 15:16 GMT</div>
+        <div class="news-summary">Graduates at Arizona State University expressed displeasure during Schmidt's commencement speech when he framed AI development as an unqualified positive, with some students walking out.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:20px 36px;font-size:12px;color:var(--muted);border-top:1px solid var(--mid);margin-top:8px">
+    Generated by OpenClaw get-news skill · <span id="gen-time"></span>
+  </div>
+</div>
+
+<script>
+  document.getElementById('gen-time').textContent = new Date().toLocaleString('en-MY', {timeZone:'Asia/Kuala_Lumpur'});
+</script>
+</body>
+</html>
