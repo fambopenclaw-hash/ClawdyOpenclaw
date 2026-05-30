@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Summary — 22 May 2026</title>
+  <style>
+    :root {
+      --dark: #0f1b2d; --blue: #0032A0; --light: #e8edf5;
+      --mid: #c5d0e6; --green: #1a7a4a; --amber: #d4820a;
+      --red: #c0392b; --text: #1a1a2e; --muted: #5a6a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Calibri, sans-serif; background: var(--light); color: var(--text); font-size: 14px; }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff; padding: 28px 36px 24px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .badge { background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .header h1 { font-size: 22px; font-weight: 700; }
+    .header-meta { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+    .body { padding: 28px 36px 48px; max-width: 1100px; }
+
+    .news-category { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .category-title {
+      font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 14px;
+      padding: 8px 14px; border-radius: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .category-title.malaysia { background: linear-gradient(135deg, #0032A0, #0050c8); }
+    .category-title.global   { background: linear-gradient(135deg, #1a7a4a, #22a86a); }
+    .category-title.iranus  { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+    .category-title.tech    { background: linear-gradient(135deg, #6c3483, #9b59b6); }
+
+    .news-item { border-left: 3px solid var(--mid); padding: 10px 14px; margin-bottom: 10px; background: #f4f7fc; border-radius: 6px; }
+    .news-item:last-child { margin-bottom: 0; }
+    .news-headline { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.4; }
+    .news-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .news-summary { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .news-source { font-size: 11px; font-weight: 700; color: var(--blue); margin-top: 4px; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid var(--blue); }
+    .stat-card.g { border-top-color: var(--green); }
+    .stat-card.a { border-top-color: var(--amber); }
+    .stat-card.r { border-top-color: var(--red); }
+    .stat-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 700; color: var(--dark); }
+
+    @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .header { padding: 20px 20px 16px; } .body { padding: 20px 20px 36px; } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="margin-bottom:10px">
+    <a href="index.html" style="color:#fff;font-size:12px;font-weight:700;text-decoration:none;background:var(--blue);padding:5px 12px;border-radius:6px;">← Back to Index</a>
+  </div>
+  <div class="header-top">
+    <span class="badge">NEWS</span>
+    <h1>News Summary — 22 May 2026</h1>
+  </div>
+  <div class="header-meta">Auto-generated from get-news skill · Last 24 hours · Generated 22 May 2026, 10:00 PM UTC</div>
+</div>
+
+<div class="body">
+
+  <!-- Stats row -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">🇲🇾 Malaysia</div>
+      <div class="stat-value" id="cnt-my">3</div>
+    </div>
+    <div class="stat-card g">
+      <div class="stat-label">🌍 Global</div>
+      <div class="stat-value" id="cnt-gl">3</div>
+    </div>
+    <div class="stat-card a">
+      <div class="stat-label">⚔️ Iran-US</div>
+      <div class="stat-value" id="cnt-iran">3</div>
+    </div>
+    <div class="stat-card r">
+      <div class="stat-label">🤖 Tech/AI</div>
+      <div class="stat-value" id="cnt-tech">3</div>
+    </div>
+  </div>
+
+  <!-- Malaysia Section -->
+  <div class="news-category">
+    <div class="category-title malaysia">🇲🇾 Malaysia</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">Malaysia orders TikTok to address 'defamatory' content about the king</div>
+        <div class="news-meta">Al Jazeera · 19 hours ago</div>
+        <div class="news-summary">Malaysia has ordered TikTok to explain and address content deemed "defamatory" and "grossly offensive" targeting the country's king. Authorities have given the platform a deadline to respond.</div>
+        <div class="news-source">Source: Al Jazeera / AP News</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Malaysia orders TikTok to explain 'grossly offensive' fake content targeting king</div>
+        <div class="news-meta">AP News · 23 hours ago</div>
+        <div class="news-summary">AP reports that Malaysian authorities have formally demanded TikTok remove allegedly fabricated content involving the nation's king that they describe as grossly offensive and defamatory.</div>
+        <div class="news-source">Source: AP News</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">OCBC Malaysia enhances SME support through Bank Negara's SME SRF</div>
+        <div class="news-meta">The Star · 17 hours ago</div>
+        <div class="news-summary">OCBC Malaysia is strengthening its support for small and medium enterprises via the Bank Negara Malaysia SME Special Relief Facility (SRF), aiming to help businesses manage cashflow and operational needs.</div>
+        <div class="news-source">Source: The Star Malaysia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Section -->
+  <div class="news-category">
+    <div class="category-title global">🌍 Global</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">Gabbard resigns as Trump's top US intelligence official</div>
+        <div class="news-meta">Reuters · 9 minutes ago</div>
+        <div class="news-summary">Tulsi Gabbard has resigned from her role as Director of National Intelligence under the Trump administration. Her departure comes amid broader reshuffling of the intelligence leadership.</div>
+        <div class="news-source">Source: Reuters</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">NASCAR world in shock over Kyle Busch death — new details emerge</div>
+        <div class="news-meta">Fox News / OutKick · 7 hours ago</div>
+        <div class="news-summary">The NASCAR community is reeling from the death of Kyle Busch, with new details beginning to emerge. The racing world and fans have expressed widespread shock and grief.</div>
+        <div class="news-source">Source: Fox News / OutKick</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Tuchel names England World Cup squad — Alexander-Arnold misses out</div>
+        <div class="news-meta">BBC · Live</div>
+        <div class="news-summary">England manager Thomas Tuchel has announced the Three Lions squad for the upcoming World Cup, with Trent Alexander-Arnold notably excluded as the squad was named live on BBC.</div>
+        <div class="news-source">Source: BBC</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Iran-US Section -->
+  <div class="news-category">
+    <div class="category-title iranus">⚔️ Iran-US Conflict</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">U.S., Iran signal peace progress — but remain at odds over enriched uranium and Strait of Hormuz tolls</div>
+        <div class="news-meta">CNBC · 14 hours ago</div>
+        <div class="news-summary">Both sides have signalled movement towards peace, but critical sticking points remain: Iran's enriched uranium programme and demands for tolls on vessels transiting the Strait of Hormuz continue to divide negotiators.</div>
+        <div class="news-source">Source: CNBC</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Iran live: Tehran says US uranium handover demand will kill the deal</div>
+        <div class="news-meta">Al Jazeera · 8 hours ago</div>
+        <div class="news-summary">Tehran has warned that a US demand for Iran to surrender its enriched uranium stockpiles would effectively derail any prospective agreement. Live coverage of the Iran-US standoff continues.</div>
+        <div class="news-source">Source: Al Jazeera</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Trump met top advisers on Iran as he weighs return to war</div>
+        <div class="news-meta">Axios · 1 hour ago</div>
+        <div class="news-summary">President Trump held meetings with senior national security advisers to discuss Iran, as his administration weighs whether to return to military action. The GOP has also pulled a measure on Trump's war powers regarding Iran, lacking the votes to defeat it.</div>
+        <div class="news-source">Source: Axios / NYT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech/AI Section -->
+  <div class="news-category">
+    <div class="category-title tech">🤖 Technology & AI</div>
+    <div>
+      <div class="news-item">
+        <div class="news-headline">How NIH-funded AI research could change aging in America</div>
+        <div class="news-meta">Association of Health Care Journalists · 10 hours ago</div>
+        <div class="news-summary">National Institutes of Health (NIH)-backed AI research is generating new insights that could reshape how America addresses aging, from predictive health tools to AI-assisted care planning.</div>
+        <div class="news-source">Source: Association of Health Care Journalists</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Dartmouth IT office publishes guidelines for 'safe' workplace AI use</div>
+        <div class="news-meta">The Dartmouth · 12 hours ago</div>
+        <div class="news-summary">Dartmouth College's Information, Technology and Consulting office has released new guidelines advising staff on responsible, "safe" use of AI tools in the workplace — with advice to "keep your friends close, keep your AI closer."</div>
+        <div class="news-source">Source: The Dartmouth</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Will AI create jobs for young, skilled workers like past tech? MIT asks</div>
+        <div class="news-meta">MIT News · 2 days ago</div>
+        <div class="news-summary">A MIT analysis examines whether artificial intelligence will follow the pattern of previous transformative technologies — which historically created jobs for young, skilled workers — or break the trend.</div>
+        <div class="news-source">Source: MIT News</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:20px 36px;font-size:12px;color:var(--muted);border-top:1px solid var(--mid);margin-top:8px">
+    Generated by OpenClaw get-news skill · <span id="gen-time">22 May 2026, 10:00 PM MYT</span>
+  </div>
+</div>
+
+<script>
+  document.getElementById('gen-time').textContent = new Date().toLocaleString('en-MY', {timeZone:'Asia/Kuala_Lumpur'});
+</script>
+</body>
+</html>

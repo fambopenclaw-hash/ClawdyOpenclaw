@@ -131,7 +131,13 @@ To add a new database:
 
 ---
 
-## Artemis II Mission Watch Alerts
+## 🌐 GitHub Pages Reporting
+
+- **Report repo:** `fahmiamni/reports` → GitHub Pages at `https://fahmiamni.github.io/reports/`
+- **Pattern for news reports:** `https://fahmiamni.github.io/reports/news-YYYY-MM-DD.html`
+- Always use this URL pattern when generating and sharing links from the reports repo.
+- Clone to local: `git clone https://github.com/fahmiamni/reports.git /tmp/news-pages`
+- Push auth: use `fahmiamni` account token via `gh auth token --hostname github.com --user fahmiamni`
 
 User wants reminders for kid-friendly, watchable milestones only:
 - Proximity Operations Demo (manual spacecraft maneuver)

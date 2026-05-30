@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Summary — 24 May 2026</title>
+  <style>
+    :root {
+      --dark: #0f1b2d; --blue: #0032A0; --light: #e8edf5;
+      --mid: #c5d0e6; --green: #1a7a4a; --amber: #d4820a;
+      --red: #c0392b; --text: #1a1a2e; --muted: #5a6a7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Calibri, sans-serif; background: var(--light); color: var(--text); font-size: 14px; }
+
+    .header {
+      background: var(--dark);
+      background-image: linear-gradient(135deg, #0f1b2d 0%, #1a2f4e 100%);
+      color: #fff; padding: 28px 36px 24px;
+      border-bottom: 4px solid var(--blue);
+    }
+    .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .badge { background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .header h1 { font-size: 22px; font-weight: 700; }
+    .header-meta { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+    .body { padding: 28px 36px 48px; max-width: 1100px; }
+
+    .news-category { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .category-title {
+      font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 14px;
+      padding: 8px 14px; border-radius: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .category-title.malaysia { background: linear-gradient(135deg, #0032A0, #0050c8); }
+    .category-title.global   { background: linear-gradient(135deg, #1a7a4a, #22a86a); }
+    .category-title.iranus  { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+    .category-title.tech    { background: linear-gradient(135deg, #6c3483, #9b59b6); }
+
+    .news-item { border-left: 3px solid var(--mid); padding: 10px 14px; margin-bottom: 10px; background: #f4f7fc; border-radius: 6px; }
+    .news-item:last-child { margin-bottom: 0; }
+    .news-headline { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.4; }
+    .news-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .news-summary { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .news-source { font-size: 11px; font-weight: 700; color: var(--blue); margin-top: 4px; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid var(--blue); }
+    .stat-card.g { border-top-color: var(--green); }
+    .stat-card.a { border-top-color: var(--amber); }
+    .stat-card.r { border-top-color: var(--red); }
+    .stat-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 700; color: var(--dark); }
+
+    @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .header { padding: 20px 20px 16px; } .body { padding: 20px 20px 36px; } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="margin-bottom:10px">
+    <a href="index.html" style="color:#fff;font-size:12px;font-weight:700;text-decoration:none;background:var(--blue);padding:5px 12px;border-radius:6px;">← Back to Index</a>
+  </div>
+  <div class="header-top">
+    <span class="badge">NEWS</span>
+    <h1>News Summary — 24 May 2026</h1>
+  </div>
+  <div class="header-meta">Auto-generated from get-news skill · Last 24 hours</div>
+</div>
+
+<div class="body">
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">🇲🇾 Malaysia</div>
+      <div class="stat-value" id="cnt-my">5</div>
+    </div>
+    <div class="stat-card g">
+      <div class="stat-label">🌍 Global</div>
+      <div class="stat-value" id="cnt-gl">5</div>
+    </div>
+    <div class="stat-card a">
+      <div class="stat-label">⚔️ Iran-US</div>
+      <div class="stat-value" id="cnt-iran">6</div>
+    </div>
+    <div class="stat-card r">
+      <div class="stat-label">🤖 Tech/AI</div>
+      <div class="stat-value" id="cnt-tech">6</div>
+    </div>
+  </div>
+
+  <!-- Malaysia Section -->
+  <div class="news-category">
+    <div class="category-title malaysia">🇲🇾 Malaysia</div>
+    <div id="news-malaysia">
+      <div class="news-item">
+        <div class="news-headline">Malaysia orders TikTok to address 'defamatory' content about king</div>
+        <div class="news-meta">Al Jazeera · Fri, 22 May 2026</div>
+        <div class="news-summary">Malaysia has ordered TikTok to remove or address content deemed defamatory toward the nation's king, escalating tensions between the government and the social media platform over royal dignity laws.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Social media users in Malaysia must verify age with IC or passport from June 1</div>
+        <div class="news-meta">Malay Mail · Fri, 22 May 2026</div>
+        <div class="news-summary">A new deputy minister announcement mandates that Malaysian social media users verify their age using their IC or passport starting June 1 — a move tied to the country's upcoming Social Media Code of Conduct.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Johor declares May 25 a state holiday following JDT's Malaysia Cup win</div>
+        <div class="news-meta">The Star · Sat, 23 May 2026</div>
+        <div class="news-summary">Johor is celebrating JDT's Malaysia Cup victory with a state holiday on May 25, in recognition of the club's historic achievement in bringing pride to the state.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Sepak Takraw World Cup: Malaysia Win Team Regu Title In Controversial Final Against Thailand</div>
+        <div class="news-meta">Bernama · Sat, 23 May 2026</div>
+        <div class="news-summary">Malaysia's national sepak takraw team clinched the Team Regu title at the World Cup in a tense, controversial final against rivals Thailand.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Malaysia Masters: Super Saturday for Thailand</div>
+        <div class="news-meta">BWF World Tour · Sat, 23 May 2026</div>
+        <div class="news-summary">Thailand dominated the Super Saturday at the Malaysia Masters badminton tournament, advancing multiple players and pairs into finals across multiple categories.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Section -->
+  <div class="news-category">
+    <div class="category-title global">🌍 Global</div>
+    <div id="news-global">
+      <div class="news-item">
+        <div class="news-headline">Marco Rubio To NDTV On New US Greencard Rule: "It's Not About India"</div>
+        <div class="news-meta">NDTV · Sat, 23 May 2026</div>
+        <div class="news-summary">US Secretary of State Marco Rubio clarified that Washington's new greencard reform rule is not targeted specifically at India, amid widespread confusion and concern in the Indian diaspora.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Iran 'getting a lot closer' to agreement with US, Trump says</div>
+        <div class="news-meta">BBC / Reuters · Sat, 23 May 2026</div>
+        <div class="news-summary">President Trump indicated that the US and Iran are nearing a potential agreement to end the ongoing conflict, describing Tehran as "getting a lot closer" to a deal.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Iran and U.S. Officials Signal Progress as Cease-Fire Hangs in Balance</div>
+        <div class="news-meta">The New York Times · Sat, 23 May 2026</div>
+        <div class="news-summary">Both American and Iranian officials are signalling cautious optimism as diplomatic efforts intensify; however the fragile cease-fire remains precarious pending final responses from Tehran.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Gabbard resigns as Trump's top US intelligence official</div>
+        <div class="news-meta">Reuters · Fri, 22 May 2026</div>
+        <div class="news-summary">Tulsi Gabbard resigned from her role as Director of National Intelligence, marking a significant shake-up in Trump's national security team during a critical period of ongoing conflicts.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Shakira's FIFA World Cup 2026 anthem gets star-studded video treatment</div>
+        <div class="news-meta">NBC News · Sat, 23 May 2026</div>
+        <div class="news-summary">Music superstar Shakira released a star-studded music video for her official FIFA World Cup 2026 anthem, featuring cameo appearances from footballers and celebrities.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Iran-US Section -->
+  <div class="news-category">
+    <div class="category-title iranus">⚔️ Iran-US Conflict</div>
+    <div id="news-iranus">
+      <div class="news-item">
+        <div class="news-headline">Iran war day 83: Tehran 'reviewing' latest US response to end conflict</div>
+        <div class="news-meta">Al Jazeera · Thu, 21 May 2026</div>
+        <div class="news-summary">Iran's Ministry of Foreign Affairs confirmed it is reviewing the latest US response — delivered via Pakistani mediators — to Tehran's latest proposal to end the war. Pakistan's Army Chief Asim Munir is expected to travel to Tehran as part of the shuttle diplomacy effort.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Trump Says U.S. Is Considering 'Winding Down' Iran War</div>
+        <div class="news-meta">The New York Times · Mon, 18 May 2026</div>
+        <div class="news-summary">President Trump stated that the US is considering winding down its military campaign against Iran, suggesting theUS is open to a diplomatic off-ramp after more than 80 days of conflict.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Iran Warns Trump of 'Far More Devastating' Consequences if War Resumes</div>
+        <div class="news-meta">Brussels Morning / bloomingbit · Sat, 23 May 2026</div>
+        <div class="news-summary">Tehran issued a stark warning that if the US resumes military operations after a pause, the consequences would be "far more devastating" than anything seen so far in the conflict.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">US Iran Military Tensions: 7 Dangerous Signs in 2026</div>
+        <div class="news-meta">Brussels Morning Newspaper · Sat, 23 May 2026</div>
+        <div class="news-summary">An in-depth analysis outlined seven escalating danger signs in the US-Iran military standoff, including Strait of Hormuz naval activity, cyber operations, and allied positioning across the Middle East.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">At NATO meeting, Rubio embarks on another mission to ease tensions with allies</div>
+        <div class="news-meta">PBS · Fri, 22 May 2026</div>
+        <div class="news-summary">US Secretary of State Marco Rubio attended a NATO foreign ministers meeting seeking to reassure allies and mend bridges strained by the Trump administration's unpredictable Iran policy.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">2026 Iran War Explained: United States, Israel, Strait of Hormuz & Conflict Map</div>
+        <div class="news-meta">Britannica · Fri, 22 May 2026</div>
+        <div class="news-summary">Britannica published a comprehensive explainer on the ongoing Iran-US conflict, covering the key parties involved (US, Israel, Iran), the strategic importance of the Strait of Hormuz, and a实时 conflict map.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech/AI Section -->
+  <div class="news-category">
+    <div class="category-title tech">🤖 Technology & AI</div>
+    <div id="news-tech">
+      <div class="news-item">
+        <div class="news-headline">Technology usually creates jobs for young, skilled workers. Will AI do the same?</div>
+        <div class="news-meta">MIT News · Thu, 21 May 2026</div>
+        <div class="news-summary">MIT examined whether AI will follow the historical pattern of technology creating new jobs for skilled young workers — or break the mold by automating cognitive tasks at a scale never seen before.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Venture Capitalist John Doerr Says AI Is the Biggest Tech 'Tsunami' Ever</div>
+        <div class="news-meta">WSJ · Sat, 23 May 2026</div>
+        <div class="news-summary">Legendary VC John Doerr compared the AI wave to a tsunami, saying it will reshape every industry faster than any prior technology cycle and urging massive investment in AI infrastructure now.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">'Not a cost-cutting exercise': How tech CEOs are framing AI-driven layoffs</div>
+        <div class="news-meta">Yahoo Finance · Sat, 23 May 2026</div>
+        <div class="news-summary">Major tech CEOs are repositioning AI-driven workforce reductions as strategic reinventions rather than pure cost-cutting, as shareholder pressure mounts and skepticism grows around the real ROI of AI.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">How big tech got its way on Trump's AI executive order</div>
+        <div class="news-meta">The Guardian · Sat, 23 May 2026</div>
+        <div class="news-summary">An investigation revealed how major technology companies successfully lobbied the Trump administration to shape the AI executive order in ways favourable to big tech, raising concerns about regulatory capture.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">AI-Writing Scandals Are Getting Very Confusing</div>
+        <div class="news-meta">The Atlantic · Sat, 23 May 2026</div>
+        <div class="news-summary">The Atlantic explored the rising wave of AI-generated content scandals — from fake op-eds to synthetic news — and how the growing blur between human and machine writing is creating a credibility crisis for media.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-headline">Microsoft's new responsible tech lead on how to humanize high-speed AI development</div>
+        <div class="news-meta">CNBC · Sat, 23 May 2026</div>
+        <div class="news-summary">Microsoft appointed a new responsible technology chief tasked with embedding safety and ethics into the company's breakneck AI development pace — a notable signal that big tech is starting to take AI governance seriously.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:20px 36px;font-size:12px;color:var(--muted);border-top:1px solid var(--mid);margin-top:8px">
+    Generated by OpenClaw get-news skill · <span id="gen-time"></span>
+  </div>
+</div>
+
+<script>
+  document.getElementById('gen-time').textContent = new Date().toLocaleString('en-MY', {timeZone:'Asia/Kuala_Lumpur'});
+</script>
+</body>
+</html>

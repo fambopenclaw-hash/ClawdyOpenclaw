@@ -243,7 +243,7 @@ Fill in the `<div>` slots for each category with `news-item` blocks, and update 
 
 ```bash
 # Clone the repo
-gh repo clone fahmiamni/github.io /tmp/gh-pages-news 2>/dev/null || git clone https://github.com/fahmiamni/github.io.git /tmp/gh-pages-news
+gh repo clone fahmiamni/reports /tmp/gh-pages-news 2>/dev/null || git clone https://github.com/fahmiamni/reports.git /tmp/gh-pages-news
 
 # Copy the HTML file
 cp ~/.openclaw/workspace/skills/create-html-report/output/news-<YYYY-MM-DD>.html /tmp/gh-pages-news/news-<YYYY-MM-DD>.html
@@ -274,6 +274,6 @@ Commit and push the updated `index.html`.
 
 ### Live URL
 
-`https://fahmiamni.github.io/news-<YYYY-MM-DD>.html`
+`https://fahmiamni.github.io/reports/news-<YYYY-MM-DD>.html`
 
 Share this link with the user after publishing.
